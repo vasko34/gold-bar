@@ -39,7 +39,7 @@ const Library = () => {
     useEffect(() => {  
         let arr = tobaccos;
         activeFilters.forEach(element => {
-            arr = arr.filter(element.conditionFn);
+            arr = arr.filter(element.conditionFn)
         });
         if (activeFiltersBrand.length !== 0) {
             arr = arr.filter(element => activeFiltersBrand.includes(element.brand.split(' ')[0]));
