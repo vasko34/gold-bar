@@ -9,7 +9,8 @@ const tobaccos = [
         image: images.ElementEarthPeer,
         ice: false,
         fruity: true,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -19,7 +20,8 @@ const tobaccos = [
         image: images.ElementEarthCuctusFik,
         ice: false,
         fruity: false,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -29,7 +31,8 @@ const tobaccos = [
         image: images.ElementEarthCherrie,
         ice: false,
         fruity: true,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -39,7 +42,8 @@ const tobaccos = [
         image: images.ElementEarthCurant,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -49,7 +53,8 @@ const tobaccos = [
         image: images.ElementEarthFiir,
         ice: false,
         fruity: false,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -59,7 +64,8 @@ const tobaccos = [
         image: images.ElementEarthPinappl,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -69,7 +75,8 @@ const tobaccos = [
         image: images.ElementEarthPiach,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -79,7 +86,8 @@ const tobaccos = [
         image: images.ElementEarthLimongras,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -89,7 +97,8 @@ const tobaccos = [
         image: images.ElementEarthIrishKriem,
         ice: false,
         fruity: false,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -99,7 +108,8 @@ const tobaccos = [
         image: images.ElementEarthBnanaDaiqr,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -109,7 +119,8 @@ const tobaccos = [
         image: images.ElementEarthRosellaIceCrem,
         ice: false,
         fruity: false,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Dark (Weak)',
@@ -119,7 +130,8 @@ const tobaccos = [
         image: images.ElementWaterHola,
         ice: false,
         fruity: false,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark (Weak)',
@@ -129,7 +141,8 @@ const tobaccos = [
         image: images.ElementWaterRaspberrie,
         ice: false,
         fruity: true,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Dark (Weak)',
@@ -139,7 +152,8 @@ const tobaccos = [
         image: images.ElementWaterBelgianWffl,
         ice: false,
         fruity: false,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Dark (Weak)',
@@ -149,7 +163,8 @@ const tobaccos = [
         image: images.ElementWaterEkzo,
         ice: false,
         fruity: true,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Dark (Weak)',
@@ -159,7 +174,8 @@ const tobaccos = [
         image: images.ElementWaterGrapMnt,
         ice: true,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark (Weak)',
@@ -169,7 +185,8 @@ const tobaccos = [
         image: images.ElementWaterMng,
         ice: false,
         fruity: true,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Dark (Weak)',
@@ -179,7 +196,8 @@ const tobaccos = [
         image: images.ElementWaterCookiMonster,
         ice: false,
         fruity: false,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Dark (Weak)',
@@ -189,7 +207,8 @@ const tobaccos = [
         image: images.ElementWaterMargarita,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark (Weak)',
@@ -199,7 +218,8 @@ const tobaccos = [
         image: images.ElementWaterGrapefrutPmelo,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark (Weak)',
@@ -209,7 +229,8 @@ const tobaccos = [
         image: images.ElementWaterWildberrieMors,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark (Weak)',
@@ -219,7 +240,8 @@ const tobaccos = [
         image: images.ElementWaterWtrlmnHalls,
         ice: true,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark (Weak)',
@@ -229,7 +251,8 @@ const tobaccos = [
         image: images.ElementWaterChocoOrng,
         ice: false,
         fruity: true,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Dark (Weak)',
@@ -239,7 +262,8 @@ const tobaccos = [
         image: images.ElementWaterKiwiStrbRasp,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Blonde',
@@ -249,7 +273,8 @@ const tobaccos = [
         image: images.ElementAirTrdelnik,
         ice: false,
         fruity: false,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Blonde',
@@ -259,7 +284,8 @@ const tobaccos = [
         image: images.ElementAirTropicana,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Blonde',
@@ -269,7 +295,8 @@ const tobaccos = [
         image: images.ElementAirFistachoGlato,
         ice: false,
         fruity: false,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Blonde',
@@ -279,7 +306,8 @@ const tobaccos = [
         image: images.ElementAirBerrytale,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Blonde',
@@ -289,7 +317,8 @@ const tobaccos = [
         image: images.ElementAirNoirmlon,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark (Weak)',
@@ -299,7 +328,8 @@ const tobaccos = [
         image: images.DarksideSupernova,
         ice: true,
         fruity: false,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -309,7 +339,8 @@ const tobaccos = [
         image: images.DarksideSupernova,
         ice: true,
         fruity: false,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -319,7 +350,8 @@ const tobaccos = [
         image: images.DarksideBnpapa,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -329,7 +361,8 @@ const tobaccos = [
         image: images.DarksideDoppelgänger,
         ice: false,
         fruity: false,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -339,7 +372,8 @@ const tobaccos = [
         image: images.MusthavePinkman,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Blonde',
@@ -349,7 +383,8 @@ const tobaccos = [
         image: images.HolsterBooster,
         ice: true,
         fruity: false,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Blonde',
@@ -359,7 +394,8 @@ const tobaccos = [
         image: images.HolsterBono,
         ice: false,
         fruity: false,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Blonde',
@@ -369,7 +405,8 @@ const tobaccos = [
         image: images.HolsterIceKaktuz,
         ice: true,
         fruity: false,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -379,7 +416,8 @@ const tobaccos = [
         image: images.BlackBurnAsianLychee,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -389,7 +427,8 @@ const tobaccos = [
         image: images.BlackBurnIrishCream,
         ice: false,
         fruity: false,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -399,7 +438,8 @@ const tobaccos = [
         image: images.BlackBurnAlmondIcecream,
         ice: false,
         fruity: false,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Dark (Strong)',
@@ -409,7 +449,8 @@ const tobaccos = [
         image: images.TangiersNoirHorcata,
         ice: false,
         fruity: false,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Dark (Strong)',
@@ -419,7 +460,8 @@ const tobaccos = [
         image: images.TangiersNoirKashmirPiach,
         ice: false,
         fruity: false,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark (Strong)',
@@ -429,7 +471,8 @@ const tobaccos = [
         image: images.TangiersNoirMarashinoCherri,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark (Strong)',
@@ -439,7 +482,8 @@ const tobaccos = [
         image: images.TangiersNoirOrngZoda,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark (Strong)',
@@ -449,7 +493,8 @@ const tobaccos = [
         image: images.TangiersNoirStrwbrry,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark (Strong)',
@@ -459,7 +504,8 @@ const tobaccos = [
         image: images.TangiersNoirOloliuqui,
         ice: false,
         fruity: false,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark (Strong)',
@@ -469,7 +515,8 @@ const tobaccos = [
         image: images.TangiersNoirPiachIceTee,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark (Extreme)',
@@ -479,7 +526,8 @@ const tobaccos = [
         image: images.TangiersBurleyAbsinthe,
         ice: false,
         fruity: false,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -489,7 +537,8 @@ const tobaccos = [
         image: images.ZomoStrongLemon,
         ice: true,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -499,7 +548,8 @@ const tobaccos = [
         image: images.ZomoStrongOrange,
         ice: true,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -509,7 +559,8 @@ const tobaccos = [
         image: images.ZomoStrongMelon,
         ice: true,
         fruity: true,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Dark',
@@ -519,7 +570,8 @@ const tobaccos = [
         image: images.ZomoStrongPear,
         ice: true,
         fruity: true,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Blonde',
@@ -529,7 +581,8 @@ const tobaccos = [
         image: images.ZomoMyMiamiNights,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Blonde',
@@ -539,7 +592,8 @@ const tobaccos = [
         image: images.ZomoMyTropicalAmazon,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Blonde',
@@ -549,7 +603,8 @@ const tobaccos = [
         image: images.ZomoFramboera,
         ice: false,
         fruity: true,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Blonde',
@@ -559,7 +614,8 @@ const tobaccos = [
         image: images.ZomoLaranjaPeach,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Blonde',
@@ -569,7 +625,8 @@ const tobaccos = [
         image: images.ZomoMelorango,
         ice: false,
         fruity: true,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Blonde',
@@ -579,7 +636,8 @@ const tobaccos = [
         image: images.ZomoMySecretOfBabylon,
         ice: false,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     },
     {
         type: 'Blonde',
@@ -589,7 +647,8 @@ const tobaccos = [
         image: images.ZomoTuttiFrutti,
         ice: false,
         fruity: false,
-        sweet: true
+        sweet: true,
+        inStock: true
     },
     {
         type: 'Blonde',
@@ -599,7 +658,8 @@ const tobaccos = [
         image: images.ZomoMyDragonWall,
         ice: true,
         fruity: true,
-        sweet: false
+        sweet: false,
+        inStock: true
     }
 ];
 

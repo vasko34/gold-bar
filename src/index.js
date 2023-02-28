@@ -7,8 +7,7 @@ import { Home, Library } from './components/index.js';
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Home />,
-        children: []
+        element: <Home />
     },
     {
       path: "/library",
@@ -16,7 +15,4 @@ const router = createBrowserRouter([
     }
 ]);
 
-ReactDOM.render(
-<App>
-    <RouterProvider router = { router } />
-</App>, document.getElementById('root'));
+ReactDOM.render(<App><RouterProvider router = { router }></RouterProvider></App>, document.getElementById('root'));

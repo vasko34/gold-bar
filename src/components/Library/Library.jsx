@@ -1,317 +1,188 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './library.css';
 import { Tobacco } from '../../secondary components';
 import { tobaccos } from '../../constants';
 
-const removeElement = (arr, conditionFn) => {
-    return arr.filter(conditionFn);
+const removeArrayItem = (arr, condition) => {
+    if ((condition === 'instock') || (condition === 'ice') || (condition === 'fruity') || (condition === 'sweet')) {
+        return arr.filter(arrayItem => arrayItem.id !== condition);
+    } else {
+        return arr.filter(arrayItem => arrayItem !== condition);
+    }
 };
 
 const Library = () => {
-    const [isCheckedDarkside, setIsCheckedDarkside] = React.useState(false);
-    const [isCheckedMusthave, setIsCheckedMusthave] = React.useState(false);
-    const [isCheckedBlackBurn, setIsCheckedBlackBurn] = React.useState(false);
-    const [isCheckedTangiers, setIsCheckedTangiers] = React.useState(false);
-    const [isCheckedZomo, setIsCheckedZomo] = React.useState(false);
-    const [isCheckedHolster, setIsCheckedHolster] = React.useState(false);
-    const [isCheckedDarkWeak, setIsCheckedDarkWeak] = React.useState(false);
-    const [isCheckedDark, setIsCheckedDark] = React.useState(false);
-    const [isCheckedDarkStrong, setIsCheckedDarkStrong] = React.useState(false);
-    const [isCheckedDarkExtreme, setIsCheckedDarkExtreme] =React.useState(false);
-    const [isCheckedIce, setIsCheckedIce] = React.useState(false);
-    const [isCheckedFruity, setIsCheckedFruity] = React.useState(false);
-    const [isCheckedSweet, setIsCheckedSweet] = React.useState(false);
-    const [isCheckedInStock, setIsCheckedInStock] = React.useState(false);
-
     const [listOfTobaccos, setListOfTobaccos] = React.useState(tobaccos);
-    const [activeFilters, setActiveFilters] = React.useState([]);
+    const [activeFiltersBoolean, setActiveFiltersBoolean] = React.useState([]);
     const [activeFiltersBrand, setActiveFiltersBrand] = React.useState([]);
+    const [activeFiltersType, setActiveFiltersType] = React.useState([]);
 
     const resetFilters = () => {
-        setActiveFilters([]);
+        setActiveFiltersBoolean([]);
+        setActiveFiltersBrand([]);
+        setActiveFiltersType([]);
     };
 
-        
-    const undoFilter = () => {
-        resetFilters();
-    };
-
-    useEffect(() => {  
+    React.useEffect(() => {  
         let arr = tobaccos;
-        activeFilters.forEach(element => {
-            arr = arr.filter(element.conditionFn);
+        activeFiltersBoolean.forEach(arrayItem => {
+            arr = arr.filter(arrayItem.conditionFn);
 
         });
         if (activeFiltersBrand.length !== 0) {
-            arr = arr.filter(element => activeFiltersBrand.includes(element.brand.split(' ')[0]));
+            arr = arr.filter(arrayItem => activeFiltersBrand.includes(arrayItem.brand.split(' ')[0]));
+        }
+        if (activeFiltersType.length !== 0) {
+            arr = arr.filter(arrayItem => activeFiltersType.includes(arrayItem.type));
         }
         setListOfTobaccos(arr);
-    }, [activeFilters, activeFiltersBrand]);
-
-    const filterDarkWeak = () => {
-        const filteredArray = listOfTobaccos.filter((tobacco) => {
-            return (tobacco.type === 'Dark (Weak)');
-        });
-        setListOfTobaccos(filteredArray);
-    };
-
-    const filterDark = () => {
-        const filteredArray = listOfTobaccos.filter((tobacco) => {
-            return (tobacco.type === 'Dark');
-        });
-        setListOfTobaccos(filteredArray);
-    };
-
-    const filterDarkStrong = () => {
-        const filteredArray = listOfTobaccos.filter((tobacco) => {
-            return (tobacco.type === 'Dark (Strong)');
-        });
-        setListOfTobaccos(filteredArray);
-    };
-
-    const filterDarkExtreme = () => {
-        const filteredArray = listOfTobaccos.filter((tobacco) => {
-            return (tobacco.type === 'Dark (Extreme)');
-        });
-        setListOfTobaccos(filteredArray);
-    };
-
-    const filterElement = () => {
-        const filteredArray = listOfTobaccos.filter((tobacco) => {
-            return ((tobacco.brand === 'Element Air') || (tobacco.brand === 'Element Water') || (tobacco.brand === 'Element Earth'));
-        });
-        setListOfTobaccos(filteredArray);
-    };
-
-    const filterDarkside = () => {
-        const filteredArray = listOfTobaccos.filter((tobacco) => {
-            return ((tobacco.brand === 'Darkside Base') || (tobacco.brand === 'Darkside Core'));
-        });
-        setListOfTobaccos(filteredArray);
-    };
-
-    const filterMusthave = () => {
-        const filteredArray = listOfTobaccos.filter((tobacco) => {
-            return (tobacco.brand === 'Musthave');
-        });
-        setListOfTobaccos(filteredArray);
-    };
-
-    const filterBlackBurn = () => {
-        const filteredArray = listOfTobaccos.filter((tobacco) => {
-            return (tobacco.brand === 'BlackBurn');
-        });
-        setListOfTobaccos(filteredArray);
-    };
-
-    const filterZomo = () => {
-        const filteredArray = listOfTobaccos.filter((tobacco) => {
-            return (tobacco.brand === 'Zomo');
-        });
-        setListOfTobaccos(filteredArray);
-    };
-
-    const filterHolster = () => {
-        const filteredArray = listOfTobaccos.filter((tobacco) => {
-            return (tobacco.brand === 'Holster');
-        });
-        setListOfTobaccos(filteredArray);
-    };
-
-    const filterTangiers = () => {
-        const filteredArray = listOfTobaccos.filter((tobacco) => {
-            return ((tobacco.brand === 'Tangiers Noir') || (tobacco.brand === 'Tangiers Burley'));
-        });
-        setListOfTobaccos(filteredArray);
-    };
-
-    const filterIce = () => {
-        const filteredArray = listOfTobaccos.filter((tobacco) => {
-            return (tobacco.ice === true);
-        });
-        setListOfTobaccos(filteredArray);
-    };
-
-    const filterFruity = () => {
-        const filteredArray = listOfTobaccos.filter((tobacco) => {
-            return (tobacco.fruity === true);
-        });
-        setListOfTobaccos(filteredArray);
-    };
-
-    const filterSweet = () => {
-        const filteredArray = listOfTobaccos.filter((tobacco) => {
-            return (tobacco.sweet === true);
-        });
-        setListOfTobaccos(filteredArray);
-    };
-
-    const filterInStock = () => {
-        const filteredArray = listOfTobaccos.filter((tobacco) => {
-            return (tobacco.inStock === true);
-        });
-        setListOfTobaccos(filteredArray);
-    };
-
+    }, [activeFiltersBoolean, activeFiltersBrand, activeFiltersType]);
 
     const onCheckboxChangeInStock = () => {
-        if (isCheckedInStock === true) {
-            setIsCheckedInStock(false);
-            undoFilter();
+        const filter = {
+            id: 'instock',
+            conditionFn: arrayItem => arrayItem.inStock === true
+        };
+
+        if (activeFiltersBoolean.some(arrayItem => arrayItem.id === 'instock')) {
+            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'instock'))
         } else {
-            setIsCheckedInStock(true);
-            filterInStock();
+            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter))
         }
     };
 
     const onCheckboxChangeElement = () => {
         if (activeFiltersBrand.includes('Element')) {
-            setActiveFiltersBrand(removeElement(activeFiltersBrand, (element) => element !== 'Element'));
+            setActiveFiltersBrand(removeArrayItem(activeFiltersBrand, 'Element'));
         } else {
             setActiveFiltersBrand(activeFiltersBrand.concat('Element'));
         }
     };
 
     const onCheckboxChangeDarkside = () => {
-        if (isCheckedDarkside === true) {
-            setIsCheckedDarkside(false);
-            undoFilter();
+        if (activeFiltersBrand.includes('Darkside')) {
+            setActiveFiltersBrand(removeArrayItem(activeFiltersBrand, 'Darkside'));
         } else {
-            setIsCheckedDarkside(true);
-            filterDarkside();
+            setActiveFiltersBrand(activeFiltersBrand.concat('Darkside'));
         }
     };
 
     const onCheckboxChangeMusthave = () => {
-        if (isCheckedMusthave === true) {
-            setIsCheckedMusthave(false);
-            undoFilter();
+        if (activeFiltersBrand.includes('Musthave')) {
+            setActiveFiltersBrand(removeArrayItem(activeFiltersBrand, 'Musthave'));
         } else {
-            setIsCheckedMusthave(true);
-            filterMusthave();
+            setActiveFiltersBrand(activeFiltersBrand.concat('Musthave'));
         }
     };
 
     const onCheckboxChangeBlackBurn = () => {
-        if (isCheckedBlackBurn === true) {
-            setIsCheckedBlackBurn(false);
-            undoFilter();
+        if (activeFiltersBrand.includes('BlackBurn')) {
+            setActiveFiltersBrand(removeArrayItem(activeFiltersBrand, 'BlackBurn'));
         } else {
-            setIsCheckedBlackBurn(true);
-            filterBlackBurn();
+            setActiveFiltersBrand(activeFiltersBrand.concat('BlackBurn'));
         }
     };
 
     const onCheckboxChangeTangiers = () => {
-        if (isCheckedTangiers === true) {
-            setIsCheckedTangiers(false);
-            undoFilter();
+        if (activeFiltersBrand.includes('Tangiers')) {
+            setActiveFiltersBrand(removeArrayItem(activeFiltersBrand, 'Tangiers'));
         } else {
-            setIsCheckedTangiers(true);
-            filterTangiers();
+            setActiveFiltersBrand(activeFiltersBrand.concat('Tangiers'));
         }
     };
 
     const onCheckboxChangeZomo = () => {
-        if (isCheckedZomo === true) {
-            setIsCheckedZomo(false);
-            undoFilter();
+        if (activeFiltersBrand.includes('Zomo')) {
+            setActiveFiltersBrand(removeArrayItem(activeFiltersBrand, 'Zomo'));
         } else {
-            setIsCheckedZomo(true);
-            filterZomo();
+            setActiveFiltersBrand(activeFiltersBrand.concat('Zomo'));
         }
     };
 
     const onCheckboxChangeHolster = () => {
-        if (isCheckedHolster === true) {
-            setIsCheckedHolster(false);
-            undoFilter();
+        if (activeFiltersBrand.includes('Holster')) {
+            setActiveFiltersBrand(removeArrayItem(activeFiltersBrand, 'Holster'));
         } else {
-            setIsCheckedHolster(true);
-            filterHolster();
+            setActiveFiltersBrand(activeFiltersBrand.concat('Holster'));
         }
     };
 
     const onCheckboxChangeBlonde = () => {
-        const filter = {
-            id: "blonde",
-            conditionFn: (element) => element.type === 'Blonde'
-        };
-
-        if (activeFilters.some(element => element.id === 'blonde')) {
-            setActiveFilters(activeFilters.filter(element => element.id !== "blonde"))
+        if (activeFiltersType.includes('Blonde')) {
+            setActiveFiltersType(removeArrayItem(activeFiltersType, 'Blonde'));
         } else {
-            setActiveFilters(activeFilters.concat(filter))
+            setActiveFiltersType(activeFiltersType.concat('Blonde'));
         }
     };
 
-    const onCheckboxChangeDarkWeak = (e) => {
-        const checked = e.target.checked;
-        setIsCheckedDarkWeak(checked);
-        if (checked === false) {
-            undoFilter();
+    const onCheckboxChangeDarkWeak = () => {
+        if (activeFiltersType.includes('Dark (Weak)')) {
+            setActiveFiltersType(removeArrayItem(activeFiltersType, 'Dark (Weak)'));
         } else {
-            filterDarkWeak();
+            setActiveFiltersType(activeFiltersType.concat('Dark (Weak)'));
         }
     };
 
     const onCheckboxChangeDark = () => {
-        if (isCheckedDark === true) {
-            setIsCheckedDark(false);
-            undoFilter();
+        if (activeFiltersType.includes('Dark')) {
+            setActiveFiltersType(removeArrayItem(activeFiltersType, 'Dark'));
         } else {
-            setIsCheckedDark(true);
-            filterDark();
+            setActiveFiltersType(activeFiltersType.concat('Dark'));
         }
     };
 
     const onCheckboxChangeDarkStrong = () => {
-        if (isCheckedDarkStrong === true) {
-            setIsCheckedDarkStrong(false);
-            undoFilter();
+        if (activeFiltersType.includes('Dark (Strong)')) {
+            setActiveFiltersType(removeArrayItem(activeFiltersType, 'Dark (Strong)'));
         } else {
-            setIsCheckedDarkStrong(true);
-            filterDarkStrong();
+            setActiveFiltersType(activeFiltersType.concat('Dark (Strong)'));
         }
     };
 
     const onCheckboxChangeDarkExtreme = () => {
-        if (isCheckedDarkExtreme === true) {
-            setIsCheckedDarkExtreme(false);
-            undoFilter();
+        if (activeFiltersType.includes('Dark (Extreme)')) {
+            setActiveFiltersType(removeArrayItem(activeFiltersType, 'Dark (Extreme)'));
         } else {
-            setIsCheckedDarkExtreme(true);
-            filterDarkExtreme();
+            setActiveFiltersType(activeFiltersType.concat('Dark (Extreme)'));
         }
     };
 
     const onCheckboxChangeIce = () => {
-        if (isCheckedIce === true) {
-            setIsCheckedIce(false);
-            undoFilter();
+        const filter = {
+            id: 'ice',
+            conditionFn: arrayItem => arrayItem.ice === true
+        };
+
+        if (activeFiltersBoolean.some(arrayItem => arrayItem.id === 'ice')) {
+            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'ice'))
         } else {
-            setIsCheckedIce(true);
-            filterIce();
+            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter))
         }
     };
 
     const onCheckboxChangeFruity = () => {
-        if (isCheckedFruity === true) {
-            setIsCheckedFruity(false);
-            undoFilter();
+        const filter = {
+            id: 'fruity',
+            conditionFn: arrayItem => arrayItem.fruity === true
+        };
+
+        if (activeFiltersBoolean.some(arrayItem => arrayItem.id === 'fruity')) {
+            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'fruity'))
         } else {
-            setIsCheckedFruity(true);
-            filterFruity();
+            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter))
         }
     };
 
-    const onCheckboxChangeSweet = (e) => {
-        const checked = e.target.checked;
-        setIsCheckedSweet(checked);
-        if (checked === false) {
-            undoFilter();
+    const onCheckboxChangeSweet = () => {
+        const filter = {
+            id: 'sweet',
+            conditionFn: arrayItem => arrayItem.sweet === true
+        };
+
+        if (activeFiltersBoolean.some(arrayItem => arrayItem.id === 'sweet')) {
+            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'sweet'))
         } else {
-            filterSweet();
+            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter))
         }
     };
 
@@ -321,73 +192,73 @@ const Library = () => {
                 <button type = 'button' onClick = { resetFilters }>Reset Filters</button>
                 <div className = 'library__filter-instock'>
                     <div className = 'library__filter-checkbox'>
-                        <input type = 'checkbox' checked = { isCheckedInStock } onChange = { onCheckboxChangeInStock }></input>
+                        <input type = 'checkbox' checked = { activeFiltersBoolean.some(arrayItem => arrayItem.id === 'instock') } onChange = { onCheckboxChangeInStock }></input>
                         <span>In Stock</span>
                     </div>
                 </div>
                 <div className = 'library__filter-brand'>
                     <div className = 'library__filter-checkbox'>
-                        <input type = 'checkbox' checked = { activeFiltersBrand.some((element) => element === 'Element') } onChange = { onCheckboxChangeElement }></input>
+                        <input type = 'checkbox' checked = { activeFiltersBrand.includes('Element') } onChange = { onCheckboxChangeElement }></input>
                         <span>Element</span>
                     </div>
                     <div className = 'library__filter-checkbox'>
-                        <input type = 'checkbox' checked = { isCheckedDarkside } onChange = { onCheckboxChangeDarkside }></input>
+                        <input type = 'checkbox' checked = { activeFiltersBrand.includes('Darkside') } onChange = { onCheckboxChangeDarkside }></input>
                         <span>Darkside</span>
                     </div>
                     <div className = 'library__filter-checkbox'>
-                        <input type = 'checkbox' checked = { isCheckedMusthave } onChange = { onCheckboxChangeMusthave }></input>
+                        <input type = 'checkbox' checked = { activeFiltersBrand.includes('Musthave') } onChange = { onCheckboxChangeMusthave }></input>
                         <span>Musthave</span>
                     </div>
                     <div className = 'library__filter-checkbox'>
-                        <input type = 'checkbox' checked = { isCheckedBlackBurn } onChange = { onCheckboxChangeBlackBurn }></input>
+                        <input type = 'checkbox' checked = { activeFiltersBrand.includes('BlackBurn') } onChange = { onCheckboxChangeBlackBurn }></input>
                         <span>BlackBurn</span>
                     </div>
                     <div className = 'library__filter-checkbox'>
-                        <input type = 'checkbox' checked = { isCheckedTangiers } onChange = { onCheckboxChangeTangiers }></input>
+                        <input type = 'checkbox' checked = { activeFiltersBrand.includes('Tangiers') } onChange = { onCheckboxChangeTangiers }></input>
                         <span>Tangiers</span>
                     </div>
                     <div className = 'library__filter-checkbox'>
-                        <input type = 'checkbox' checked = { isCheckedZomo } onChange = { onCheckboxChangeZomo }></input>
+                        <input type = 'checkbox' checked = { activeFiltersBrand.includes('Zomo') } onChange = { onCheckboxChangeZomo }></input>
                         <span>Zomo</span>
                     </div>
                     <div className = 'library__filter-checkbox'>
-                        <input type = 'checkbox' checked = { isCheckedHolster } onChange = { onCheckboxChangeHolster }></input>
+                        <input type = 'checkbox' checked = { activeFiltersBrand.includes('Holster') } onChange = { onCheckboxChangeHolster }></input>
                         <span>Holster</span>
                     </div>
                 </div>
                 <div className = 'library__filter-type'>
                     <div className = 'library__filter-checkbox'>
-                        <input type = 'checkbox' checked = { activeFilters.some((element) => element.id === 'blonde') } onChange = { onCheckboxChangeBlonde }></input>
+                        <input type = 'checkbox' checked = { activeFiltersType.includes('Blonde') } onChange = { onCheckboxChangeBlonde }></input>
                         <span>Blonde</span>
                     </div>
                     <div className = 'library__filter-checkbox'>
-                        <input type = 'checkbox' checked = { isCheckedDarkWeak } onChange = { (e) => onCheckboxChangeDarkWeak(e) }></input>
+                        <input type = 'checkbox' checked = { activeFiltersType.includes('Dark (Weak)') } onChange = { onCheckboxChangeDarkWeak }></input>
                         <span>Dark (Weak)</span>
                     </div>
                     <div className = 'library__filter-checkbox'>
-                        <input type = 'checkbox' checked = { isCheckedDark } onChange = { onCheckboxChangeDark }></input>
+                        <input type = 'checkbox' checked = { activeFiltersType.includes('Dark') } onChange = { onCheckboxChangeDark }></input>
                         <span>Dark</span>
                     </div>
                     <div className = 'library__filter-checkbox'>
-                        <input type = 'checkbox' checked = { isCheckedDarkStrong } onChange = { onCheckboxChangeDarkStrong }></input>
+                        <input type = 'checkbox' checked = { activeFiltersType.includes('Dark (Strong)') } onChange = { onCheckboxChangeDarkStrong }></input>
                         <span>Dark (Strong)</span>
                     </div>
                     <div className = 'library__filter-checkbox'>
-                        <input type = 'checkbox' checked = { isCheckedDarkExtreme } onChange = { onCheckboxChangeDarkExtreme }></input>
+                        <input type = 'checkbox' checked = { activeFiltersType.includes('Dark (Extreme)') } onChange = { onCheckboxChangeDarkExtreme }></input>
                         <span>Dark (Extreme)</span>
                     </div>
                 </div>
                 <div className = 'library__filter-boolean'>
                     <div className = 'library__filter-checkbox'>
-                        <input type = 'checkbox' checked = { isCheckedIce } onChange = { onCheckboxChangeIce }></input>
+                        <input type = 'checkbox' checked = { activeFiltersBoolean.some(arrayItem => arrayItem.id === 'ice') } onChange = { onCheckboxChangeIce }></input>
                         <span>Ice</span>
                     </div>
                     <div className = 'library__filter-checkbox'>
-                        <input type = 'checkbox' checked = { isCheckedFruity } onChange = { onCheckboxChangeFruity }></input>
+                        <input type = 'checkbox' checked = { activeFiltersBoolean.some(arrayItem => arrayItem.id === 'fruity') } onChange = { onCheckboxChangeFruity }></input>
                         <span>Fruity</span>
                     </div>
                     <div className = 'library__filter-checkbox'>
-                        <input type = 'checkbox' checked = { isCheckedSweet } onChange = { (e) => onCheckboxChangeSweet(e) }></input>
+                        <input type = 'checkbox' checked = { activeFiltersBoolean.some(arrayItem => arrayItem.id === 'sweet') } onChange = { onCheckboxChangeSweet }></input>
                         <span>Sweet</span>
                     </div>
                 </div>
