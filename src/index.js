@@ -2,16 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from './App.js';
-import { Home, Library } from './components/index.js';
+import { Home, UserPage, AdminPage, Library } from './components/index.js';
 
 const router = createBrowserRouter([
     {
-        path: "/",
-        element: <Home />
+        path: '/',
+        element: <Home></Home>
     },
     {
-      path: "/library",
-      element: <Library />,
+      path: '/user',
+      element: <UserPage></UserPage>
+    },
+    {
+      path: '/admin',
+      element: <AdminPage></AdminPage>
+    },
+    {
+      path: '/library',
+      element: <Library></Library>
     }
 ]);
 

@@ -1,0 +1,35 @@
+.adminpage {
+    position: fixed;
+    display: flex;
+    z-index: 2;
+    background: #1A1918;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.adminpage h1 {
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 150px;
+    line-height: 130%;
+    text-align: center;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    margin-bottom: 5rem;
+}
+
+.boolean_switch {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+}
+
+.boolean_switch span {
+    cursor: pointer;
+    margin-right: 1rem;
+    color: #FEDF33;
+    font-family: 'Trebuchet MS';
+}

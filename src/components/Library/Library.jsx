@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './library.css';
 import { Tobacco } from '../../secondary components';
 import { tobaccos } from '../../constants';
@@ -12,6 +13,7 @@ const removeArrayItem = (arr, condition) => {
 };
 
 const Library = () => {
+    const navigate = useNavigate();
     const [listOfTobaccos, setListOfTobaccos] = React.useState(tobaccos);
     const [activeFiltersBoolean, setActiveFiltersBoolean] = React.useState([]);
     const [activeFiltersBrand, setActiveFiltersBrand] = React.useState([]);
@@ -191,75 +193,78 @@ const Library = () => {
             <div className = 'library__filter'>
                 <button type = 'button' onClick = { resetFilters }>Reset Filters</button>
                 <div className = 'library__filter-instock'>
-                    <div className = 'library__filter-checkbox'>
+                    <div className = 'library__filter-checkbox_instock'>
                         <input type = 'checkbox' checked = { activeFiltersBoolean.some(arrayItem => arrayItem.id === 'instock') } onChange = { onCheckboxChangeInStock }></input>
-                        <span>In Stock</span>
+                        <label>In Stock</label>
                     </div>
                 </div>
                 <div className = 'library__filter-brand'>
+                    <h2>Brand:</h2>
                     <div className = 'library__filter-checkbox'>
                         <input type = 'checkbox' checked = { activeFiltersBrand.includes('Element') } onChange = { onCheckboxChangeElement }></input>
-                        <span>Element</span>
+                        <label>Element</label>
                     </div>
                     <div className = 'library__filter-checkbox'>
                         <input type = 'checkbox' checked = { activeFiltersBrand.includes('Darkside') } onChange = { onCheckboxChangeDarkside }></input>
-                        <span>Darkside</span>
+                        <label>Darkside</label>
                     </div>
                     <div className = 'library__filter-checkbox'>
                         <input type = 'checkbox' checked = { activeFiltersBrand.includes('Musthave') } onChange = { onCheckboxChangeMusthave }></input>
-                        <span>Musthave</span>
+                        <label>Musthave</label>
                     </div>
                     <div className = 'library__filter-checkbox'>
                         <input type = 'checkbox' checked = { activeFiltersBrand.includes('BlackBurn') } onChange = { onCheckboxChangeBlackBurn }></input>
-                        <span>BlackBurn</span>
+                        <label>BlackBurn</label>
                     </div>
                     <div className = 'library__filter-checkbox'>
                         <input type = 'checkbox' checked = { activeFiltersBrand.includes('Tangiers') } onChange = { onCheckboxChangeTangiers }></input>
-                        <span>Tangiers</span>
+                        <label>Tangiers</label>
                     </div>
                     <div className = 'library__filter-checkbox'>
                         <input type = 'checkbox' checked = { activeFiltersBrand.includes('Zomo') } onChange = { onCheckboxChangeZomo }></input>
-                        <span>Zomo</span>
+                        <label>Zomo</label>
                     </div>
                     <div className = 'library__filter-checkbox'>
                         <input type = 'checkbox' checked = { activeFiltersBrand.includes('Holster') } onChange = { onCheckboxChangeHolster }></input>
-                        <span>Holster</span>
+                        <label>Holster</label>
                     </div>
                 </div>
                 <div className = 'library__filter-type'>
+                    <h2>Type:</h2>
                     <div className = 'library__filter-checkbox'>
                         <input type = 'checkbox' checked = { activeFiltersType.includes('Blonde') } onChange = { onCheckboxChangeBlonde }></input>
-                        <span>Blonde</span>
+                        <label>Blonde</label>
                     </div>
                     <div className = 'library__filter-checkbox'>
                         <input type = 'checkbox' checked = { activeFiltersType.includes('Dark (Weak)') } onChange = { onCheckboxChangeDarkWeak }></input>
-                        <span>Dark (Weak)</span>
+                        <label>Dark (Weak)</label>
                     </div>
                     <div className = 'library__filter-checkbox'>
                         <input type = 'checkbox' checked = { activeFiltersType.includes('Dark') } onChange = { onCheckboxChangeDark }></input>
-                        <span>Dark</span>
+                        <label>Dark</label>
                     </div>
                     <div className = 'library__filter-checkbox'>
                         <input type = 'checkbox' checked = { activeFiltersType.includes('Dark (Strong)') } onChange = { onCheckboxChangeDarkStrong }></input>
-                        <span>Dark (Strong)</span>
+                        <label>Dark (Strong)</label>
                     </div>
                     <div className = 'library__filter-checkbox'>
                         <input type = 'checkbox' checked = { activeFiltersType.includes('Dark (Extreme)') } onChange = { onCheckboxChangeDarkExtreme }></input>
-                        <span>Dark (Extreme)</span>
+                        <label>Dark (Extreme)</label>
                     </div>
                 </div>
                 <div className = 'library__filter-boolean'>
+                    <h2>Flavour:</h2>
                     <div className = 'library__filter-checkbox'>
                         <input type = 'checkbox' checked = { activeFiltersBoolean.some(arrayItem => arrayItem.id === 'ice') } onChange = { onCheckboxChangeIce }></input>
-                        <span>Ice</span>
+                        <label>Ice</label>
                     </div>
                     <div className = 'library__filter-checkbox'>
                         <input type = 'checkbox' checked = { activeFiltersBoolean.some(arrayItem => arrayItem.id === 'fruity') } onChange = { onCheckboxChangeFruity }></input>
-                        <span>Fruity</span>
+                        <label>Fruity</label>
                     </div>
                     <div className = 'library__filter-checkbox'>
                         <input type = 'checkbox' checked = { activeFiltersBoolean.some(arrayItem => arrayItem.id === 'sweet') } onChange = { onCheckboxChangeSweet }></input>
-                        <span>Sweet</span>
+                        <label>Sweet</label>
                     </div>
                 </div>
             </div>
@@ -269,6 +274,9 @@ const Library = () => {
                         <Tobacco key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } ice = { e.ice } fruity = { e.fruity } sweet = { e.sweet } image = { e.image } inStock = { true }></Tobacco>
                     );
                 })}
+            </div>
+            <div className = 'library__order'>
+                <p className = 'library__order-p' onClick = {() => navigate('/user')}>Order<br></br>Shisha</p>
             </div>
         </div>
     );

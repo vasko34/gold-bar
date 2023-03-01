@@ -5,13 +5,13 @@ import { FaTimes } from 'react-icons/fa';
 
 const SecurityOverlay = ({ close, closeProfileOverlay, logoutUser }) => {
     const [currentInput,setCurrentInput] = React.useState('');
-    const [securityCodeErrorCheck, setSecurityCodeErrorCheck] = React.useState(null);
+    const [securityCodeError, setSecurityCodeError] = React.useState(null);
 
     const logout = (code) => {
         if (code !== SecurityCode) {
-            setSecurityCodeErrorCheck(true);
+            setSecurityCodeError(true);
         } else {
-            setSecurityCodeErrorCheck(false);
+            setSecurityCodeError(false);
             close();
             closeProfileOverlay();
             logoutUser();
@@ -22,7 +22,7 @@ const SecurityOverlay = ({ close, closeProfileOverlay, logoutUser }) => {
         <div className = 'securityoverlay'>
             <h2>Security Check</h2>
             <input placeholder = 'Enter Security Code' value = { currentInput } onChange = { (e) => setCurrentInput(e.target.value) }></input>
-            { securityCodeErrorCheck && (<p>Incorrect security code!</p>) }
+            { securityCodeError && (<p>Incorrect security code!</p>) }
             <button type = 'button' onClick = { () => logout(currentInput) }>Log out</button>
             <FaTimes onClick = { close } className = 'securityoverlay__close'></FaTimes>
         </div>
