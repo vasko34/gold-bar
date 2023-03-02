@@ -123,28 +123,35 @@
     margin-left: 19rem;
 }
 
-.library__order {
+.profile {
     position: fixed;
     top: 1rem;
-    right: 1.5rem;
-    box-sizing: border-box;
-    border: 2px solid #0D0D0C;
-    border-radius: 2rem;
-    padding: 0.7rem;
-    background: #141413;
+    right: 2rem;
+    display: flex;
+    flex-direction: row;
     cursor: pointer;
 }
 
-.library__order-p {
+.profile h3 {
     font-family: 'Trebuchet MS';
-    font-weight: 550;
+    font-weight: 600;
     font-size: 16px;
-    line-height: 155%;    
+    line-height: 175%;    
     letter-spacing: 0.04em;
-    color: #FEDF33;
-    text-align: center;
+    color: #FEDF33;  
 }
 
-.library__order:hover {
-    background: #262625;
+.profile:hover h3 {
+    color: #FFEF99;
+    text-decoration: underline;
+}
+
+.profile__icon {
+    margin-right: 0.3rem;
+    margin-top: 0.2rem;
+    color: #FEDF33;
+}
+
+.profile:hover .profile__icon {
+    color: #FFEF99;
 }

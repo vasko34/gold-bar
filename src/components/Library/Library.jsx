@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './library.css';
-import { Tobacco } from '../../secondary components';
+import { Tobacco, ProfileOverlay } from '../../secondary components';
 import { tobaccos } from '../../constants';
+import { FaUser } from 'react-icons/fa';
 
 const removeArrayItem = (arr, condition) => {
     if ((condition === 'instock') || (condition === 'ice') || (condition === 'fruity') || (condition === 'sweet')) {
@@ -18,6 +19,15 @@ const Library = () => {
     const [activeFiltersBoolean, setActiveFiltersBoolean] = React.useState([]);
     const [activeFiltersBrand, setActiveFiltersBrand] = React.useState([]);
     const [activeFiltersType, setActiveFiltersType] = React.useState([]);
+    const [toggleProfileOverlay, setToggleProfileOverlay] = React.useState(null);
+
+    const openProfileOverlay = () => {
+        setToggleProfileOverlay(true);
+    }
+
+    const closeProfileOverlay = () => {
+        setToggleProfileOverlay(false);
+    }
 
     const resetFilters = () => {
         setActiveFiltersBoolean([]);
@@ -275,9 +285,11 @@ const Library = () => {
                     );
                 })}
             </div>
-            <div className = 'library__order'>
-                <p className = 'library__order-p' onClick = {() => navigate('/user')}>Order<br></br>Shisha</p>
+            <div className = 'profile' onClick = { openProfileOverlay }>
+                <FaUser className = 'profile__icon'></FaUser>
+                <h3>Table01</h3>
             </div>
+            { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } logoutUser = { () => navigate('/') } library = { true }></ProfileOverlay>) }
         </div>
     );
 }

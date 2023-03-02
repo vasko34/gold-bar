@@ -3,6 +3,15 @@
     flex-direction: column;
     justify-content: center;
     max-height: 25rem;
+    cursor: pointer;
+}
+
+.tobacco:hover .tobacco__content {
+    background: #262625;
+}
+
+.tobacco:hover .tobacco__footer {
+    background: #262625;
 }
 
 .tobacco img {

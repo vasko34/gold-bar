@@ -36,12 +36,16 @@
 .profileoverlay__content p {
     font-family: 'Trebuchet MS';
     font-weight: 400;
-    font-size: 11px;
-    line-height: 175%;    
-    letter-spacing: 0.04em;
-    color: red;   
-    text-align: center; 
-    max-width: 15.5rem;
+    font-size: 18px;
+    line-height: 130%;
+    letter-spacing: 0.04em;    
+    color: #FEDF33;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.profileoverlay__content p:hover {
+    color: #FFEF99;
 }
 
 .profileoverlay__content button {
@@ -50,17 +54,17 @@
     font-size: 20px;
     line-height: 175%;
     letter-spacing: 0.04em;
-    color: #FEE766;
-    background: #262625;
+    color: #FEDF33;
+    background: #141413;
     padding: 0.5rem 1.5rem;
     cursor: pointer;
-    margin-bottom: 2rem;
+    margin-top: 2rem;
     border: 2px solid #0D0D0C;
     border-radius: 1.5rem;
 }
 
 .profileoverlay__content button:hover {
-    background: #1A1918;
+    background: #262625;
 }
 
 .profileoverlay__content-close {

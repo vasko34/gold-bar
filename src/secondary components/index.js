@@ -3,4 +3,5 @@ export { default as LoginOverlay } from './LoginOverlay/LoginOverlay';
 export { default as RegisterOverlay } from './RegisterOverlay/RegisterOverlay';
 export { default as ProfileOverlay } from './ProfileOverlay/ProfileOverlay';
 export { default as SecurityOverlay } from './SecurityOverlay/SecurityOverlay';
+export { default as OrderOverlay } from './OrderOverlay/OrderOverlay';
 export { default as Tobacco } from './Tobacco/Tobacco';

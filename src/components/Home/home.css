@@ -8,19 +8,6 @@
     flex-direction: column;
 }
 
-.boolean_switch {
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem;
-}
-
-.boolean_switch span {
-    cursor: pointer;
-    margin-right: 1rem;
-    color: #FEDF33;
-    font-family: 'Trebuchet MS';
-}
-
 .home h1 {
     font-family: 'Trebuchet MS';
     font-weight: 700;
@@ -43,8 +30,8 @@
     font-size: 80px;
     line-height: 175%;
     letter-spacing: 0.04em;
-    color: #FEE766;
-    background: #262625;
+    color: #FEDF33;
+    background: #141413;
     padding: 3rem 9rem;
     cursor: pointer;
     margin-bottom: 2rem;
@@ -53,5 +40,18 @@
 }
 
 .home__content button:hover {
-    background: #1A1918;
+    background: #262625;
+}
+
+.boolean_switch {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+}
+
+.boolean_switch span {
+    cursor: pointer;
+    margin-right: 1rem;
+    color: #FEDF33;
+    font-family: 'Trebuchet MS';
 }

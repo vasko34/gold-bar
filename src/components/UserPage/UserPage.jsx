@@ -20,16 +20,13 @@ const UserPage = () => {
         <div className = 'userpage'>
             <div className = 'userpage__content'>
                 <h1>Gold Bar</h1>
-                <button type = 'button'>Order Shisha</button>
+                <button type = 'button' onClick = { () => navigate('/library') }>Order Hookah</button>
             </div>
-            <div className = 'userpage__profile' onClick = { openProfileOverlay }>
-                <FaUser className = 'userpage__profile-icon'></FaUser>
+            <div className = 'profile' onClick = { openProfileOverlay }>
+                <FaUser className = 'profile__icon'></FaUser>
                 <h3>Table01</h3>
             </div>
-            <div className = 'userpage__librarylink'>
-                <p onClick = {() => navigate('/library')}>Check out our tobacco library</p>
-            </div>
-            { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } logoutUser = { () => navigate('/') }></ProfileOverlay>) }
+            { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } logoutUser = { () => navigate('/') } library = { false }></ProfileOverlay>) }
             <div className = 'boolean_switch'>
                 <span onClick = { () => navigate('/admin') }>Admin</span>
                 <span onClick = { () => navigate('/') }>Home</span>
