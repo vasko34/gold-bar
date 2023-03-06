@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from './App.js';
-import { Home, UserPage, AdminPage, Library, HookahBowl } from './components/index.js';
+import { Home, UserPage, AdminPage, Library, Orders } from './components/index.js';
 
 const router = createBrowserRouter([
     {
@@ -22,8 +22,8 @@ const router = createBrowserRouter([
       element: <Library></Library>
     },
     {
-      path: '/hookahbowl',
-      element: <HookahBowl></HookahBowl>
+      path: '/orders',
+      element: <Orders></Orders>
     }
 ]);
 

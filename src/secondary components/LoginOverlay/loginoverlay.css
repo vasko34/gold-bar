@@ -74,7 +74,7 @@
     background: #1A1918;
 }
 
-.loginoverlay__close {
+.close {
     display: flex;
     position: absolute;
     top: 1rem;
@@ -84,6 +84,6 @@
     cursor: pointer;
 }
 
-.loginoverlay__close:hover {
+.close:hover {
     color: #FFEF99;
 }

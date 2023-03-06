@@ -146,12 +146,12 @@
     text-decoration: underline;
 }
 
-.profile__icon {
+.profileicon {
     margin-right: 0.3rem;
     margin-top: 0.2rem;
     color: #FEDF33;
 }
 
-.profile:hover .profile__icon {
+.profile:hover .profileicon {
     color: #FFEF99;
 }

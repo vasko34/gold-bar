@@ -23,7 +23,7 @@ const UserPage = () => {
                 <button type = 'button' onClick = { () => navigate('/library') }>Order Hookah</button>
             </div>
             <div className = 'profile' onClick = { openProfileOverlay }>
-                <FaUser className = 'profile__icon'></FaUser>
+                <FaUser className = 'profileicon'></FaUser>
                 <h3>Table01</h3>
             </div>
             { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } logoutUser = { () => navigate('/') } library = { false }></ProfileOverlay>) }

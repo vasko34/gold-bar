@@ -1,9 +1,9 @@
 import React from 'react';
 import './tobacco.css';
 
-const Tobacco = ({ type, brand, name, flavour, image, ice, fruity, sweet, inStock }) => {
+const Tobacco = ({ type, brand, name, flavour, image, ice, fruity, sweet, inStock, open }) => {
     return (
-        <div className = 'tobacco'>
+        <div className = 'tobacco' onClick = { open }>
             <img src = { image } alt = 'tobacco_img'></img>
             <div className = 'tobacco__content'>
                 <h2>{ brand } - { name }</h2>

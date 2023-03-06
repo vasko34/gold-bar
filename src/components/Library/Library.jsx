@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './library.css';
-import { Tobacco, ProfileOverlay } from '../../secondary components';
+import { Tobacco, ProfileOverlay, OrderOverlay } from '../../secondary components';
 import { tobaccos } from '../../constants';
 import { FaUser } from 'react-icons/fa';
 
@@ -15,11 +15,14 @@ const removeArrayItem = (arr, condition) => {
 
 const Library = () => {
     const navigate = useNavigate();
+    const [tobaccoForOverlayBrand, setTobaccoForOverlayBrand] = React.useState('');
+    const [tobaccoForOverlayName, setTobaccoForOverlayName] = React.useState('');
     const [listOfTobaccos, setListOfTobaccos] = React.useState(tobaccos);
     const [activeFiltersBoolean, setActiveFiltersBoolean] = React.useState([]);
     const [activeFiltersBrand, setActiveFiltersBrand] = React.useState([]);
     const [activeFiltersType, setActiveFiltersType] = React.useState([]);
     const [toggleProfileOverlay, setToggleProfileOverlay] = React.useState(null);
+    const [toggleOrderOverlay, setToggleOrderOverlay] = React.useState(null);
 
     const openProfileOverlay = () => {
         setToggleProfileOverlay(true);
@@ -27,6 +30,16 @@ const Library = () => {
 
     const closeProfileOverlay = () => {
         setToggleProfileOverlay(false);
+    }
+
+    const openOrderOverlay = (brand, name) => {
+        setToggleOrderOverlay(true);
+        setTobaccoForOverlayBrand(brand);
+        setTobaccoForOverlayName(name);
+    }
+
+    const closeOrderOverlay = () => {
+        setToggleOrderOverlay(false);
     }
 
     const resetFilters = () => {
@@ -281,14 +294,15 @@ const Library = () => {
             <div className = 'library__content'>
                 { listOfTobaccos.map((e, i) => {
                     return (
-                        <Tobacco key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } ice = { e.ice } fruity = { e.fruity } sweet = { e.sweet } image = { e.image } inStock = { true }></Tobacco>
+                        <Tobacco key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } ice = { e.ice } fruity = { e.fruity } sweet = { e.sweet } image = { e.image } inStock = { e.inStock } open = { () => openOrderOverlay(e.brand, e.name) }></Tobacco>
                     );
                 })}
             </div>
             <div className = 'profile' onClick = { openProfileOverlay }>
-                <FaUser className = 'profile__icon'></FaUser>
+                <FaUser className = 'profileicon'></FaUser>
                 <h3>Table01</h3>
             </div>
+            { toggleOrderOverlay && (<OrderOverlay close = { closeOrderOverlay } brand = { tobaccoForOverlayBrand } name = { tobaccoForOverlayName }></OrderOverlay>) }
             { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } logoutUser = { () => navigate('/') } library = { true }></ProfileOverlay>) }
         </div>
     );

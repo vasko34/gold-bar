@@ -92,7 +92,7 @@
     text-align: start; 
 }
 
-.registeroverlay__close {
+.close {
     display: flex;
     position: absolute;
     top: 1rem;
@@ -102,6 +102,6 @@
     cursor: pointer;
 }
 
-.registeroverlay__close:hover {
+.close:hover {
     color: #FFEF99;
 }

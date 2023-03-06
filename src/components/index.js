@@ -2,4 +2,4 @@ export { default as Home } from './Home/Home';
 export { default as UserPage } from './UserPage/UserPage';
 export { default as AdminPage } from './AdminPage/AdminPage';
 export { default as Library } from './Library/Library';
-export { default as HookahBowl } from './HookahBowl/HookahBowl';
+export { default as Orders } from './Orders/Orders';

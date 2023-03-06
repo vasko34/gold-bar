@@ -24,7 +24,7 @@ const SecurityOverlay = ({ close, closeProfileOverlay, logoutUser }) => {
             <input placeholder = 'Enter Security Code' value = { currentInput } onChange = { (e) => setCurrentInput(e.target.value) }></input>
             { securityCodeError && (<p>Incorrect security code!</p>) }
             <button type = 'button' onClick = { () => logout(currentInput) }>Log out</button>
-            <FaTimes onClick = { close } className = 'securityoverlay__close'></FaTimes>
+            <FaTimes onClick = { close } className = 'close'></FaTimes>
         </div>
     );
 }

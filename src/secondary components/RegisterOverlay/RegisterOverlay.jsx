@@ -79,7 +79,7 @@ const RegisterOverlay = ({ close }) => {
             { passwordSafetyError && (<p>The password must be atleast 8 characters long and contain numbers, capital and lowercase letters!</p>) }
             { securityCodeError && (<p>Incorrect security code!</p>) }
             <button type = 'button' onClick = { () => register(currentInputUsername, currentInputPassword, currentInputConfirmPassword, currentInputSecurity) }>Register</button>
-            <FaTimes onClick = { close } className = 'registeroverlay__close'></FaTimes>
+            <FaTimes onClick = { close } className = 'close'></FaTimes>
         </div>
     );
 }

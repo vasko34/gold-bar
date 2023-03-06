@@ -74,7 +74,7 @@
     background: #262625;
 }
 
-.securityoverlay__close {
+.close {
     display: flex;
     position: absolute;
     top: 1rem;
@@ -84,6 +84,6 @@
     cursor: pointer;
 }
 
-.securityoverlay__close:hover {
+.close:hover {
     color: #FFEF99;
 }

@@ -38,7 +38,7 @@ const LoginOverlay = ({ close }) => {
             <input placeholder = 'Enter Password' type = 'password' value = { currentInputPassword } onChange = { (e) => setCurrentInputPassword(e.target.value) }></input>
             { passwordError && (<p>Invalid username or password!</p>) }
             <button type = 'button' onClick = { () => login(currentInputUsername, currentInputPassword) }>Log in</button>
-            <FaTimes onClick = { close } className = 'loginoverlay__close'></FaTimes>
+            <FaTimes onClick = { close } className = 'close'></FaTimes>
         </div>
     );
 }
