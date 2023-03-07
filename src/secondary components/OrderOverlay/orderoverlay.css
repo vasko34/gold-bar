@@ -2,6 +2,7 @@
     position: fixed;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     box-sizing: border-box;
     border: 1.5px solid #0D0D0C;
     background: #1A1918;
@@ -24,6 +25,67 @@
     margin-bottom: 2rem;
 }
 
+.orderoverlay p {
+    font-family: 'Trebuchet MS';
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 130%;
+    letter-spacing: 0.04em;    
+    color: #FEDF33;
+    max-width: 20rem;
+}
+
+.orderoverlay label {
+    font-family: 'Trebuchet MS';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 130%;
+    letter-spacing: 0.04em;    
+    color: #FEDF33;
+    margin-bottom: 0.5rem;
+}
+
+.orderoverlay button {
+    font-family: 'Trebuchet MS';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 175%;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    background: #141413;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    margin-top: 2rem;
+    border: 2px solid #0D0D0C;
+    border-radius: 1.5rem;
+    min-width: 8rem;
+}
+
+.orderoverlay button:hover {
+    background: #262625;
+}
+
+.orderoverlay button:disabled {
+    cursor: default;
+    opacity: 0.7;
+}
+
+.orderoverlay button:disabled:hover {
+    background: #141413;
+}
+
+.orderoverlay__ordertobacco {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.orderoverlay__ordertobacco-order {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .close {
     display: flex;
     position: absolute;
@@ -36,4 +98,41 @@
 
 .close:hover {
     color: #FFEF99;
+}
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 1rem;
+    min-width: 23rem;
+    height: 20px;
+    background: #141413;
+    border: 0.1px solid black;
+    outline: none;
+    opacity: 0.8;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background: #FEDF33;
+    cursor: pointer;
+}
+  
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #FEDF33;
+    cursor: pointer;
 }

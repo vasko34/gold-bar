@@ -32,10 +32,12 @@ const Library = () => {
         setToggleProfileOverlay(false);
     }
 
-    const openOrderOverlay = (brand, name) => {
-        setToggleOrderOverlay(true);
-        setTobaccoForOverlayBrand(brand);
-        setTobaccoForOverlayName(name);
+    const openOrderOverlay = (brand, name, inStock) => {
+        if (inStock === true) {
+            setToggleOrderOverlay(true);
+            setTobaccoForOverlayBrand(brand);
+            setTobaccoForOverlayName(name);
+        }
     }
 
     const closeOrderOverlay = () => {
@@ -294,7 +296,7 @@ const Library = () => {
             <div className = 'library__content'>
                 { listOfTobaccos.map((e, i) => {
                     return (
-                        <Tobacco key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } ice = { e.ice } fruity = { e.fruity } sweet = { e.sweet } image = { e.image } inStock = { e.inStock } open = { () => openOrderOverlay(e.brand, e.name) }></Tobacco>
+                        <Tobacco key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } ice = { e.ice } fruity = { e.fruity } sweet = { e.sweet } image = { e.image } inStock = { e.inStock } open = { () => openOrderOverlay(e.brand, e.name, e.inStock) }></Tobacco>
                     );
                 })}
             </div>
