@@ -57,6 +57,7 @@ import ZomoMelorango from '../assets/ZomoMelorango.webp';
 import ZomoMySecretOfBabylon from '../assets/ZomoMySecretOfBabylon.webp';
 import ZomoTuttiFrutti from '../assets/ZomoTuttiFrutti.jpg';
 import ZomoMyDragonWall from '../assets/ZomoMyDragonWall.webp';
+import HookahBowl from '../assets/HookahBowl.png';
 
 const images = {
     ElementEarthPeer,
@@ -117,7 +118,8 @@ const images = {
     ZomoMelorango,
     ZomoMySecretOfBabylon,
     ZomoTuttiFrutti,
-    ZomoMyDragonWall
+    ZomoMyDragonWall,
+    HookahBowl
 };
 
 export default images;

@@ -1,4 +1,5 @@
 export { default as SecurityCode } from './SecurityCode/SecurityCode';
+export { default as CurrentBowlContext } from './CurrentBowlContext/CurrentBowlContext';
 export { default as LoginOverlay } from './LoginOverlay/LoginOverlay';
 export { default as RegisterOverlay } from './RegisterOverlay/RegisterOverlay';
 export { default as ProfileOverlay } from './ProfileOverlay/ProfileOverlay';
