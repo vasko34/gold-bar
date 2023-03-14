@@ -50,6 +50,12 @@ const OrderOverlay = ({ close, brand, name }) => {
         setCurrentBowl(emptyBowl);
     };
 
+    React.useEffect(() => {
+        if ((currentBowl.percent1 + currentBowl.percent2 + currentBowl.percent3 + currentBowl.percent4 + currentBowl.percent5) === 100) {
+            setButtonDisabler(true);
+        }
+    }, [])
+
     return (
         <div className = 'orderoverlay'>
             <div className = 'orderoverlay__ordertobacco'>
