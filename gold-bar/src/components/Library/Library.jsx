@@ -296,11 +296,13 @@ const Library = () => {
                 </div>
             </div>
             <div className = 'library__content' ref = { contentRef }>
-                { listOfTobaccos.length > 0 ? (listOfTobaccos.map((e, i) => {
-                    return (
-                        <Tobacco key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } ice = { e.ice } fruity = { e.fruity } sweet = { e.sweet } image = { e.image } inStock = { e.inStock } open = { () => openOrderOverlay(e.brand, e.name, e.inStock) }></Tobacco>
-                    );
-                })) : (<p>No results found</p>) }
+                {
+                    (listOfTobaccos.length > 0) ? (listOfTobaccos.map((e, i) => {
+                        return (
+                            <Tobacco key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } ice = { e.ice } fruity = { e.fruity } sweet = { e.sweet } image = { e.image } inStock = { e.inStock } open = { () => openOrderOverlay(e.brand, e.name, e.inStock) }></Tobacco>
+                        );
+                    })) : (<p>No results found</p>)
+                }
             </div>
             <div className = 'profile' onClick = { openProfileOverlay }>
                 <FaUser className = 'profileicon'></FaUser>

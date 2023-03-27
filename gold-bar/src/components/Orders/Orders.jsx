@@ -51,22 +51,26 @@ const Orders = () => {
             <div className = 'orders__pending'>
                 <h1>Awaiting finalization:</h1>
                 <div className = 'orders__container' ref = { container1Ref }>
-                    { hookahBowls !== null ? (hookahBowls.map((e, i) => {
-                        return (
-                            <HookahBowl key = { i } currentBowl = { e }></HookahBowl>
-                        );
-                    })) : (<p>Empty</p>) }
+                    {
+                        (hookahBowls !== null) ? (hookahBowls.map((e, i) => {
+                            return (
+                                <HookahBowl key = { i } currentBowl = { e }></HookahBowl>
+                            );
+                        })) : (<p>Empty</p>)
+                    }
                 </div>
                 <button type = 'button' onClick = { order }>Order</button>
             </div>
             <div className = 'orders__sent'>
                 <h1>Awaiting arrival:</h1>
                 <div className = 'orders__container' ref = { container2Ref }>
-                    { hookahBowlsSent !== null ? (hookahBowlsSent.map((e, i) => {
-                        return (
-                            <HookahBowl key = { i } currentBowl = { e }></HookahBowl>
-                        );
-                    })) : (<p>Empty</p>) }
+                    {
+                        (hookahBowlsSent !== null) ? (hookahBowlsSent.map((e, i) => {
+                            return (
+                                <HookahBowl key = { i } currentBowl = { e }></HookahBowl>
+                            );
+                        })) : (<p>Empty</p>)
+                    }
                 </div>
             </div>
             <div className = 'profile' onClick = { openProfileOverlay }>
