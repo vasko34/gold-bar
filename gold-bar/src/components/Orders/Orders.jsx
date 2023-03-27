@@ -55,7 +55,7 @@ const Orders = () => {
                         return (
                             <HookahBowl key = { i } currentBowl = { e }></HookahBowl>
                         );
-                    })) : (<p>Empty</p>) }
+                    })) : (<p>Empty</p>) } 
                 </div>
                 <button type = 'button' onClick = { order }>Order</button>
             </div>
