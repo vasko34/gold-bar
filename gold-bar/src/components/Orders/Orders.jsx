@@ -55,7 +55,7 @@ const Orders = () => {
                         return (
                             <HookahBowl key = { i } currentBowl = { e }></HookahBowl>
                         );
-                    })) : (<p>empty</p>) }
+                    })) : (<p>Empty</p>) }
                 </div>
                 <button type = 'button' onClick = { order }>Order</button>
             </div>
@@ -66,7 +66,7 @@ const Orders = () => {
                     return (
                         <HookahBowl key = { i } currentBowl = { e }></HookahBowl>
                     );
-                })) : (<p>empty</p>) }
+                })) : (<p>Empty</p>) }
                 </div>
             </div>
             <div className = 'profile' onClick = { openProfileOverlay }>
