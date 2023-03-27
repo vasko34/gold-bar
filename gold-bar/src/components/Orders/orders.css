@@ -1,0 +1,103 @@
+.orders {
+    display: flex;
+    flex-direction: row;
+    background: #1A1918;
+    height: 100vh;
+}
+
+.orders h1 {
+    font-family: 'Trebuchet MS';
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 155%;    
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    position: absolute;
+    top: 3.5rem;
+}
+
+.orders__container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+.orders__container::-webkit-scrollbar {
+    display: none;
+  }
+
+.orders__pending button {
+    font-family: 'Trebuchet MS';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 175%;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    background: #141413;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    border: 2px solid #0D0D0C;
+    border-radius: 1.5rem;
+    position: absolute;
+    top: 2.5rem;
+    right: 1.5rem;
+}
+
+.orders__pending button:hover {
+    background: #262625;
+}
+
+.orders__pending {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-right: 2px solid #0D0D0C;
+    min-height: 100vh;
+    width: 50vw;
+    padding: 4rem 6rem;
+    position: relative;
+}
+
+.orders__sent {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 50vw;
+    padding: 4rem 6rem;
+}
+
+.profile {
+    position: fixed;
+    top: 1rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.profile h3 {
+    font-family: 'Trebuchet MS';
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 175%;    
+    letter-spacing: 0.04em;
+    color: #FEDF33;  
+}
+
+.profile:hover h3 {
+    color: #FFEF99;
+    text-decoration: underline;
+}
+
+.profileicon {
+    margin-right: 0.3rem;
+    margin-top: 0.2rem;
+    color: #FEDF33;
+}
+
+.profile:hover .profileicon {
+    color: #FFEF99;
+}

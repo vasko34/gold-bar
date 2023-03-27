@@ -1,0 +1,57 @@
+.home {
+    display: flex;
+    background: #1A1918;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.home h1 {
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 150px;
+    line-height: 130%;
+    text-align: center;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    margin-bottom: 5rem;
+}
+
+.home__content {
+    display: flex;
+    flex-direction: column;
+}
+
+.home__content button {
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 175%;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    background: #141413;
+    padding: 3rem 9rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    border: 2px solid #0D0D0C;
+    border-radius: 3rem;
+}
+
+.home__content button:hover {
+    background: #262625;
+}
+
+.boolean_switch {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+}
+
+.boolean_switch span {
+    cursor: pointer;
+    margin-right: 1rem;
+    color: #FEDF33;
+    font-family: 'Trebuchet MS';
+}

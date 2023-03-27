@@ -1,0 +1,102 @@
+.hookahbowl {
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+    border: 1px solid black;
+    background: #141413;
+    border-radius: 1rem;
+    margin-top: 1.5rem;
+}
+
+.hookahbowl__image {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    border-right: 1px solid black;
+}
+
+.hookahbowl__image img {
+    width: 15rem;
+}
+
+.hookahbowl__image-progress {
+    position: absolute;
+    top: 14px;
+    right: 1.22rem;
+    width: 87.8%;
+}
+
+.hookahbowl__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    padding: 1rem 1rem;
+}
+
+.hookahbowl__content span {
+    font-family: 'Trebuchet MS';
+    font-weight: 0;
+    font-size: 19px;
+    line-height: 100%;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+}
+
+.hookahbowl__contentrow {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+}
+
+.hookahbowl__contentrow-color1 {
+    display: flex;
+    box-sizing: border-box;
+    border: 1px solid rgb(120, 0, 255);
+    background: rgba(120, 0, 255, 0.5);
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+}
+
+.hookahbowl__contentrow-color2 {
+    display: flex;
+    box-sizing: border-box;
+    border: 1px solid rgb(120, 120, 255);
+    background: rgba(120, 120, 255, 0.5);
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+}
+
+.hookahbowl__contentrow-color3 {
+    display: flex;
+    box-sizing: border-box;
+    border: 1px solid rgb(120, 255, 255);
+    background: rgba(120, 255, 255, 0.5);
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+}
+
+.hookahbowl__contentrow-color4 {
+    display: flex;
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 0, 255);
+    background: rgba(0, 0, 255, 0.5);
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+}
+
+.hookahbowl__contentrow-color5 {
+    display: flex;
+    box-sizing: border-box;
+    border: 1px solid rgb(120, 0, 25);
+    background: rgba(120, 0, 25, 0.5);
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+}
