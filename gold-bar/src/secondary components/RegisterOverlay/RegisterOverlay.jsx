@@ -2,16 +2,32 @@ import React from 'react';
 import './registeroverlay.css';
 import { SecurityCode } from '../index.js';
 import { FaTimes } from 'react-icons/fa';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 
 const RegisterOverlay = ({ close }) => {
-    const [currentInputUsername,setCurrentInputUsername] = React.useState('');
-    const [currentInputPassword,setCurrentInputPassword] = React.useState('');
-    const [currentInputConfirmPassword,setCurrentInputConfirmPassword] = React.useState('');
-    const [currentInputSecurity,setCurrentInputSecurity] = React.useState('');
+    const [currentInputUsername, setCurrentInputUsername] = React.useState('');
+    const [currentInputPassword, setCurrentInputPassword] = React.useState('');
+    const [currentInputConfirmPassword, setCurrentInputConfirmPassword] = React.useState('');
+    const [currentInputSecurity, setCurrentInputSecurity] = React.useState('');
     const [passwordMatchError, setPasswordMatchError] = React.useState(false);
     const [passwordSafetyError, setPasswordSafetyError] = React.useState(false);
     const [securityCodeError, setSecurityCodeError] = React.useState(false);
     const [isChecked, setIsChecked] = React.useState(false);
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyDJfxJwSEkTH8jWQBBlMTbgGq7rWOeG3bE",
+        authDomain: "gold-bar-4abbb.firebaseapp.com",
+        databaseURL: "https://gold-bar-4abbb-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "gold-bar-4abbb",
+        storageBucket: "gold-bar-4abbb.appspot.com",
+        messagingSenderId: "388118576707",
+        appId: "1:388118576707:web:a33a9a20927496b4ab5ef6",
+        measurementId: "G-R8VXHFZ4TS"
+    };
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
 
     let user = {
         username: null,
@@ -62,7 +78,20 @@ const RegisterOverlay = ({ close }) => {
             .then(data => console.log(data))
             .catch(error => console.error(error));
         }
-    }
+    };
+
+    const callDB = async () => {
+        try {
+            const docRef = await addDoc(collection(db, "users"), {
+                first: "Ada",
+                last: "Lovelace",
+                born: 1815
+            });
+            console.log("Document written with ID: ", docRef.id);
+        } catch (e) {
+            console.error("Error adding document: ", e);
+        }
+    };
 
     return (
         <div className = 'registeroverlay'>
@@ -79,6 +108,7 @@ const RegisterOverlay = ({ close }) => {
             { passwordSafetyError && (<p>The password must be atleast 8 characters long and contain numbers, capital and lowercase letters!</p>) }
             { securityCodeError && (<p>Incorrect security code!</p>) }
             <button type = 'button' onClick = { () => register(currentInputUsername, currentInputPassword, currentInputConfirmPassword, currentInputSecurity) }>Register</button>
+            <button type = 'button' onClick = { () => callDB() }>Test</button>
             <FaTimes onClick = { close } className = 'close'></FaTimes>
         </div>
     );

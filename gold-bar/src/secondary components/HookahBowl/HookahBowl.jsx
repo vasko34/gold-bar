@@ -5,8 +5,10 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 const HookahBowl = ({ currentBowl }) => {
+    const bowlImageRef = React.useRef();
+    
     React.useEffect(() => {
-        const bowlImage = document.querySelector('.hookahbowl__image');
+        const bowlImage = bowlImageRef.current;
         const bowlImageRotations = [
           currentBowl.percent1,
           currentBowl.percent2,
@@ -23,7 +25,7 @@ const HookahBowl = ({ currentBowl }) => {
 
     return (
         <div className = 'hookahbowl'>
-            <div className = 'hookahbowl__image'>
+            <div className = 'hookahbowl__image' ref = { bowlImageRef }>
                 <img src = { images.HookahBowl } alt = 'hookahbowl_img'></img>
                 <div className = 'hookahbowl__image-progress'><CircularProgressbar value = { currentBowl.percent1 } strokeWidth = { 50 } styles = { buildStyles({ strokeLinecap: "butt", trailColor: "transparent", pathColor: 'rgba(120, 0, 255, 0.5)' })}></CircularProgressbar></div>
                 <div className = 'hookahbowl__image-progress'><CircularProgressbar value = { currentBowl.percent2 } strokeWidth = { 50 } styles = { buildStyles({ strokeLinecap: "butt", trailColor: "transparent", pathColor: 'rgba(120, 120, 255, 0.5)' })}></CircularProgressbar></div>

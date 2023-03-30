@@ -11,6 +11,7 @@ const OrderOverlay = ({ close, brand, name }) => {
     const [buttonDisablerAdd, setButtonDisablerAdd] = React.useState(false);
     const [buttonDisablerUndo, setButtonDisablerUndo] = React.useState(true);
     const [buttonDisablerAddToOrders, setButtonDisablerAddToOrders] = React.useState(true);
+    const currentBowlImageRef = React.useRef();
     const { currentBowl, setCurrentBowl } = React.useContext(CurrentBowlContext);
 
     const addTobaccoToBowl = () => {
@@ -154,7 +155,7 @@ const OrderOverlay = ({ close, brand, name }) => {
             setSliderValue(20);
         }
 
-        const bowlImage = document.querySelector('.orderoverlay__currentbowl-image');
+        const bowlImage = currentBowlImageRef.current;
         const bowlImageRotations = [
           currentBowl.percent1,
           currentBowl.percent2,
@@ -193,7 +194,7 @@ const OrderOverlay = ({ close, brand, name }) => {
             </div>
             <div className = 'orderoverlay__currentbowl'>
                 <p>Current Hookah Bowl:</p>
-                <div className = 'orderoverlay__currentbowl-image'>
+                <div className = 'orderoverlay__currentbowl-image' ref = { currentBowlImageRef }>
                     <img src = { images.HookahBowl } alt = 'hookahbowl_img'></img>
                     <div className = 'orderoverlay__currentbowl-image_progress'><CircularProgressbar value = { currentBowl.percent1 } strokeWidth = { 50 } styles = { buildStyles({ strokeLinecap: "butt", trailColor: "transparent", pathColor: 'rgba(120, 0, 255, 0.5)' })}></CircularProgressbar></div>
                     <div className = 'orderoverlay__currentbowl-image_progress'><CircularProgressbar value = { currentBowl.percent2 } strokeWidth = { 50 } styles = { buildStyles({ strokeLinecap: "butt", trailColor: "transparent", pathColor: 'rgba(120, 120, 255, 0.5)' })}></CircularProgressbar></div>
