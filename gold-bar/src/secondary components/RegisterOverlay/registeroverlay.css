@@ -43,7 +43,6 @@
     font-size: 16px;
     line-height: 175%;
     letter-spacing: 0.04em;
-    text-transform: capitalize;
     font-feature-settings: 'tnum' on, 'lnum' on;
     color: #FFEB80;
     background: #262625;

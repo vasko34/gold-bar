@@ -4,16 +4,17 @@ import { SecurityCode } from '../index.js';
 import { FaTimes } from 'react-icons/fa';
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 const RegisterOverlay = ({ close }) => {
     const [currentInputUsername, setCurrentInputUsername] = React.useState('');
     const [currentInputPassword, setCurrentInputPassword] = React.useState('');
     const [currentInputConfirmPassword, setCurrentInputConfirmPassword] = React.useState('');
     const [currentInputSecurity, setCurrentInputSecurity] = React.useState('');
-    const [passwordMatchError, setPasswordMatchError] = React.useState(false);
-    const [passwordSafetyError, setPasswordSafetyError] = React.useState(false);
-    const [securityCodeError, setSecurityCodeError] = React.useState(false);
+    const [passwordMatchError, setPasswordMatchError] = React.useState(null);
+    const [passwordSafetyError, setPasswordSafetyError] = React.useState(null);
+    const [securityCodeError, setSecurityCodeError] = React.useState(null);
     const [isChecked, setIsChecked] = React.useState(false);
 
     const firebaseConfig = {
@@ -29,13 +30,30 @@ const RegisterOverlay = ({ close }) => {
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    let user = {
-        username: null,
-        passwword: null,
-        type: null
-    }
+    React.useEffect(() => {
+        if (!passwordMatchError && !passwordSafetyError && !securityCodeError) {
+          register(currentInputUsername, currentInputPassword);
+        }
+    }, [passwordMatchError, passwordSafetyError, securityCodeError]);
 
-    const register = (username, password, confirmPassword, code) => {
+    const register = async (username, password) => {
+        try {
+            const auth = getAuth();
+            const email = username + '@example.com';
+            await createUserWithEmailAndPassword(auth, email, password);
+            const user = auth.currentUser;
+            await setDoc(doc(db, 'users', user.uid), {
+                username: username,
+                password: password,
+                adminStatus: isChecked
+            });
+            window.location.reload();
+        } catch (error) {
+            console.log(error.message);                
+        }
+    };
+
+    const handleRegister = (password, confirmPassword, code) => {
         if (password !== confirmPassword) {
             setPasswordMatchError(true);
         } else {
@@ -53,44 +71,6 @@ const RegisterOverlay = ({ close }) => {
         } else {
             setSecurityCodeError(false);
         }
-
-        if (isChecked === true) {
-            user = {
-                username: username,
-                password: password,
-                type: 'admin'
-            };
-        } else {
-            user = {
-                username: username,
-                password: password,
-                type: 'normal'
-            };
-        }
-
-        if ((passwordSafetyError === false) && (passwordMatchError === false) && (securityCodeError === false)) {
-            fetch('/api/reguser', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(user)
-            })
-            .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(error => console.error(error));
-        }
-    };
-
-    const callDB = async () => {
-        try {
-            const docRef = await addDoc(collection(db, "users"), {
-                first: "Ada",
-                last: "Lovelace",
-                born: 1815
-            });
-            console.log("Document written with ID: ", docRef.id);
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
     };
 
     return (
@@ -107,8 +87,7 @@ const RegisterOverlay = ({ close }) => {
             { passwordMatchError && (<p>Passwords don't match!</p>) }
             { passwordSafetyError && (<p>The password must be atleast 8 characters long and contain numbers, capital and lowercase letters!</p>) }
             { securityCodeError && (<p>Incorrect security code!</p>) }
-            <button type = 'button' onClick = { () => register(currentInputUsername, currentInputPassword, currentInputConfirmPassword, currentInputSecurity) }>Register</button>
-            <button type = 'button' onClick = { () => callDB() }>Test</button>
+            <button type = 'button' onClick = { () => handleRegister(currentInputPassword, currentInputConfirmPassword, currentInputSecurity) }>Register</button>
             <FaTimes onClick = { close } className = 'close'></FaTimes>
         </div>
     );
