@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from './App.js';
 import { Home, UserPage, AdminPage, Library, Orders } from './components/index.js';
-import { CurrentBowlContext } from './secondary components/index.js';
+import { CurrentBowlContext, PrivateRoute } from './secondary components/index.js';
 
 const router = createBrowserRouter([
   {
@@ -12,7 +12,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/user',
-    element: <UserPage></UserPage>
+    element: <PrivateRoute element = { UserPage }></PrivateRoute>
   },
   {
     path: '/admin',

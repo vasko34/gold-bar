@@ -26,7 +26,7 @@ const UserPage = () => {
                 <FaUser className = 'profileicon'></FaUser>
                 <h3>Table01</h3>
             </div>
-            { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } logoutUser = { () => navigate('/') } home = { true } library = { true }></ProfileOverlay>) }
+            { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } home = { true } library = { true }></ProfileOverlay>) }
             <div className = 'boolean_switch'>
                 <span onClick = { () => navigate('/admin') }>Admin</span>
                 <span onClick = { () => navigate('/') }>Home</span>

@@ -1,11 +1,9 @@
 import React from 'react';
 import './orders.css';
-import { useNavigate } from 'react-router-dom';
 import { ProfileOverlay, HookahBowl } from '../../secondary components';
 import { FaUser } from 'react-icons/fa';
 
 const Orders = () => {
-    const navigate = useNavigate();
     const container1Ref = React.useRef(null);
     const container2Ref = React.useRef(null);
     const [toggleProfileOverlay, setToggleProfileOverlay] = React.useState(null);
@@ -77,7 +75,7 @@ const Orders = () => {
                 <FaUser className = 'profileicon'></FaUser>
                 <h3>Table01</h3>
             </div>
-            { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } logoutUser = { () => navigate('/') } orders = { true }></ProfileOverlay>) }
+            { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } orders = { true }></ProfileOverlay>) }
         </div>
     );
 }

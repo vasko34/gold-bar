@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import './library.css';
 import { Tobacco, ProfileOverlay, OrderOverlay } from '../../secondary components';
 import { tobaccos } from '../../constants';
@@ -14,7 +13,6 @@ const removeArrayItem = (arr, condition) => {
 };
 
 const Library = () => {
-    const navigate = useNavigate();
     const filterRef = React.useRef(null);
     const contentRef = React.useRef(null);
     const [tobaccoForOverlayBrand, setTobaccoForOverlayBrand] = React.useState('');
@@ -309,7 +307,7 @@ const Library = () => {
                 <h3>Table01</h3>
             </div>
             { toggleOrderOverlay && (<OrderOverlay close = { closeOrderOverlay } brand = { tobaccoForOverlayBrand } name = { tobaccoForOverlayName }></OrderOverlay>) }
-            { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } logoutUser = { () => navigate('/') } library = { true }></ProfileOverlay>) }
+            { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } library = { true }></ProfileOverlay>) }
         </div>
     );
 }

@@ -8,3 +8,4 @@ export { default as OrderOverlay } from './OrderOverlay/OrderOverlay';
 export { default as Tobacco } from './Tobacco/Tobacco';
 export { default as Tobacco2 } from './Tobacco2/Tobacco2';
 export { default as HookahBowl } from './HookahBowl/HookahBowl';
+export { default as PrivateRoute } from './PrivateRoute/PrivateRoute';
