@@ -5,15 +5,15 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from 'firebase/auth';
 
 const PrivateRoute = ({ element: Element, ...rest }) => {
-    const navigate = useNavigate();
-    const auth = getAuth(Firebase);
-    const [isAuthenticated] = useAuthState(auth);
+  const navigate = useNavigate();
+  const auth = getAuth(Firebase);
+  const [isAuthenticated] = useAuthState(auth);
   
-    if (!isAuthenticated) {
-      navigate('/');
-      return null;
-    }
-    return <Element {...rest} />;
+  if (!isAuthenticated) {
+    navigate('/');
+    return null;
+  }
+  return <Element {...rest} />;
 };
 
 export default PrivateRoute;

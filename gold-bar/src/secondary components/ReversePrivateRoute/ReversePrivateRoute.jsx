@@ -15,34 +15,34 @@ const ReversePrivateRoute = ({ element: Element, ...rest }) => {
     const [isAuthenticated] = useAuthState(auth);
   
     React.useEffect(() => {
-      const unsubscribe = onAuthStateChanged(auth, (user) => {
-        setUser(user);
-      });
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setUser(user);
+        });
 
-      return unsubscribe;
+        return unsubscribe;
     }, [auth]);
   
     React.useEffect(() => {
-      const getAdminStatus = async () => {
-        if (!user) return;
-        const userDoc = await getDoc(doc(db, "users", user.uid));
-        const adminStatus = userDoc.data().adminStatus;
-        setAdminStatus(adminStatus);
-      };
-      getAdminStatus();
+        const getAdminStatus = async () => {
+            if (!user) return;
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            const adminStatus = userDoc.data().adminStatus;
+            setAdminStatus(adminStatus);
+        };
+        getAdminStatus();
     }, [user]);
   
     const handleNavigation = () => {
-      if (adminStatus) {
-        navigate("/admin");
-      } else {
-        navigate("/user");
-      }
+        if (adminStatus) {
+            navigate("/admin");
+        } else {
+            navigate("/user");
+        }
     };
   
     if ((isAuthenticated) && (adminStatus !== null)) {
-      handleNavigation();
-      return null;
+        handleNavigation();
+        return null;
     }
 
     return <Element {...rest} />;
