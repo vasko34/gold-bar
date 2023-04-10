@@ -1,6 +1,6 @@
 import React from 'react';
 import './securityoverlay.css';
-import { SecurityCode } from '../index.js';
+import { SecurityCode } from '../../global';
 import { FaTimes } from 'react-icons/fa';
 
 const SecurityOverlay = ({ close, closeProfileOverlay, logoutUser }) => {

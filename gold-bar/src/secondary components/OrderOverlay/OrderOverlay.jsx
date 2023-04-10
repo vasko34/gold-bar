@@ -1,8 +1,9 @@
 import React from 'react';
 import './orderoverlay.css'
 import { FaTimes } from 'react-icons/fa';
-import { Tobacco2, CurrentBowlContext } from '../index.js';
+import { Tobacco2 } from '../index.js';
 import { tobaccos, images } from '../../constants';
+import { CurrentBowlContext } from '../../global';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -180,6 +181,7 @@ const OrderOverlay = ({ close, brand, name }) => {
                                 <Tobacco2 key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } image = { e.image }></Tobacco2>
                             );
                         }
+                        return null;
                     })}
                 </div>
                 <div className = 'orderoverlay__ordertobacco-slider'>

@@ -1,5 +1,3 @@
-export { default as SecurityCode } from './SecurityCode/SecurityCode';
-export { default as CurrentBowlContext } from './CurrentBowlContext/CurrentBowlContext';
 export { default as LoginOverlay } from './LoginOverlay/LoginOverlay';
 export { default as RegisterOverlay } from './RegisterOverlay/RegisterOverlay';
 export { default as ProfileOverlay } from './ProfileOverlay/ProfileOverlay';
@@ -9,3 +7,4 @@ export { default as Tobacco } from './Tobacco/Tobacco';
 export { default as Tobacco2 } from './Tobacco2/Tobacco2';
 export { default as HookahBowl } from './HookahBowl/HookahBowl';
 export { default as PrivateRoute } from './PrivateRoute/PrivateRoute';
+export { default as ReversePrivateRoute } from './ReversePrivateRoute/ReversePrivateRoute';

@@ -21,15 +21,35 @@
     margin-bottom: 5rem;
 }
 
-.boolean_switch {
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem;
+.profile {
+    position: fixed;
+    top: 1rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
 }
 
-.boolean_switch span {
-    cursor: pointer;
-    margin-right: 1rem;
-    color: #FEDF33;
+.profile h3 {
     font-family: 'Trebuchet MS';
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 175%;    
+    letter-spacing: 0.04em;
+    color: #FEDF33;  
+}
+
+.profile:hover h3 {
+    color: #FFEF99;
+    text-decoration: underline;
+}
+
+.profileicon {
+    margin-right: 0.3rem;
+    margin-top: 0.2rem;
+    color: #FEDF33;
+}
+
+.profile:hover .profileicon {
+    color: #FFEF99;
 }

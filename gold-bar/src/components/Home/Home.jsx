@@ -35,10 +35,6 @@ const Home = () => {
             </div>
             { toggleLoginOverlay && (<LoginOverlay close = { closeLoginOverlay }></LoginOverlay>) }
             { toggleRegisterOverlay && (<RegisterOverlay close = { closeRegisterOverlay }></RegisterOverlay>) }
-            <div className = 'boolean_switch'>
-                <span onClick = { () => navigate('/admin') }>Admin</span>
-                <span onClick = { () => navigate('/user') }>User</span>
-            </div>
         </div>
     );
 }

@@ -1,10 +1,10 @@
 import React from 'react';
 import './registeroverlay.css';
-import { SecurityCode } from '../index.js';
+import { SecurityCode } from '../../global';
 import { FaTimes } from 'react-icons/fa';
-import { initializeApp } from "firebase/app";
+import { Firebase } from "../../global";
 import { getFirestore } from "firebase/firestore";
-import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 const RegisterOverlay = ({ close }) => {
@@ -16,19 +16,7 @@ const RegisterOverlay = ({ close }) => {
     const [passwordSafetyError, setPasswordSafetyError] = React.useState(null);
     const [securityCodeError, setSecurityCodeError] = React.useState(null);
     const [isChecked, setIsChecked] = React.useState(false);
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyDJfxJwSEkTH8jWQBBlMTbgGq7rWOeG3bE",
-        authDomain: "gold-bar-4abbb.firebaseapp.com",
-        databaseURL: "https://gold-bar-4abbb-default-rtdb.europe-west1.firebasedatabase.app",
-        projectId: "gold-bar-4abbb",
-        storageBucket: "gold-bar-4abbb.appspot.com",
-        messagingSenderId: "388118576707",
-        appId: "1:388118576707:web:a33a9a20927496b4ab5ef6",
-        measurementId: "G-R8VXHFZ4TS"
-    };
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    const db = getFirestore(Firebase);
 
     React.useEffect(() => {
         if (!passwordMatchError && !passwordSafetyError && !securityCodeError) {
@@ -38,7 +26,7 @@ const RegisterOverlay = ({ close }) => {
 
     const register = async (username, password) => {
         try {
-            const auth = getAuth();
+            const auth = getAuth(Firebase);
             const email = username + '@example.com';
             await createUserWithEmailAndPassword(auth, email, password);
             const user = auth.currentUser;
