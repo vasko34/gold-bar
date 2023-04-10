@@ -13,6 +13,7 @@ const PrivateRoute = ({ element: Element, ...rest }) => {
     navigate('/');
     return null;
   }
+  
   return <Element {...rest}/>;
 };
 
