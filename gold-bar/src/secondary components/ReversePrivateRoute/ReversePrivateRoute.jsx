@@ -45,7 +45,7 @@ const ReversePrivateRoute = ({ element: Element, ...rest }) => {
         return null;
     }
 
-    return <Element {...rest} />;
+    return <Element {...rest}/>;
 };
 
 export default ReversePrivateRoute;
