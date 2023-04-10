@@ -1,10 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import './home.css';
 import { LoginOverlay, RegisterOverlay } from '../../secondary components';
 
 const Home = () => {
-    const navigate = useNavigate();
     const [toggleLoginOverlay, setToggleLoginOverlay] = React.useState(null);
     const [toggleRegisterOverlay, setToggleRegisterOverlay] = React.useState(null);
 
