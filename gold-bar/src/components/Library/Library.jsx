@@ -1,4 +1,8 @@
 import React from 'react';
+import { Firebase } from "../../global";
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getFirestore } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import './library.css';
 import { Tobacco, ProfileOverlay, OrderOverlay } from '../../secondary components';
 import { tobaccos } from '../../constants';
@@ -23,6 +27,28 @@ const Library = () => {
     const [activeFiltersType, setActiveFiltersType] = React.useState([]);
     const [toggleProfileOverlay, setToggleProfileOverlay] = React.useState(null);
     const [toggleOrderOverlay, setToggleOrderOverlay] = React.useState(null);
+    const [user, setUser] = React.useState(null);
+    const [username, setUsername] = React.useState(null);
+    const auth = getAuth(Firebase);
+    const db = getFirestore(Firebase);
+
+    React.useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setUser(user);
+        });
+
+        return unsubscribe;
+    }, [auth]);
+  
+    React.useEffect(() => {
+        const getUsername = async () => {
+            if (!user) return;
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            const username = userDoc.data().username;
+            setUsername(username);
+        };
+        getUsername();
+    }, [user]);
 
     const openProfileOverlay = () => {
         setToggleProfileOverlay(true);
@@ -304,7 +330,7 @@ const Library = () => {
             </div>
             <div className = 'profile' onClick = { openProfileOverlay }>
                 <FaUser className = 'profileicon'></FaUser>
-                <h3>Table01</h3>
+                <h3>{ username }</h3>
             </div>
             { toggleOrderOverlay && (<OrderOverlay close = { closeOrderOverlay } brand = { tobaccoForOverlayBrand } name = { tobaccoForOverlayName }></OrderOverlay>) }
             { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } library = { true }></ProfileOverlay>) }

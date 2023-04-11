@@ -44,7 +44,7 @@
     line-height: 175%;
     letter-spacing: 0.04em;
     font-feature-settings: 'tnum' on, 'lnum' on;
-    color: #FFEB80;
+    color: #FEDF33;
     background: #262625;
     box-sizing: border-box;
     border: 2px solid #0D0D0C;    
@@ -59,8 +59,8 @@
     font-size: 20px;
     line-height: 175%;
     letter-spacing: 0.04em;
-    color: #FEE766;
-    background: #262625;
+    color: #FEDF33;
+    background: #141413;
     padding: 0.5rem 1.5rem;
     cursor: pointer;
     margin-bottom: 2rem;
@@ -69,7 +69,7 @@
 }
 
 .registeroverlay button:hover {
-    background: #1A1918;
+    background: #262625;
 }
 
 .registeroverlay__admin {
@@ -85,7 +85,7 @@
     font-size: 20px;
     line-height: 175%;    
     letter-spacing: 0.04em;
-    color: #FEE766; 
+    color: #FEDF33; 
     margin-right: 0.5rem; 
     margin-bottom: 1rem;
     text-align: start; 
