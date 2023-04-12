@@ -1,4 +1,7 @@
 import React from 'react';
+import { Firebase } from "../../global";
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getFirestore, collection, doc, getDoc, getDocs, addDoc, setDoc } from "firebase/firestore";
 import './orderoverlay.css'
 import { FaTimes } from 'react-icons/fa';
 import { Tobacco2 } from '../index.js';
@@ -12,8 +15,12 @@ const OrderOverlay = ({ close, brand, name }) => {
     const [buttonDisablerAdd, setButtonDisablerAdd] = React.useState(false);
     const [buttonDisablerUndo, setButtonDisablerUndo] = React.useState(true);
     const [buttonDisablerAddToOrders, setButtonDisablerAddToOrders] = React.useState(true);
+    const [user, setUser] = React.useState(null);
+    const [username, setUsername] = React.useState(null);
     const currentBowlImageRef = React.useRef();
     const { currentBowl, setCurrentBowl } = React.useContext(CurrentBowlContext);
+    const auth = getAuth(Firebase);
+    const db = getFirestore(Firebase);
 
     const addTobaccoToBowl = () => {
         if (currentBowl.percent1 === 0) {
@@ -93,37 +100,83 @@ const OrderOverlay = ({ close, brand, name }) => {
         setCurrentBowl(emptyBowl);
     };
 
-    const addToOrders = () => {
-        const hookahBowlsAsJSON = localStorage.getItem('HookahBowls');
-        if (hookahBowlsAsJSON === null) {
-            const hookahBowlsEmpty = [];
-            hookahBowlsEmpty.push(currentBowl);
-            const hookahBowlsToJSON = JSON.stringify(hookahBowlsEmpty);
-            localStorage.setItem('HookahBowls', hookahBowlsToJSON);
+    const addToOrders = async () => {
+        const querySnapshot = await getDocs(collection(db, "ordersNotSent"));
+        let foundDoc = false;
+        if (!querySnapshot.empty) {
+            for (const doc of querySnapshot.docs) {
+                const docData = doc.data();
+                if (docData.username === username) {
+                    const docRef = doc.ref;
+                    const hookahBowlsAsJSON = docData.orders;
+                    if (hookahBowlsAsJSON) {
+                        const hookahBowls = JSON.parse(hookahBowlsAsJSON);
+                        hookahBowls.push(currentBowl);
+                        const hookahBowlsToJSON = JSON.stringify(hookahBowls);
+                        await setDoc(docRef, { orders: hookahBowlsToJSON }, { merge: true });
+                    } else {
+                        const hookahBowlsToJSON = JSON.stringify([currentBowl]);
+                        await setDoc(docRef, { orders: hookahBowlsToJSON }, { merge: true });
+                    }
+                    foundDoc = true;
+                }
+            }
+            if (!foundDoc) {
+                await addDoc(collection(db, "ordersNotSent"), { username: username, orders: JSON.stringify([currentBowl]) });
+            }
         } else {
-            const hookahBowls = JSON.parse(hookahBowlsAsJSON);
-            hookahBowls.push(currentBowl);
-            const hookahBowlsToJSON = JSON.stringify(hookahBowls);
-            localStorage.setItem('HookahBowls', hookahBowlsToJSON);
+            await addDoc(collection(db, "ordersNotSent"), { username: username, orders: JSON.stringify([currentBowl]) });
         }
         resetCurrentBowl();
     };
 
-    const oneClickOrder = () => {
-        const hookahBowlsAsJSON = localStorage.getItem('HookahBowlsSent');
-        if (hookahBowlsAsJSON === null) {
-            const hookahBowlsEmpty = [];
-            hookahBowlsEmpty.push(currentBowl);
-            const hookahBowlsToJSON = JSON.stringify(hookahBowlsEmpty);
-            localStorage.setItem('HookahBowlsSent', hookahBowlsToJSON);
+    const oneClickOrder = async () => {
+        const querySnapshot = await getDocs(collection(db, "ordersSent"));
+        let foundDoc = false;
+        if (!querySnapshot.empty) {
+            for (const doc of querySnapshot.docs) {
+                const docData = doc.data();
+                if (docData.username === username) {
+                    const docRef = doc.ref;
+                    const hookahBowlsAsJSON = docData.orders;
+                    if (hookahBowlsAsJSON) {
+                        const hookahBowls = JSON.parse(hookahBowlsAsJSON);
+                        hookahBowls.push(currentBowl);
+                        const hookahBowlsToJSON = JSON.stringify(hookahBowls);
+                        await setDoc(docRef, { orders: hookahBowlsToJSON }, { merge: true });
+                    } else {
+                        const hookahBowlsToJSON = JSON.stringify([currentBowl]);
+                        await setDoc(docRef, { orders: hookahBowlsToJSON }, { merge: true });
+                    }
+                    foundDoc = true;
+                }
+            }
+            if (!foundDoc) {
+                await addDoc(collection(db, "ordersSent"), { username: username, orders: JSON.stringify([currentBowl]) });
+            }
         } else {
-            const hookahBowls = JSON.parse(hookahBowlsAsJSON);
-            hookahBowls.push(currentBowl);
-            const hookahBowlsToJSON = JSON.stringify(hookahBowls);
-            localStorage.setItem('HookahBowlsSent', hookahBowlsToJSON);
+            await addDoc(collection(db, "ordersSent"), { username: username, orders: JSON.stringify([currentBowl]) });
         }
         resetCurrentBowl();
     };
+
+    React.useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setUser(user);
+        });
+
+        return unsubscribe;
+    }, [auth]);
+  
+    React.useEffect(() => {
+        const getUsername = async () => {
+            if (!user) return;
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            const username = userDoc.data().username;
+            setUsername(username);
+        };
+        getUsername();
+    }, [user]);
 
     React.useEffect(() => {
         if ((+currentBowl.percent1 + +currentBowl.percent2 + +currentBowl.percent3 + +currentBowl.percent4 + +currentBowl.percent5) < 100) {
