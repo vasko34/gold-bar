@@ -1,8 +1,7 @@
 import React from 'react';
 import { Firebase } from "../../global";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore } from "firebase/firestore";
-import { doc, getDoc } from "firebase/firestore";
+import { getFirestore, collection, doc, getDoc, getDocs, setDoc, deleteDoc } from "firebase/firestore";
 import './orders.css';
 import { ProfileOverlay, HookahBowl } from '../../secondary components';
 import { FaUser } from 'react-icons/fa';
@@ -15,6 +14,10 @@ const Orders = () => {
     const [hookahBowlsSent, setHookahBowlsSent] = React.useState([]);
     const [user, setUser] = React.useState(null);
     const [username, setUsername] = React.useState(null);
+    const [docRef, setDocRef] = React.useState(null);
+    const [docRefSent, setDocRefSent] = React.useState(null);
+    const [hookahBowlsAsJSON, setHookahBowlsAsJSON] = React.useState(null);
+    const [hookahBowlsSentAsJSON, setHookahBowlsSentAsJSON] = React.useState(null);
     const auth = getAuth(Firebase);
     const db = getFirestore(Firebase);
 
@@ -36,39 +39,72 @@ const Orders = () => {
         getUsername();
     }, [user]);
 
+    React.useEffect(() => {
+        const getOrders = async () => {
+            const querySnapshot = await getDocs(collection(db, "ordersNotSent"));
+            const querySnapshotSent = await getDocs(collection(db, "ordersSent"));
+            if (!querySnapshot.empty) {
+                for (const doc of querySnapshot.docs) {
+                    const docData = doc.data();
+                    if (docData.username === username) {
+                        setHookahBowls(JSON.parse(docData.orders));
+                    }
+                }
+            }
+            if (!querySnapshotSent.empty) {
+                for (const doc of querySnapshotSent.docs) {
+                    const docData = doc.data();
+                    if (docData.username === username) {
+                        setHookahBowlsSent(JSON.parse(docData.orders));
+                    }
+                }
+            }
+        };
+        getOrders();
+    }, [username, docRef]);
+
     const openProfileOverlay = () => {
         setToggleProfileOverlay(true);
-    }
+    };
 
     const closeProfileOverlay = () => {
         setToggleProfileOverlay(false);
-    }
+    };
 
-    const order = () => {
-        const hookahBowlsAsJSON = localStorage.getItem('HookahBowls');
-        const hookahBowlsSentAsJSON = localStorage.getItem('HookahBowlsSent');
+    const order = async () => {
+        const querySnapshot = await getDocs(collection(db, "ordersNotSent"));
+        const querySnapshotSent = await getDocs(collection(db, "ordersSent"));
+        if (!querySnapshot.empty) {
+            for (const doc of querySnapshot.docs) {
+                const docData = doc.data();
+                if (docData.username === username) {
+                    setDocRef(doc.ref);
+                    setHookahBowlsAsJSON(docData.orders);
+                }
+            }
+        }
+        if (!querySnapshotSent.empty) {
+            for (const doc of querySnapshotSent.docs) {
+                const docData = doc.data();
+                if (docData.username === username) {
+                    setDocRefSent(doc.ref);
+                    setHookahBowlsSentAsJSON(docData.orders);
+                }
+            }
+        }
         if (hookahBowlsAsJSON !== null) {
             if (hookahBowlsSentAsJSON === null) {
-                const hookahBowlsTemp = JSON.parse(hookahBowlsAsJSON);
-                const hookahBowlsTempToJSON = JSON.stringify(hookahBowlsTemp);
-                localStorage.setItem('HookahBowlsSent', hookahBowlsTempToJSON);
+                await setDoc(docRefSent, { orders: hookahBowlsAsJSON }, { merge: true });
             } else {
                 const hookahBowlsTemp = JSON.parse(hookahBowlsAsJSON);
                 const hookahBowlsSentTemp = JSON.parse(hookahBowlsSentAsJSON);
                 const newHookahBowls = hookahBowlsSentTemp.concat(hookahBowlsTemp);
                 const newHookahBowlsToJSON = JSON.stringify(newHookahBowls);
-                localStorage.setItem('HookahBowlsSent', newHookahBowlsToJSON);
+                await setDoc(docRefSent, { orders: newHookahBowlsToJSON }, { merge: true });
             }
-            localStorage.removeItem('HookahBowls');
+            await deleteDoc(docRef);
         }
     };
-
-    React.useEffect(() => {
-        const hookahBowlsAsJSON = localStorage.getItem('HookahBowls');
-        setHookahBowls(JSON.parse(hookahBowlsAsJSON));
-        const hookahBowlsSentAsJSON = localStorage.getItem('HookahBowlsSent');
-        setHookahBowlsSent(JSON.parse(hookahBowlsSentAsJSON));
-    }, [hookahBowls, hookahBowlsSent]);
 
     return (
         <div className = 'orders'>
