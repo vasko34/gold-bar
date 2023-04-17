@@ -1,11 +1,11 @@
-.library {
+.adminlibrary {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     background: #1A1918;
 }
 
-.library__filter {
+.adminlibrary__filter {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -15,7 +15,7 @@
     overflow-y: auto;
 }
 
-.library__filter h2 {
+.adminlibrary__filter h2 {
     font-family: 'Trebuchet MS';
     font-weight: 400;
     font-size: 20px;
@@ -25,7 +25,7 @@
     margin-bottom: 0.8rem;  
 }
 
-.library__filter button {
+.adminlibrary__filter button {
     font-family: 'Trebuchet MS';
     font-weight: 500;
     font-size: 20px;
@@ -40,11 +40,11 @@
     border-radius: 1.5rem;
 }
 
-.library__filter button:hover {
+.adminlibrary__filter button:hover {
     background: #262625;
 }
 
-.library__filter-instock {
+.adminlibrary__filter-instock {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -56,7 +56,7 @@
     background: #141413;
 }
 
-.library__filter-brand {
+.adminlibrary__filter-brand {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -68,7 +68,7 @@
     background: #141413;
 }
 
-.library__filter-type {
+.adminlibrary__filter-type {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -80,7 +80,7 @@
     background: #141413;
 }
 
-.library__filter-boolean {
+.adminlibrary__filter-boolean {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -91,19 +91,19 @@
     background: #141413;
 }
 
-.library__filter-checkbox {
+.adminlibrary__filter-checkbox {
     display: flex;
     flex-direction: row;
     margin-bottom: 0.4rem;
 }
 
-.library__filter-checkbox_instock {
+.adminlibrary__filter-checkbox_instock {
     display: flex;
     flex-direction: row;
 }
 
-.library__filter-checkbox label,
-.library__filter-checkbox_instock label {
+.adminlibrary__filter-checkbox label,
+.adminlibrary__filter-checkbox_instock label {
     font-family: 'Trebuchet MS';
     font-weight: 400;
     font-size: 16px;
@@ -114,7 +114,7 @@
     text-align: start; 
 }
 
-.library__content {
+.adminlibrary__content {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 5rem;
@@ -124,7 +124,7 @@
     overflow-y: auto;
 }
 
-.library__content p {
+.adminlibrary__content p {
     font-family: 'Trebuchet MS';
     font-weight: 400;
     font-size: 20px;
@@ -134,8 +134,8 @@
     margin-bottom: 0.8rem;  
 }
 
-.library__filter::-webkit-scrollbar,
-.library__content::-webkit-scrollbar {
+.adminlibrary__filter::-webkit-scrollbar,
+.adminlibrary__content::-webkit-scrollbar {
   display: none;
 }
 

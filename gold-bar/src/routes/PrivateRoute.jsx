@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Firebase } from "../../global";
+import { Firebase } from "../global";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth } from 'firebase/auth';
 

@@ -16,6 +16,16 @@
     top: 3.5rem;
 }
 
+.orders p {
+    font-family: 'Trebuchet MS';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 155%;    
+    letter-spacing: 0.04em;
+    color: #FEDF33;  
+    margin-bottom: 0.8rem;  
+}
+
 .orders__container {
     display: flex;
     flex-direction: column;

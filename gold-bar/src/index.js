@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from './App.js';
-import { Home, UserPage, AdminPage, Library, Orders } from './components/index.js';
-import { PrivateRoute, ReversePrivateRoute } from './secondary components/index.js';
+import { Home, UserPage, AdminPage, Library, Orders, AdminOrders, AdminLibrary } from './components';
+import { PrivateRoute, ReversePrivateRoute, PrivateRouteAdmin } from './routes';
 import { CurrentBowlContext } from './global';
 
 const router = createBrowserRouter([
@@ -26,6 +26,14 @@ const router = createBrowserRouter([
   {
     path: '/orders',
     element: <PrivateRoute element = { Orders }></PrivateRoute>
+  },
+  {
+    path: '/adminorders',
+    element: <PrivateRouteAdmin element = { AdminOrders }></PrivateRouteAdmin>
+  },
+  {
+    path: '/adminlibrary',
+    element: <PrivateRouteAdmin element = { AdminLibrary }></PrivateRouteAdmin>
   }
 ]);
 
