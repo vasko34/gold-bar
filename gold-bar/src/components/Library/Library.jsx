@@ -325,7 +325,7 @@ const Library = () => {
                         return (
                             <Tobacco key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } ice = { e.ice } fruity = { e.fruity } sweet = { e.sweet } image = { e.image } inStock = { e.inStock } open = { () => openOrderOverlay(e.brand, e.name, e.inStock) }></Tobacco>
                         );
-                    })) : (<p>No results found</p>)
+                    })) : (<h5>No results found</h5>)
                 }
             </div>
             <div className = 'profile' onClick = { openProfileOverlay }>

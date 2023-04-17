@@ -124,7 +124,7 @@
     overflow-y: auto;
 }
 
-.library__content p {
+.library__content h5 {
     font-family: 'Trebuchet MS';
     font-weight: 400;
     font-size: 20px;
