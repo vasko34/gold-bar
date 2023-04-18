@@ -52,8 +52,8 @@ const ProfileOverlay = ({ close, library, orders, home }) => {
         <div className = 'profileoverlay'>
             <div className = 'profileoverlay__content'>
                 <h2>Profile</h2>
-                { !library && (<p onClick = { () => navigate('/library') }>Library</p>) }
-                { !orders && (<p onClick = { () => navigate('/orders') }>Orders</p>) }
+                { !library && (adminStatus ? (<p onClick = { () => navigate('/adminlibrary') }>Library</p>) : (<p onClick = { () => navigate('/library') }>Home</p>)) }
+                { !orders && (adminStatus ? (<p onClick = { () => navigate('/adminorders') }>Orders</p>) : (<p onClick = { () => navigate('/orders') }>Home</p>)) }
                 { !home && (adminStatus ? (<p onClick = { () => navigate('/admin') }>Home</p>) : (<p onClick = { () => navigate('/user') }>Home</p>)) }
                 <button type = 'button' onClick = { openSecurityOverlay }>Log out</button>
                 <FaTimes onClick = { close } className = 'close'></FaTimes>

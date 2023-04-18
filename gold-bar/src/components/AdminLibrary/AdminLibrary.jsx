@@ -17,8 +17,6 @@ const removeArrayItem = (arr, condition) => {
 };
 
 const AdminLibrary = () => {
-    const filterRef = React.useRef(null);
-    const contentRef = React.useRef(null);
     const [listOfTobaccos, setListOfTobaccos] = React.useState(tobaccos);
     const [activeFiltersBoolean, setActiveFiltersBoolean] = React.useState([]);
     const [activeFiltersBrand, setActiveFiltersBrand] = React.useState([]);
@@ -226,7 +224,7 @@ const AdminLibrary = () => {
 
     return (
         <div className = 'adminlibrary'>
-            <div className = 'adminlibrary__filter' ref = { filterRef }>
+            <div className = 'adminlibrary__filter'>
                 <button type = 'button' onClick = { resetFilters }>Reset Filters</button>
                 <div className = 'adminlibrary__filter-instock'>
                     <div className = 'adminlibrary__filter-checkbox_instock'>
@@ -304,7 +302,7 @@ const AdminLibrary = () => {
                     </div>
                 </div>
             </div>
-            <div className = 'adminlibrary__content' ref = { contentRef }>
+            <div className = 'adminlibrary__content'>
                 {
                     (listOfTobaccos.length > 0) ? (listOfTobaccos.map((e, i) => {
                         return (

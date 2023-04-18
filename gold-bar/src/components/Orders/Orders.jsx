@@ -7,8 +7,6 @@ import { ProfileOverlay, HookahBowl } from '../../secondary components';
 import { FaUser } from 'react-icons/fa';
 
 const Orders = () => {
-    const container1Ref = React.useRef(null);
-    const container2Ref = React.useRef(null);
     const [toggleProfileOverlay, setToggleProfileOverlay] = React.useState(null);
     const [hookahBowls, setHookahBowls] = React.useState([]);
     const [hookahBowlsSent, setHookahBowlsSent] = React.useState([]);
@@ -110,7 +108,7 @@ const Orders = () => {
         <div className = 'orders'>
             <div className = 'orders__pending'>
                 <h1>Awaiting finalization:</h1>
-                <div className = 'orders__container' ref = { container1Ref }>
+                <div className = 'orders__container'>
                     {
                         (hookahBowls !== null) ? (hookahBowls.map((e, i) => {
                             return (
@@ -123,7 +121,7 @@ const Orders = () => {
             </div>
             <div className = 'orders__sent'>
                 <h1>Awaiting arrival:</h1>
-                <div className = 'orders__container' ref = { container2Ref }>
+                <div className = 'orders__container'>
                     {
                         (hookahBowlsSent !== null) ? (hookahBowlsSent.map((e, i) => {
                             return (

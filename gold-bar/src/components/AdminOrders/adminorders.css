@@ -1,0 +1,87 @@
+.adminorders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #1A1918;
+    padding: 2rem 6rem;
+    min-height: 100vh;
+}
+
+.adminorders h1 {
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 100px;
+    line-height: 130%;
+    text-align: center;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    margin-bottom: 3rem;
+}
+
+.adminorders__content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.adminorders__content p {
+    font-family: 'Trebuchet MS';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 155%;  
+    text-align: center;
+    letter-spacing: 0.04em;
+    color: #FEDF33; 
+}
+
+.adminorders__content-table {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: 2px solid black;
+    padding: 1rem 1.5rem;
+    max-height: 25rem;
+    min-width: 45rem;
+    margin-bottom: 3rem;
+    margin-right: 3rem;
+    overflow-y: auto;
+}
+
+.adminorders__content-table::-webkit-scrollbar {
+  display: none;
+}
+
+.profile {
+    position: fixed;
+    top: 1rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.profile h3 {
+    font-family: 'Trebuchet MS';
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 175%;    
+    letter-spacing: 0.04em;
+    color: #FEDF33;  
+}
+
+.profile:hover h3 {
+    color: #FFEF99;
+    text-decoration: underline;
+}
+
+.profileicon {
+    margin-right: 0.3rem;
+    margin-top: 0.2rem;
+    color: #FEDF33;
+}
+
+.profile:hover .profileicon {
+    color: #FFEF99;
+}

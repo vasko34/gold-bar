@@ -17,8 +17,6 @@ const removeArrayItem = (arr, condition) => {
 };
 
 const Library = () => {
-    const filterRef = React.useRef(null);
-    const contentRef = React.useRef(null);
     const [tobaccoForOverlayBrand, setTobaccoForOverlayBrand] = React.useState('');
     const [tobaccoForOverlayName, setTobaccoForOverlayName] = React.useState('');
     const [listOfTobaccos, setListOfTobaccos] = React.useState(tobaccos);
@@ -241,7 +239,7 @@ const Library = () => {
 
     return (
         <div className = 'library'>
-            <div className = 'library__filter' ref = { filterRef }>
+            <div className = 'library__filter'>
                 <button type = 'button' onClick = { resetFilters }>Reset Filters</button>
                 <div className = 'library__filter-instock'>
                     <div className = 'library__filter-checkbox_instock'>
@@ -319,7 +317,7 @@ const Library = () => {
                     </div>
                 </div>
             </div>
-            <div className = 'library__content' ref = { contentRef }>
+            <div className = 'library__content'>
                 {
                     (listOfTobaccos.length > 0) ? (listOfTobaccos.map((e, i) => {
                         return (
