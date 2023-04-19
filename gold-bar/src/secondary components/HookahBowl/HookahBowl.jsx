@@ -2,9 +2,10 @@ import React from 'react';
 import './hookahbowl.css';
 import { images } from '../../constants';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import { FaTimes } from 'react-icons/fa';
 import 'react-circular-progressbar/dist/styles.css';
 
-const HookahBowl = ({ currentBowl }) => {
+const HookahBowl = ({ currentBowl, del, done, delBowl }) => {
     const bowlImageRef = React.useRef();
     
     React.useEffect(() => {
@@ -55,6 +56,8 @@ const HookahBowl = ({ currentBowl }) => {
                     { currentBowl.percent5 > 0 ? (<span>{ currentBowl.tobacco5 }: { currentBowl.percent5 }%</span>) : null }
                 </div>
             </div>
+            { done && (<button type = 'button' onClick = { () => delBowl(currentBowl) }>Done</button>) }
+            { del && (<FaTimes onClick = { () => delBowl(currentBowl) } className = 'close'></FaTimes>) }
         </div>
     );
 }
