@@ -12,7 +12,7 @@ const AdminOrders = () => {
     const [users, setUsers] = React.useState(null);
     const [user, setUser] = React.useState(null);
     const [username, setUsername] = React.useState(null);
-    const [empty, setEmpty] = React.useState(true);
+    const [emptyOrders, setEmptyOrders] = React.useState(true);
     const auth = getAuth(Firebase);
     const db = getFirestore(Firebase);
 
@@ -98,8 +98,8 @@ const AdminOrders = () => {
             <div className = 'adminorders__content'>
                 { (users !== null) ? ((users.length > 0) ? (users.map(user => {
                     if (JSON.parse(user.orders).length > 0) {
-                        if (empty) {
-                            setEmpty(false);
+                        if (emptyOrders) {
+                            setEmptyOrders(false);
                         }
                         return ( 
                             <div className = 'adminorders__content-table'>
@@ -114,7 +114,7 @@ const AdminOrders = () => {
                     }
                     return null;
                 })) : null) : null }
-                { empty ? (<p>There are no orders at the moment</p>) : null }
+                { emptyOrders ? (<p>There are no orders at the moment</p>) : null }
             </div>
             <div className = 'profile' onClick = { openProfileOverlay }>
                 <FaUser className = 'profileicon'></FaUser>
