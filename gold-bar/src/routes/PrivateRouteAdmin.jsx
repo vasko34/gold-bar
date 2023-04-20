@@ -32,12 +32,19 @@ const PrivateRouteAdmin = ({ element: Element, ...rest }) => {
         getAdminStatus();
     }, [user]);
 
+    if (adminStatus === null) {
+        if (!isAuthenticated) {
+            navigate('/');
+            return null;
+        }
+    }
+
     if (adminStatus !== null) {
         if (!isAuthenticated) {
             navigate('/');
             return null;
         } else if (!adminStatus) {
-            navigate('/userpage');
+            navigate('/user');
             return null;
         }
     }

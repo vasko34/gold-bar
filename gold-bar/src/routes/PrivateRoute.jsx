@@ -8,7 +8,7 @@ const PrivateRoute = ({ element: Element, ...rest }) => {
   const navigate = useNavigate();
   const auth = getAuth(Firebase);
   const [isAuthenticated] = useAuthState(auth);
-  
+
   if (!isAuthenticated) {
     navigate('/');
     return null;

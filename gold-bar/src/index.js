@@ -16,10 +16,6 @@ const router = createBrowserRouter([
     element: <PrivateRoute element = { UserPage }></PrivateRoute>
   },
   {
-    path: '/admin',
-    element: <PrivateRoute element = { AdminPage }></PrivateRoute>
-  },
-  {
     path: '/library',
     element: <PrivateRoute element = { Library }></PrivateRoute>
   },
@@ -28,12 +24,16 @@ const router = createBrowserRouter([
     element: <PrivateRoute element = { Orders }></PrivateRoute>
   },
   {
-    path: '/adminorders',
-    element: <PrivateRouteAdmin element = { AdminOrders }></PrivateRouteAdmin>
+    path: '/admin',
+    element: <PrivateRouteAdmin element = { AdminPage }></PrivateRouteAdmin>
   },
   {
     path: '/adminlibrary',
     element: <PrivateRouteAdmin element = { AdminLibrary }></PrivateRouteAdmin>
+  },
+  {
+    path: '/adminorders',
+    element: <PrivateRouteAdmin element = { AdminOrders }></PrivateRouteAdmin>
   }
 ]);
 
