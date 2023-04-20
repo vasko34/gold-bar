@@ -10,7 +10,14 @@
     flex-direction: column;
 }
 
-.adminpage h1 {
+.adminpage__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.adminpage__content h1 {
     font-family: 'Trebuchet MS';
     font-weight: 700;
     font-size: 150px;
@@ -21,17 +28,10 @@
     margin-bottom: 5rem;
 }
 
-.adminpage__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
 .adminpage__content button {
     font-family: 'Trebuchet MS';
     font-weight: 700;
-    font-size: 80px;
+    font-size: 50px;
     line-height: 175%;
     letter-spacing: 0.04em;
     color: #FEDF33;

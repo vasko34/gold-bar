@@ -4,6 +4,7 @@ export { default as ProfileOverlay } from './ProfileOverlay/ProfileOverlay';
 export { default as SecurityOverlay } from './SecurityOverlay/SecurityOverlay';
 export { default as OrderOverlay } from './OrderOverlay/OrderOverlay';
 export { default as AddTobaccoOverlay } from './AddTobaccoOverlay/AddTobaccoOverlay';
+export { default as StatsOverlay } from './StatsOverlay/StatsOverlay';
 export { default as Tobacco } from './Tobacco/Tobacco';
 export { default as Tobacco2 } from './Tobacco2/Tobacco2';
 export { default as TobaccoForAdminLibrary } from './TobaccoForAdminLibrary/TobaccoForAdminLibrary';

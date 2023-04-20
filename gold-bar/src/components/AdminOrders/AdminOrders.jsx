@@ -42,7 +42,7 @@ const AdminOrders = () => {
                     }                   
                 }
             }
-            window.location.reload();
+            setEmptyOrders(true);          
         }
     };
 
@@ -82,7 +82,7 @@ const AdminOrders = () => {
             setUsers(sortedUsers);
         };
         getOrders();
-    }, []);
+    }, [username, doneBowl]);
 
     const openProfileOverlay = () => {
         setToggleProfileOverlay(true);
