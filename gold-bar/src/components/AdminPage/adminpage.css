@@ -20,28 +20,28 @@
 .adminpage__content h1 {
     font-family: 'Trebuchet MS';
     font-weight: 700;
-    font-size: 150px;
+    font-size: 100px;
     line-height: 130%;
     text-align: center;
     letter-spacing: 0.04em;
     color: #FEDF33;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 }
 
 .adminpage__content button {
     font-family: 'Trebuchet MS';
     font-weight: 700;
-    font-size: 50px;
+    font-size: 30px;
     line-height: 175%;
     letter-spacing: 0.04em;
     color: #FEDF33;
     background: #141413;
-    padding: 3rem 9rem;
+    padding: 1rem 3rem;
     cursor: pointer;
     margin-bottom: 2rem;
     border: 2px solid #0D0D0C;
     border-radius: 3rem;
-    min-width: 55rem;
+    min-width: 35rem;
 }
 
 .adminpage__content button:hover {

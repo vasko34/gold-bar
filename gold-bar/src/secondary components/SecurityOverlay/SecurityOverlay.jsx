@@ -1,14 +1,17 @@
 import React from 'react';
 import './securityoverlay.css';
-import { SecurityCode } from '../../global';
+import { Firebase } from "../../global";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { FaTimes } from 'react-icons/fa';
 
 const SecurityOverlay = ({ close, closeProfileOverlay, logoutUser }) => {
     const [currentInput,setCurrentInput] = React.useState('');
+    const [securityCode, setSecurityCode] = React.useState(null);
     const [securityCodeError, setSecurityCodeError] = React.useState(null);
+    const db = getFirestore(Firebase);
 
     const logout = (code) => {
-        if (code !== SecurityCode) {
+        if (code !== securityCode) {
             setSecurityCodeError(true);
         } else {
             setSecurityCodeError(false);
@@ -16,7 +19,15 @@ const SecurityOverlay = ({ close, closeProfileOverlay, logoutUser }) => {
             closeProfileOverlay();
             logoutUser();
         }
-    }
+    };
+
+    React.useEffect(() => {
+        const getSecurityCode = async () => {
+            const querySnapshot = await getDocs(collection(db, "securityCode"));
+            setSecurityCode(querySnapshot.docs[0].data().securityCode);
+        };
+        getSecurityCode();
+    }, []);
 
     return (
         <div className = 'securityoverlay'>

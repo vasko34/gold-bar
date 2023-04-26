@@ -1,10 +1,8 @@
 import React from 'react';
 import './registeroverlay.css';
-import { SecurityCode } from '../../global';
 import { FaTimes } from 'react-icons/fa';
 import { Firebase } from "../../global";
-import { getFirestore } from "firebase/firestore";
-import { doc, setDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc, getDocs, collection } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 const RegisterOverlay = ({ close }) => {
@@ -15,8 +13,18 @@ const RegisterOverlay = ({ close }) => {
     const [passwordMatchError, setPasswordMatchError] = React.useState(null);
     const [passwordSafetyError, setPasswordSafetyError] = React.useState(null);
     const [securityCodeError, setSecurityCodeError] = React.useState(null);
+    const [securityCode, setSecurityCode] = React.useState(null);
     const [isChecked, setIsChecked] = React.useState(false);
     const db = getFirestore(Firebase);
+    const auth = getAuth(Firebase);
+
+    React.useEffect(() => {
+        const getSecurityCode = async () => {
+            const querySnapshot = await getDocs(collection(db, "securityCode"));
+            setSecurityCode(querySnapshot.docs[0].data().securityCode);
+        };
+        getSecurityCode();
+    }, []);
 
     React.useEffect(() => {
         if (!passwordMatchError && !passwordSafetyError && !securityCodeError) {
@@ -26,7 +34,6 @@ const RegisterOverlay = ({ close }) => {
 
     const register = async (username, password) => {
         try {
-            const auth = getAuth(Firebase);
             const email = username + '@example.com';
             await createUserWithEmailAndPassword(auth, email, password);
             const user = auth.currentUser;
@@ -35,7 +42,6 @@ const RegisterOverlay = ({ close }) => {
                 password: password,
                 adminStatus: isChecked
             });
-            window.location.reload();
         } catch (error) {
             console.log(error.message);                
         }
@@ -53,8 +59,8 @@ const RegisterOverlay = ({ close }) => {
         } else {
             setPasswordSafetyError(false);
         }
-
-        if (code !== SecurityCode) {
+        
+        if (code !== securityCode) {
             setSecurityCodeError(true);
         } else {
             setSecurityCodeError(false);

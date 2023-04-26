@@ -4,7 +4,7 @@ import { Firebase } from "../../global";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import './adminpage.css';
-import { ProfileOverlay, AddTobaccoOverlay, StatsOverlay } from '../../secondary components';
+import { ProfileOverlay, AddTobaccoOverlay, StatsOverlay, ChangeSecurityCodeOverlay } from '../../secondary components';
 import { FaUser } from 'react-icons/fa';
 
 const AdminPage = () => {
@@ -12,6 +12,7 @@ const AdminPage = () => {
     const [toggleProfileOverlay, setToggleProfileOverlay] = React.useState(null);
     const [toggleAddTobaccoOverlay, setToggleAddTobaccoOverlay] = React.useState(null);
     const [toggleStatsOverlay, setToggleStatsOverlay] = React.useState(null);
+    const [toggleChangeSecurityCodeOverlay, setToggleChangeSecurityCodeOverlay] = React.useState(null);
     const [user, setUser] = React.useState(null);
     const [username, setUsername] = React.useState(null);
     const auth = getAuth(Firebase);
@@ -37,6 +38,9 @@ const AdminPage = () => {
 
     const openProfileOverlay = () => {
         setToggleProfileOverlay(true);
+        setToggleAddTobaccoOverlay(false);
+        setToggleStatsOverlay(false);
+        setToggleChangeSecurityCodeOverlay(false);
     };
 
     const closeProfileOverlay = () => {
@@ -45,6 +49,9 @@ const AdminPage = () => {
 
     const openAddTobaccoOverlay = () => {
         setToggleAddTobaccoOverlay(true);
+        setToggleProfileOverlay(false);
+        setToggleStatsOverlay(false);
+        setToggleChangeSecurityCodeOverlay(false);
     };
 
     const closeAddTobaccoOverlay = () => {
@@ -53,20 +60,35 @@ const AdminPage = () => {
 
     const openStatsOverlay = () => {
         setToggleStatsOverlay(true);
+        setToggleProfileOverlay(false);
+        setToggleAddTobaccoOverlay(false);
+        setToggleChangeSecurityCodeOverlay(false);
     };
 
     const closeStatsOverlay = () => {
         setToggleStatsOverlay(false);
     };
+
+    const openChangeSecurityCodeOverlay = () => {
+        setToggleChangeSecurityCodeOverlay(true);
+        setToggleProfileOverlay(false);
+        setToggleAddTobaccoOverlay(false);
+        setToggleStatsOverlay(false);
+    };
+
+    const closeChangeSecurityCodeOverlay = () => {
+        setToggleChangeSecurityCodeOverlay(false);
+    };
     
     return (
         <div className = 'adminpage'>
             <div className = 'adminpage__content'>
-                {/* <h1>Gold Bar</h1> */}
+                <h1>Gold Bar</h1>
                 <button type = 'button' onClick = { () => navigate('/adminorders') }>View Orders</button>
                 <button type = 'button' onClick = { () => navigate('/adminlibrary') }>Update Stock</button>
                 <button type = 'button' onClick = { openAddTobaccoOverlay }>Add Tobacco</button>
                 <button type = 'button' onClick = { openStatsOverlay }>Check Stats</button>
+                <button type = 'button' onClick = { openChangeSecurityCodeOverlay }>Change Security Code</button>
             </div>
             <div className = 'profile' onClick = { openProfileOverlay }>
                 <FaUser className = 'profileicon'></FaUser>
@@ -75,6 +97,7 @@ const AdminPage = () => {
             { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } home = { true } library = { true }></ProfileOverlay>) }
             { toggleAddTobaccoOverlay && (<AddTobaccoOverlay close = { closeAddTobaccoOverlay }></AddTobaccoOverlay>) }
             { toggleStatsOverlay && (<StatsOverlay close = { closeStatsOverlay }></StatsOverlay>) }
+            { toggleChangeSecurityCodeOverlay && (<ChangeSecurityCodeOverlay close = { closeChangeSecurityCodeOverlay }></ChangeSecurityCodeOverlay>) }
         </div>
     );
 }

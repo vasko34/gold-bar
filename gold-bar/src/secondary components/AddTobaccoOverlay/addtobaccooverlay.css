@@ -1,0 +1,138 @@
+.addtobaccooverlay {
+    display: flex;
+    box-sizing: border-box;
+    border: 1.5px solid #0D0D0C;
+    background: #1A1918;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 25vw;
+    min-height: 35vh;
+    z-index: 3;
+    padding: 4rem 6rem;
+}
+
+.addtobaccooverlay h3 {
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 130%;
+    letter-spacing: 0.04em;   
+    color: #FEDF33;
+    margin-bottom: 2rem;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
+.addtobaccooverlay h3:hover {
+    color: #FFEF99;
+    text-decoration: underline;
+}
+
+.addtobaccooverlay p {
+    font-family: 'Trebuchet MS';
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 175%;    
+    letter-spacing: 0.04em;
+    color: red;   
+    text-align: center; 
+    max-width: 15.5rem;
+}
+
+.addtobaccooverlay button {
+    font-family: 'Trebuchet MS';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 175%;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    background: #141413;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    border: 2px solid #0D0D0C;
+    border-radius: 1.5rem;
+}
+
+.addtobaccooverlay button:hover {
+    background: #262625;
+}
+
+
+.addtobaccooverlay__normalinput {
+    display: flex;
+    flex-direction: column;
+}
+
+.addtobaccooverlay__normalinput h1 {
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 31px;
+    line-height: 130%;
+    letter-spacing: 0.04em;    
+    color: #FEDF33;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.addtobaccooverlay__normalinput input {
+    font-family: 'Cormorant Upright';
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 175%;
+    letter-spacing: 0.04em;
+    font-feature-settings: 'tnum' on, 'lnum' on;
+    color: #FEDF33;
+    background: #262625;
+    box-sizing: border-box;
+    border: 2px solid #0D0D0C;    
+    padding: 1rem 1rem;    
+    text-align: start;
+    margin-bottom: 1rem;
+}
+
+.addtobaccooverlay__checkboxes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.addtobaccooverlay__checkboxes-checkbox {
+    display: flex;
+    flex-direction: row;
+}
+
+.addtobaccooverlay__checkboxes-checkbox label {
+    font-family: 'Trebuchet MS';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 155%;    
+    letter-spacing: 0.04em;
+    color: #FEDF33; 
+    margin-left: 0.5rem;
+    text-align: start;
+    margin-right: 0.5rem;
+}
+
+.close {
+    display: flex;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #FEDF33;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #FFEF99;
+}

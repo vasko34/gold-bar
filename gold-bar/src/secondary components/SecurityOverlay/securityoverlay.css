@@ -11,7 +11,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 16vw;
-    max-height: 18vh;
+    max-height: 20vh;
     z-index: 4;
     padding: 4rem 6rem; 
 }
@@ -19,12 +19,12 @@
 .securityoverlay h2 {
     font-family: 'Trebuchet MS';
     font-weight: 600;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 100%;
     letter-spacing: 0.04em;    
     color: #FEDF33;
     margin-bottom: 1rem;
-    margin-top: 2rem;
+    min-width: 9rem;
 }
 
 .securityoverlay p {
@@ -36,7 +36,6 @@
     color: red;   
     text-align: center; 
     min-width: 10rem;
-    margin-bottom: 0.5rem;
 }
 
 .securityoverlay input {
@@ -68,6 +67,7 @@
     cursor: pointer;
     border: 2px solid #0D0D0C;
     border-radius: 1.5rem;
+    margin-top: 0.5rem;
 }
 
 .securityoverlay button:hover {
