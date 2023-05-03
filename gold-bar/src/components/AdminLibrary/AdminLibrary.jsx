@@ -29,14 +29,6 @@ const AdminLibrary = () => {
     const db = getFirestore(Firebase);
 
     React.useEffect(() => {
-        const getTobaccoData = async () => {
-            const querySnapshot = await getDocs(collection(db, "tobaccoLibrary"));
-            setTobaccos(JSON.parse(querySnapshot.docs[0].data().tobaccos));
-        };
-        getTobaccoData();
-    }, [detector]);
-
-    React.useEffect(() => {
         setListOfTobaccos(tobaccos);
     }, [tobaccos]);
 
@@ -57,6 +49,14 @@ const AdminLibrary = () => {
         };
         getUsername();
     }, [user]);
+
+    React.useEffect(() => {
+        const getTobaccoData = async () => {
+            const querySnapshot = await getDocs(collection(db, "tobaccoLibrary"));
+            setTobaccos(JSON.parse(querySnapshot.docs[0].data().tobaccos));
+        };
+        getTobaccoData();
+    }, [username, detector]);
 
     const openProfileOverlay = () => {
         setToggleProfileOverlay(true);
