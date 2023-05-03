@@ -85,7 +85,7 @@ const AdminLibrary = () => {
             arr = arr.filter(arrayItem => activeFiltersType.includes(arrayItem.type));
         }
         setListOfTobaccos(arr);
-    }, [activeFiltersBoolean, activeFiltersBrand, activeFiltersType]);
+    }, [activeFiltersBoolean, activeFiltersBrand, activeFiltersType, tobaccos]);
 
     const onCheckboxChangeInStock = () => {
         const filter = {
