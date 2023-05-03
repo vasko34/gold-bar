@@ -1,7 +1,7 @@
 import React from 'react';
 import './tobaccoforadminlibrary.css';
 
-const TobaccoForAdminLibrary = ({ type, brand, name, flavour, image, ice, fruity, sweet, inStock }) => {
+const TobaccoForAdminLibrary = ({ type, brand, name, flavour, image, ice, fruity, sweet, inStock, update }) => {
     return (
         <div className = 'tobaccoforadminlibrary'>
             <img src = { image } alt = 'tobacco_img'></img>
@@ -13,7 +13,7 @@ const TobaccoForAdminLibrary = ({ type, brand, name, flavour, image, ice, fruity
                     <p>In Stock:</p>
                     { inStock === true ? (<p>Yes</p>) : (<p>No</p>) }
                 </div>
-                <button type = 'button'>Update</button>
+                <button type = 'button' onClick = { update }>Update</button>
             </div>
             <div className = 'tobaccoforadminlibrary__footer'>
                 <div className = 'tobaccoforadminlibrary__footer-ice'>

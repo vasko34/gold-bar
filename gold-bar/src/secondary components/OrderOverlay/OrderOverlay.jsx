@@ -5,7 +5,6 @@ import { getFirestore, collection, doc, getDoc, getDocs, addDoc, setDoc } from "
 import './orderoverlay.css'
 import { FaTimes } from 'react-icons/fa';
 import { Tobacco2 } from '../index.js';
-import { tobaccos, images } from '../../constants';
 import { CurrentBowlContext } from '../../global';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -17,10 +16,19 @@ const OrderOverlay = ({ close, brand, name }) => {
     const [buttonDisablerAddToOrders, setButtonDisablerAddToOrders] = React.useState(true);
     const [user, setUser] = React.useState(null);
     const [username, setUsername] = React.useState(null);
+    const [tobaccos, setTobaccos] = React.useState(null);
     const currentBowlImageRef = React.useRef();
     const { currentBowl, setCurrentBowl } = React.useContext(CurrentBowlContext);
     const auth = getAuth(Firebase);
     const db = getFirestore(Firebase);
+
+    React.useEffect(() => {
+        const getTobaccoData = async () => {
+            const querySnapshot = await getDocs(collection(db, "tobaccoLibrary"));
+            setTobaccos(JSON.parse(querySnapshot.docs[0].data().tobaccos));
+        };
+        getTobaccoData();
+    }, []);
 
     const addTobaccoToBowl = () => {
         if (currentBowl.percent1 === 0) {
@@ -228,14 +236,14 @@ const OrderOverlay = ({ close, brand, name }) => {
         <div className = 'orderoverlay'>
             <div className = 'orderoverlay__ordertobacco'>
                 <div className = 'orderoverlay__ordertobacco-tobacco'>
-                    { tobaccos.map((e, i) => {
+                    { (tobaccos) ? (tobaccos.map((e, i) => {
                         if ((e.brand === brand) && (e.name === name)) {
                             return (
                                 <Tobacco2 key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } image = { e.image }></Tobacco2>
                             );
                         }
                         return null;
-                    })}
+                    })) : null}
                 </div>
                 <div className = 'orderoverlay__ordertobacco-slider'>
                     <p>Choose tobacco proportion:</p>
@@ -250,7 +258,7 @@ const OrderOverlay = ({ close, brand, name }) => {
             <div className = 'orderoverlay__currentbowl'>
                 <p>Current Hookah Bowl:</p>
                 <div className = 'orderoverlay__currentbowl-image' ref = { currentBowlImageRef }>
-                    <img src = { images.HookahBowl } alt = 'hookahbowl_img'></img>
+                    <img src = { 'https://firebasestorage.googleapis.com/v0/b/gold-bar-4abbb.appspot.com/o/HookahBowl.png?alt=media&token=1ed52f0b-2c83-4cce-bd04-f0c926d5330a' } alt = 'hookahbowl_img'></img>
                     <div className = 'orderoverlay__currentbowl-image_progress'><CircularProgressbar value = { currentBowl.percent1 } strokeWidth = { 50 } styles = { buildStyles({ strokeLinecap: "butt", trailColor: "transparent", pathColor: 'rgba(120, 0, 255, 0.5)' })}></CircularProgressbar></div>
                     <div className = 'orderoverlay__currentbowl-image_progress'><CircularProgressbar value = { currentBowl.percent2 } strokeWidth = { 50 } styles = { buildStyles({ strokeLinecap: "butt", trailColor: "transparent", pathColor: 'rgba(120, 120, 255, 0.5)' })}></CircularProgressbar></div>
                     <div className = 'orderoverlay__currentbowl-image_progress'><CircularProgressbar value = { currentBowl.percent3 } strokeWidth = { 50 } styles = { buildStyles({ strokeLinecap: "butt", trailColor: "transparent", pathColor: 'rgba(120, 255, 255, 0.5)' })}></CircularProgressbar></div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Firebase } from "../../global";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, collection, doc, getDoc, getDocs, setDoc, deleteDoc } from "firebase/firestore";
+import { getFirestore, collection, doc, getDoc, getDocs, setDoc, deleteDoc, collectionGroup } from "firebase/firestore";
 import './orders.css';
 import { ProfileOverlay, HookahBowl } from '../../secondary components';
 import { FaUser } from 'react-icons/fa';
@@ -12,12 +12,10 @@ const Orders = () => {
     const [hookahBowlsSent, setHookahBowlsSent] = React.useState([]);
     const [user, setUser] = React.useState(null);
     const [username, setUsername] = React.useState(null);
-    const [docRef, setDocRef] = React.useState(null);
-    const [docRefSent, setDocRefSent] = React.useState(null);
-    const [hookahBowlsAsJSON, setHookahBowlsAsJSON] = React.useState(null);
-    const [hookahBowlsSentAsJSON, setHookahBowlsSentAsJSON] = React.useState(null);
+    const [detector, setDetector] = React.useState(true);
     const auth = getAuth(Firebase);
     const db = getFirestore(Firebase);
+
 
     const delBowl = async (bowl) => {
         const querySnapshot = await getDocs(collection(db, "ordersNotSent"));
@@ -34,17 +32,22 @@ const Orders = () => {
                 }
             }
         }
+        setDetector(prevDetector => !prevDetector);
     };
 
     const order = async () => {
+        let notSentDocs;
+        let sentDocs;
+        let docRefNotSent;
+        let docRefSent;
         const querySnapshot = await getDocs(collection(db, "ordersNotSent"));
         const querySnapshotSent = await getDocs(collection(db, "ordersSent"));
         if (!querySnapshot.empty) {
             for (const doc of querySnapshot.docs) {
                 const docData = doc.data();
                 if (docData.username === username) {
-                    setDocRef(doc.ref);
-                    setHookahBowlsAsJSON(docData.orders);
+                    docRefNotSent = doc.ref
+                    notSentDocs = docData.orders
                 }
             }
         }
@@ -52,23 +55,24 @@ const Orders = () => {
             for (const doc of querySnapshotSent.docs) {
                 const docData = doc.data();
                 if (docData.username === username) {
-                    setDocRefSent(doc.ref);
-                    setHookahBowlsSentAsJSON(docData.orders);
+                    docRefSent = doc.ref
+                    sentDocs = docData.orders
                 }
             }
         }
-        if (hookahBowlsAsJSON !== null) {
-            if (hookahBowlsSentAsJSON === null) {
-                await setDoc(docRefSent, { orders: hookahBowlsAsJSON }, { merge: true });
+        if (notSentDocs) {
+            if (!sentDocs) {
+                await setDoc(docRefSent, { orders: notSentDocs }, { merge: true });
             } else {
-                const hookahBowlsTemp = JSON.parse(hookahBowlsAsJSON);
-                const hookahBowlsSentTemp = JSON.parse(hookahBowlsSentAsJSON);
+                const hookahBowlsTemp = JSON.parse(notSentDocs);
+                const hookahBowlsSentTemp = JSON.parse(sentDocs);
                 const newHookahBowls = hookahBowlsSentTemp.concat(hookahBowlsTemp);
                 const newHookahBowlsToJSON = JSON.stringify(newHookahBowls);
                 await setDoc(docRefSent, { orders: newHookahBowlsToJSON }, { merge: true });
-            }
-            await deleteDoc(docRef);
+            }            
+            await deleteDoc(docRefNotSent);
         }
+        setDetector(prevDetector => !prevDetector);
     };
 
     React.useEffect(() => {
@@ -91,14 +95,20 @@ const Orders = () => {
 
     React.useEffect(() => {
         const getOrders = async () => {
+            let bowlsSet = false;
+            let bowlsSetSent = false;
             const querySnapshot = await getDocs(collection(db, "ordersNotSent"));
             const querySnapshotSent = await getDocs(collection(db, "ordersSent"));
-            if (!querySnapshot.empty) {
+            if (!querySnapshot.empty) {                
                 for (const doc of querySnapshot.docs) {
                     const docData = doc.data();
-                    if (docData.username === username) {
+                    if (docData.username === username) {                        
                         setHookahBowls(JSON.parse(docData.orders));
+                        bowlsSet = true;                        
                     }
+                }
+                if (bowlsSet === false) {
+                    setHookahBowls([]);
                 }
             }
             if (!querySnapshotSent.empty) {
@@ -106,12 +116,16 @@ const Orders = () => {
                     const docData = doc.data();
                     if (docData.username === username) {
                         setHookahBowlsSent(JSON.parse(docData.orders));
+                        bowlsSetSent = true;
                     }
+                }
+                if (bowlsSetSent === false) {
+                    setHookahBowlsSent([]);
                 }
             }
         };
         getOrders();
-    }, [username, docRef, delBowl]);
+    }, [username, detector]);
 
     const openProfileOverlay = () => {
         setToggleProfileOverlay(true);

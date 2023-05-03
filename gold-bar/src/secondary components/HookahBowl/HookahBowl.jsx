@@ -1,6 +1,5 @@
 import React from 'react';
 import './hookahbowl.css';
-import { images } from '../../constants';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { FaTimes } from 'react-icons/fa';
 import 'react-circular-progressbar/dist/styles.css';
@@ -27,7 +26,7 @@ const HookahBowl = ({ currentBowl, del, done, delBowl }) => {
     return (
         <div className = 'hookahbowl'>
             <div className = 'hookahbowl__image' ref = { bowlImageRef }>
-                <img src = { images.HookahBowl } alt = 'hookahbowl_img'></img>
+                <img src = { 'https://firebasestorage.googleapis.com/v0/b/gold-bar-4abbb.appspot.com/o/HookahBowl.png?alt=media&token=1ed52f0b-2c83-4cce-bd04-f0c926d5330a' } alt = 'hookahbowl_img'></img>
                 <div className = 'hookahbowl__image-progress'><CircularProgressbar value = { currentBowl.percent1 } strokeWidth = { 50 } styles = { buildStyles({ strokeLinecap: "butt", trailColor: "transparent", pathColor: 'rgba(120, 0, 255, 0.5)' })}></CircularProgressbar></div>
                 <div className = 'hookahbowl__image-progress'><CircularProgressbar value = { currentBowl.percent2 } strokeWidth = { 50 } styles = { buildStyles({ strokeLinecap: "butt", trailColor: "transparent", pathColor: 'rgba(120, 120, 255, 0.5)' })}></CircularProgressbar></div>
                 <div className = 'hookahbowl__image-progress'><CircularProgressbar value = { currentBowl.percent3 } strokeWidth = { 50 } styles = { buildStyles({ strokeLinecap: "butt", trailColor: "transparent", pathColor: 'rgba(120, 255, 255, 0.5)' })}></CircularProgressbar></div>

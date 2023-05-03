@@ -2,10 +2,9 @@ import React from 'react';
 import { Firebase } from "../../global";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore } from "firebase/firestore";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 import './library.css';
 import { Tobacco, ProfileOverlay, OrderOverlay } from '../../secondary components';
-import { tobaccos } from '../../constants';
 import { FaUser } from 'react-icons/fa';
 
 const removeArrayItem = (arr, condition) => {
@@ -19,7 +18,7 @@ const removeArrayItem = (arr, condition) => {
 const Library = () => {
     const [tobaccoForOverlayBrand, setTobaccoForOverlayBrand] = React.useState('');
     const [tobaccoForOverlayName, setTobaccoForOverlayName] = React.useState('');
-    const [listOfTobaccos, setListOfTobaccos] = React.useState(tobaccos);
+    const [listOfTobaccos, setListOfTobaccos] = React.useState(null);
     const [activeFiltersBoolean, setActiveFiltersBoolean] = React.useState([]);
     const [activeFiltersBrand, setActiveFiltersBrand] = React.useState([]);
     const [activeFiltersType, setActiveFiltersType] = React.useState([]);
@@ -27,14 +26,26 @@ const Library = () => {
     const [toggleOrderOverlay, setToggleOrderOverlay] = React.useState(null);
     const [user, setUser] = React.useState(null);
     const [username, setUsername] = React.useState(null);
+    const [tobaccos, setTobaccos] = React.useState(null);
     const auth = getAuth(Firebase);
     const db = getFirestore(Firebase);
+
+    React.useEffect(() => {
+        const getTobaccoData = async () => {
+            const querySnapshot = await getDocs(collection(db, "tobaccoLibrary"));
+            setTobaccos(JSON.parse(querySnapshot.docs[0].data().tobaccos));
+        };
+        getTobaccoData();
+    }, []);
+
+    React.useEffect(() => {
+        setListOfTobaccos(tobaccos);
+    }, [tobaccos]);
 
     React.useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
         });
-
         return unsubscribe;
     }, [auth]);
   
@@ -319,11 +330,11 @@ const Library = () => {
             </div>
             <div className = 'library__content'>
                 {
-                    (listOfTobaccos.length > 0) ? (listOfTobaccos.map((e, i) => {
+                    (listOfTobaccos) ? ((listOfTobaccos.length > 0) ? (listOfTobaccos.map((e, i) => {
                         return (
                             <Tobacco key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } ice = { e.ice } fruity = { e.fruity } sweet = { e.sweet } image = { e.image } inStock = { e.inStock } open = { () => openOrderOverlay(e.brand, e.name, e.inStock) }></Tobacco>
                         );
-                    })) : (<h5>No results found</h5>)
+                    })) : (<h5>No results found</h5>)) : null
                 }
             </div>
             <div className = 'profile' onClick = { openProfileOverlay }>

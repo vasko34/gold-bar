@@ -13,6 +13,7 @@ const AdminOrders = () => {
     const [user, setUser] = React.useState(null);
     const [username, setUsername] = React.useState(null);
     const [emptyOrders, setEmptyOrders] = React.useState(true);
+    const [detector, setDetector] = React.useState(true);
     const auth = getAuth(Firebase);
     const db = getFirestore(Firebase);
 
@@ -44,6 +45,7 @@ const AdminOrders = () => {
             }
             setEmptyOrders(true);          
         }
+        setDetector(prevDetector => !prevDetector);
     };
 
     React.useEffect(() => {
@@ -82,7 +84,7 @@ const AdminOrders = () => {
             setUsers(sortedUsers);
         };
         getOrders();
-    }, [username, doneBowl]);
+    }, [username, detector]);
 
     const openProfileOverlay = () => {
         setToggleProfileOverlay(true);
