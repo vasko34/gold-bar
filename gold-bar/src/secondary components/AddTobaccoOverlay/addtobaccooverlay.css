@@ -47,11 +47,22 @@
     max-width: 15.5rem;
 }
 
+.addtobaccooverlay span {
+    font-family: 'Trebuchet MS';
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 175%;    
+    letter-spacing: 0.04em;
+    color: green;   
+    text-align: center; 
+    max-width: 15.5rem;
+}
+
 .addtobaccooverlay button {
     font-family: 'Trebuchet MS';
     font-weight: 500;
-    font-size: 20px;
-    line-height: 175%;
+    font-size: 18px;
+    line-height: 100%;
     letter-spacing: 0.04em;
     color: #FEDF33;
     background: #141413;
@@ -60,6 +71,10 @@
     margin-top: 1rem;
     border: 2px solid #0D0D0C;
     border-radius: 1.5rem;
+}
+
+.addtobaccooverlay button:last-child {
+    margin-left: 2rem;
 }
 
 .addtobaccooverlay button:hover {
@@ -121,6 +136,11 @@
     margin-left: 0.5rem;
     text-align: start;
     margin-right: 0.5rem;
+}
+
+.addtobaccooverlay__buttonrow {
+    display: flex;
+    flex-direction: row;
 }
 
 .close {

@@ -1,27 +1,32 @@
 import React from 'react';
 import './addtobaccooverlay.css';
 import { Firebase } from "../../global";
-import { getFirestore, getDocs, collection } from "firebase/firestore";
+import { getFirestore, getDocs, collection, setDoc } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { EligibleTobaccoInfoOverlay } from '../index.js';
 import { FaTimes } from 'react-icons/fa';
 
 const AddTobaccoOverlay = ({ close }) => {
     const [toggleEligibleTobaccoInfoOverlay, setToggleEligibleTobaccoInfoOverlay] = React.useState(null);
-    const [currentInputType, setCurrentInputType] = React.useState(null);
-    const [currentInputBrand, setCurrentInputBrand] = React.useState(null);
-    const [currentInputName, setCurrentInputName] = React.useState(null);
-    const [currentInputFlavour, setCurrentInputFlavour] = React.useState(null);
-    const [currentInputIce, setCurrentInputIce] = React.useState(null);
-    const [currentInputFruity, setCurrentInputFruity] = React.useState(null);
-    const [currentInputSweet, setCurrentInputSweet] = React.useState(null);
-    const [currentInputInStock, setCurrentInputInStock] = React.useState(null);
+    const [currentInputType, setCurrentInputType] = React.useState('');
+    const [currentInputBrand, setCurrentInputBrand] = React.useState('');
+    const [currentInputName, setCurrentInputName] = React.useState('');
+    const [currentInputFlavour, setCurrentInputFlavour] = React.useState('');
+    const [currentInputIce, setCurrentInputIce] = React.useState(false);
+    const [currentInputFruity, setCurrentInputFruity] = React.useState(false);
+    const [currentInputSweet, setCurrentInputSweet] = React.useState(false);
+    const [currentInputInStock, setCurrentInputInStock] = React.useState(false);
+    const [imageURL, setImageURL] = React.useState(null);
     const [types, setTypes] = React.useState(null);
     const [brands, setBrands] = React.useState(null);
-    const [typeError, setTypeError] = React.useState(false);
-    const [brandError, setBrandError] = React.useState(false);
-    const [nameError, setNameError] = React.useState(false);
-    const [flavourError, setFlavourError] = React.useState(false);
+    const [typeError, setTypeError] = React.useState(null);
+    const [brandError, setBrandError] = React.useState(null);
+    const [nameError, setNameError] = React.useState(null);
+    const [flavourError, setFlavourError] = React.useState(null);   
+    const [uploadNotification, setUploadNotification] = React.useState(null); 
+    const fileUploadRef = React.useRef(null);
     const db = getFirestore(Firebase);
+    const storage = getStorage(Firebase);
 
     const openEligibleTobaccoInfoOverlay = () => {
         setToggleEligibleTobaccoInfoOverlay(true);
@@ -31,25 +36,78 @@ const AddTobaccoOverlay = ({ close }) => {
         setToggleEligibleTobaccoInfoOverlay(false);
     };
 
-    const add = (type, brand, name, flavour, ice, fruity, sweet, inStock) => {
-        setTypeError(false);
-        setBrandError(false);
-        setNameError(false);
-        setFlavourError(false);
-
+    const handleAdd = (type, brand, name, flavour) => {     
         if (!types.includes(type)) {
             setTypeError(true);
+        } else {
+            setTypeError(false);
         }
+
         if (!brands.includes(brand)) {
             setBrandError(true);
+        } else {
+            setBrandError(false);
         }
-        if (name === null) {
+
+        if (!name) {
             setNameError(true);
+        } else {
+            setNameError(false);
         }
-        if (flavour === null) {
+
+        if (!flavour) {
             setFlavourError(true);
+        } else {
+            setFlavourError(false);
         }
     };
+
+    const add = async (type, brand, name, flavour, ice, fruity, sweet, inStock) => {        
+        if ((ice !== null) && (fruity !== null) && (sweet !== null) && (inStock !== null)) {            
+            const tobacco = {
+                type: type,
+                brand: brand,
+                name: name,
+                flavour: flavour,
+                image: imageURL,
+                ice: ice,
+                fruity: fruity,
+                sweet: sweet,
+                inStock: inStock
+            };
+            const querySnapshot = await getDocs(collection(db, "tobaccoLibrary"));
+            const tobaccosTemp = JSON.parse(querySnapshot.docs[0].data().tobaccos);
+            tobaccosTemp.push(tobacco);
+            await setDoc(querySnapshot.docs[0].ref, { tobaccos: JSON.stringify(tobaccosTemp) });    
+            setCurrentInputType('');
+            setCurrentInputBrand('');
+            setCurrentInputName('');
+            setCurrentInputFlavour('');  
+            setImageURL(null); 
+            setCurrentInputIce(false);
+            setCurrentInputFruity(false);
+            setCurrentInputSweet(false);
+            setCurrentInputInStock(false);  
+            setUploadNotification(false);                  
+        }        
+    };
+
+    const uploadImage = async (e) => {
+        const file = e.target.files[0];
+        const storageRef = ref(storage, `images/${file.name}`);       
+        uploadBytes(storageRef, file).then(() => {
+            getDownloadURL(storageRef).then(downloadUrl => {
+                setImageURL(downloadUrl);  
+                setUploadNotification(true);            
+            });
+        });        
+    };
+
+    React.useEffect(() => {
+        if ((typeError === false) && (brandError === false) && (nameError === false) && (flavourError === false)) {            
+            add(currentInputType, currentInputBrand, currentInputName, currentInputFlavour, currentInputIce, currentInputFruity, currentInputSweet, currentInputInStock);            
+        }
+    }, [typeError, brandError, nameError, flavourError]);
 
     React.useEffect(() => {
         const getEligibleTobaccoInfo = async () => {
@@ -91,7 +149,12 @@ const AddTobaccoOverlay = ({ close }) => {
             { brandError && (<p>Ineligible brand!</p>) }
             { nameError && (<p>The name can't be empty!</p>) }
             { flavourError && (<p>The flavour can't be empty!</p>) }
-            <button type = 'button' onClick = { () => add(currentInputType, currentInputBrand, currentInputName, currentInputFlavour, currentInputIce, currentInputFruity, currentInputSweet, currentInputInStock) }>Add</button>
+            { uploadNotification && (<span>Image uploaded successfully!</span>) }
+            <input type = 'file' ref = { fileUploadRef } onChange = { e => uploadImage(e) } style = {{ display: 'none' }}></input>
+            <div className = 'addtobaccooverlay__buttonrow'>
+                <button type = 'button' onClick = { () => fileUploadRef.current.click() }>Upload Image</button>
+                <button type = 'button' onClick = { () => handleAdd(currentInputType, currentInputBrand, currentInputName, currentInputFlavour) }>Add</button>
+            </div>
             <FaTimes onClick = { close } className = 'close'></FaTimes>  
             <h3 onClick = { openEligibleTobaccoInfoOverlay }>Info</h3>   
             { toggleEligibleTobaccoInfoOverlay && (<EligibleTobaccoInfoOverlay typesInfo = { types } brandsInfo = { brands } close = { closeEligibleTobaccoInfoOverlay }></EligibleTobaccoInfoOverlay>) }       
