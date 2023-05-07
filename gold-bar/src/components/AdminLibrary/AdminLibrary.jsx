@@ -248,6 +248,15 @@ const AdminLibrary = () => {
         setDetector(prevDetector => !prevDetector);
     };
 
+    const delTobacco = async (brand, name) => {
+        let tobaccosHolder;
+        const querySnapshot = await getDocs(collection(db, "tobaccoLibrary"));
+        tobaccosHolder = JSON.parse(querySnapshot.docs[0].data().tobaccos);
+        let tobaccosTemp = tobaccosHolder.filter(e => !(e.brand === brand && e.name === name));
+        await setDoc(querySnapshot.docs[0].ref, { tobaccos: JSON.stringify(tobaccosTemp) });
+        setDetector(prevDetector => !prevDetector);
+    };
+
     return (
         <div className = 'adminlibrary'>
             <div className = 'adminlibrary__filter'>
@@ -332,7 +341,7 @@ const AdminLibrary = () => {
                 {
                     (listOfTobaccos) ? ((listOfTobaccos.length > 0) ? (listOfTobaccos.map((e, i) => {
                         return (
-                            <TobaccoForAdminLibrary key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } ice = { e.ice } fruity = { e.fruity } sweet = { e.sweet } image = { e.image } inStock = { e.inStock } update = { () => updateStock(e.brand, e.name) }></TobaccoForAdminLibrary>
+                            <TobaccoForAdminLibrary key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } ice = { e.ice } fruity = { e.fruity } sweet = { e.sweet } image = { e.image } inStock = { e.inStock } update = { () => updateStock(e.brand, e.name) } del = { () => delTobacco(e.brand, e.name) }></TobaccoForAdminLibrary>
                         );
                     })) : (<h5>No results found</h5>)) : null
                 }

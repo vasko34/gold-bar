@@ -4,7 +4,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, collection, doc, getDoc, getDocs, addDoc, setDoc } from "firebase/firestore";
 import './orderoverlay.css'
 import { FaTimes } from 'react-icons/fa';
-import { Tobacco2 } from '../index.js';
+import { TobaccoForOrderOverlay } from '../index.js';
 import { CurrentBowlContext } from '../../global';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -239,7 +239,7 @@ const OrderOverlay = ({ close, brand, name }) => {
                     { (tobaccos) ? (tobaccos.map((e, i) => {
                         if ((e.brand === brand) && (e.name === name)) {
                             return (
-                                <Tobacco2 key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } image = { e.image }></Tobacco2>
+                                <TobaccoForOrderOverlay key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } image = { e.image }></TobaccoForOrderOverlay>
                             );
                         }
                         return null;

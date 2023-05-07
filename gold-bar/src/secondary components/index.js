@@ -7,7 +7,7 @@ export { default as AddTobaccoOverlay } from './AddTobaccoOverlay/AddTobaccoOver
 export { default as StatsOverlay } from './StatsOverlay/StatsOverlay';
 export { default as EligibleTobaccoInfoOverlay } from './EligibleTobaccoInfoOverlay/EligibleTobaccoInfoOverlay';
 export { default as ChangeSecurityCodeOverlay } from './ChangeSecurityCodeOverlay/ChangeSecurityCodeOverlay';
-export { default as Tobacco } from './Tobacco/Tobacco';
-export { default as Tobacco2 } from './Tobacco2/Tobacco2';
+export { default as TobaccoForLibrary } from './TobaccoForLibrary/TobaccoForLibrary';
+export { default as TobaccoForOrderOverlay } from './TobaccoForOrderOverlay/TobaccoForOrderOverlay';
 export { default as TobaccoForAdminLibrary } from './TobaccoForAdminLibrary/TobaccoForAdminLibrary';
 export { default as HookahBowl } from './HookahBowl/HookahBowl';

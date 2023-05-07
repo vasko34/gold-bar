@@ -1,7 +1,7 @@
 import React from 'react';
-import './tobacco.css';
+import './tobaccoforlibrary.css';
 
-const Tobacco = ({ type, brand, name, flavour, image, ice, fruity, sweet, inStock, open }) => {
+const TobaccoForLibrary = ({ type, brand, name, flavour, image, ice, fruity, sweet, inStock, open }) => {
     return (
         <div className = 'tobacco' onClick = { open }>
             <img src = { image } alt = 'tobacco_img'></img>
@@ -32,4 +32,4 @@ const Tobacco = ({ type, brand, name, flavour, image, ice, fruity, sweet, inStoc
     );
 }
 
-export default Tobacco;
+export default TobaccoForLibrary;

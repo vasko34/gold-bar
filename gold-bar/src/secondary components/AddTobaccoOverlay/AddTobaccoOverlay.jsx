@@ -79,22 +79,13 @@ const AddTobaccoOverlay = ({ close }) => {
             const tobaccosTemp = JSON.parse(querySnapshot.docs[0].data().tobaccos);
             tobaccosTemp.push(tobacco);
             await setDoc(querySnapshot.docs[0].ref, { tobaccos: JSON.stringify(tobaccosTemp) });    
-            setCurrentInputType('');
-            setCurrentInputBrand('');
-            setCurrentInputName('');
-            setCurrentInputFlavour('');  
-            setImageURL(null); 
-            setCurrentInputIce(false);
-            setCurrentInputFruity(false);
-            setCurrentInputSweet(false);
-            setCurrentInputInStock(false);  
-            setUploadNotification(false);                  
+            window.location.reload();                 
         }        
     };
 
     const uploadImage = async (e) => {
         const file = e.target.files[0];
-        const storageRef = ref(storage, `images/${file.name}`);       
+        const storageRef = ref(storage, `${file.name}`);       
         uploadBytes(storageRef, file).then(() => {
             getDownloadURL(storageRef).then(downloadUrl => {
                 setImageURL(downloadUrl);  

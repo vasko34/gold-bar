@@ -4,7 +4,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore } from "firebase/firestore";
 import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 import './library.css';
-import { Tobacco, ProfileOverlay, OrderOverlay } from '../../secondary components';
+import { TobaccoForLibrary, ProfileOverlay, OrderOverlay } from '../../secondary components';
 import { FaUser } from 'react-icons/fa';
 
 const removeArrayItem = (arr, condition) => {
@@ -332,7 +332,7 @@ const Library = () => {
                 {
                     (listOfTobaccos) ? ((listOfTobaccos.length > 0) ? (listOfTobaccos.map((e, i) => {
                         return (
-                            <Tobacco key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } ice = { e.ice } fruity = { e.fruity } sweet = { e.sweet } image = { e.image } inStock = { e.inStock } open = { () => openOrderOverlay(e.brand, e.name, e.inStock) }></Tobacco>
+                            <TobaccoForLibrary key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } ice = { e.ice } fruity = { e.fruity } sweet = { e.sweet } image = { e.image } inStock = { e.inStock } open = { () => openOrderOverlay(e.brand, e.name, e.inStock) }></TobaccoForLibrary>
                         );
                     })) : (<h5>No results found</h5>)) : null
                 }

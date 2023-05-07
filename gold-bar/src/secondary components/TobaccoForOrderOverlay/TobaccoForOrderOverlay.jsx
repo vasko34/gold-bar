@@ -1,7 +1,7 @@
 import React from 'react';
-import './tobacco2.css';
+import './tobaccofororderoverlay.css';
 
-const Tobacco2 = ({ type, brand, name, flavour, image }) => {
+const TobaccoForOrderOverlay = ({ type, brand, name, flavour, image }) => {
     return (
         <div className = 'tobacco2'>
             <img src = { image } alt = 'tobacco_img'></img>
@@ -14,4 +14,4 @@ const Tobacco2 = ({ type, brand, name, flavour, image }) => {
     );
 }
 
-export default Tobacco2;
+export default TobaccoForOrderOverlay;

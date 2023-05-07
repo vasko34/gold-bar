@@ -1,10 +1,15 @@
 import React from 'react';
 import './tobaccoforadminlibrary.css';
+import { FaTimes } from 'react-icons/fa';
 
-const TobaccoForAdminLibrary = ({ type, brand, name, flavour, image, ice, fruity, sweet, inStock, update }) => {
+const TobaccoForAdminLibrary = ({ type, brand, name, flavour, image, ice, fruity, sweet, inStock, update, del }) => {
     return (
         <div className = 'tobaccoforadminlibrary'>
-            <img src = { image } alt = 'tobacco_img'></img>
+            <div className = 'tobaccoforadminlibrary__image'>
+                <img src = { image } alt = 'tobacco_img'></img>
+                <div className = 'tobaccoforadminlibrary__image-hover'></div>
+                <FaTimes onClick = { del } className = 'delbutton'></FaTimes>
+            </div>            
             <div className = 'tobaccoforadminlibrary__content'>
                 <h2>{ brand } - { name }</h2>
                 <h3>Type: { type }</h3>
@@ -28,7 +33,7 @@ const TobaccoForAdminLibrary = ({ type, brand, name, flavour, image, ice, fruity
                     <span>Sweet:</span>
                     { sweet === true ? (<b>✓</b>) : (<b>X</b>) }
                 </div>
-            </div>
+            </div>            
         </div>
     );
 }
