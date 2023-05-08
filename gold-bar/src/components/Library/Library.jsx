@@ -98,12 +98,15 @@ const Library = () => {
         if (user && loginTime) {
             const timeoutMilliseconds = LoginTimeoutInMinutes * 60 * 1000;
             const elapsedTime = new Date().getTime() - parseInt(loginTime);
-            if (elapsedTime > timeoutMilliseconds) {
+            if (elapsedTime < timeoutMilliseconds) {
+                const timeoutId = setTimeout(handleLogOut, timeoutMilliseconds - elapsedTime);
+                return () => clearTimeout(timeoutId);
+            } else {
                 handleLogOut();
             }
         }
-    });
-
+    }, [user]);
+    
     React.useEffect(() => {  
         let arr = tobaccos;
         activeFiltersBoolean.forEach(arrayItem => {

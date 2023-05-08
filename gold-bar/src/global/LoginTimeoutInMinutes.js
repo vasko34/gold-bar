@@ -1,3 +1,3 @@
-const LoginTimeoutInMinutes = 1;
+const LoginTimeoutInMinutes = 5;
 
 export default LoginTimeoutInMinutes;
