@@ -8,7 +8,6 @@ import './profileoverlay.css';
 import { FaTimes } from 'react-icons/fa';
 import { SecurityOverlay } from '../index.js';
 
-
 const ProfileOverlay = ({ close, library, orders, home }) => {
     const navigate = useNavigate();
     const [toggleSecurityOverlay, setToggleSecurityOverlay] = React.useState(null);
@@ -45,6 +44,7 @@ const ProfileOverlay = ({ close, library, orders, home }) => {
 
     const handleLogOut = () => {
         signOut(auth);
+        localStorage.removeItem('loginTime');
         navigate('/');
     };
 
@@ -55,7 +55,7 @@ const ProfileOverlay = ({ close, library, orders, home }) => {
                 { !library && (adminStatus ? (<p onClick = { () => navigate('/adminlibrary') }>Library</p>) : (<p onClick = { () => navigate('/library') }>Library</p>)) }
                 { !orders && (adminStatus ? (<p onClick = { () => navigate('/adminorders') }>Orders</p>) : (<p onClick = { () => navigate('/orders') }>Orders</p>)) }
                 { !home && (adminStatus ? (<p onClick = { () => navigate('/admin') }>Home</p>) : (<p onClick = { () => navigate('/user') }>Home</p>)) }
-                <button type = 'button' onClick = { openSecurityOverlay }>Log out</button>
+                { (adminStatus ? (<button type = 'button' onClick = { handleLogOut }>Log out</button>) : (<button type = 'button' onClick = { openSecurityOverlay }>Log out</button>)) }              
                 <FaTimes onClick = { close } className = 'close'></FaTimes>
             </div>
             { toggleSecurityOverlay && (<SecurityOverlay close = { closeSecurityOverlay } closeProfileOverlay = { close } logoutUser = { handleLogOut }></SecurityOverlay>) }

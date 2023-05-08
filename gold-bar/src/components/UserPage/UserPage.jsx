@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Firebase } from "../../global";
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { Firebase, LoginTimeoutInMinutes } from "../../global";
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { getFirestore } from "firebase/firestore";
 import { doc, getDoc } from "firebase/firestore";
 import './userpage.css';
@@ -36,11 +36,28 @@ const UserPage = () => {
 
     const openProfileOverlay = () => {
         setToggleProfileOverlay(true);
-    }
+    };
 
     const closeProfileOverlay = () => {
         setToggleProfileOverlay(false);
-    }
+    };
+
+    const handleLogOut = () => {
+        signOut(auth);
+        localStorage.removeItem('loginTime');
+        navigate('/');
+    };
+
+    React.useEffect(() => {
+        const loginTime = localStorage.getItem('loginTime');
+        if (user && loginTime) {
+            const timeoutMilliseconds = LoginTimeoutInMinutes * 60 * 1000;
+            const elapsedTime = new Date().getTime() - parseInt(loginTime);
+            if (elapsedTime > timeoutMilliseconds) {
+                handleLogOut();
+            }
+        }
+    });
 
     return (
         <div className = 'userpage'>

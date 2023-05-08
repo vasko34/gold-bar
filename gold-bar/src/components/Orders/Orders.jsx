@@ -1,12 +1,14 @@
 import React from 'react';
-import { Firebase } from "../../global";
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { Firebase, LoginTimeoutInMinutes } from "../../global";
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { getFirestore, collection, doc, getDoc, getDocs, setDoc, deleteDoc, collectionGroup } from "firebase/firestore";
 import './orders.css';
 import { ProfileOverlay, HookahBowl } from '../../secondary components';
 import { FaUser } from 'react-icons/fa';
 
 const Orders = () => {
+    const navigate = useNavigate();
     const [toggleProfileOverlay, setToggleProfileOverlay] = React.useState(null);
     const [hookahBowls, setHookahBowls] = React.useState([]);
     const [hookahBowlsSent, setHookahBowlsSent] = React.useState([]);
@@ -134,6 +136,23 @@ const Orders = () => {
     const closeProfileOverlay = () => {
         setToggleProfileOverlay(false);
     };
+
+    const handleLogOut = () => {
+        signOut(auth);
+        localStorage.removeItem('loginTime');
+        navigate('/');
+    };
+
+    React.useEffect(() => {
+        const loginTime = localStorage.getItem('loginTime');
+        if (user && loginTime) {
+            const timeoutMilliseconds = LoginTimeoutInMinutes * 60 * 1000;
+            const elapsedTime = new Date().getTime() - parseInt(loginTime);
+            if (elapsedTime >= timeoutMilliseconds) {
+                handleLogOut();
+            }
+        }
+    });
 
     return (
         <div className = 'orders'>

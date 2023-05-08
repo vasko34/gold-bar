@@ -14,7 +14,7 @@ const LoginOverlay = ({ close }) => {
     const [passwordError, setPasswordError] = React.useState(null);
     const db = getFirestore(Firebase);
 
-    React.useEffect(() => {
+    React.useEffect(() => {        
         if (passwordError === false) {
             login(currentInputUsername, currentInputPassword);
         }
@@ -32,7 +32,8 @@ const LoginOverlay = ({ close }) => {
                 navigate('/admin');
             } else {
                 navigate('/user');
-            }        
+            }   
+            localStorage.setItem('loginTime', new Date().getTime().toString());     
         } catch (error) {
             console.log(error.message);
             setPasswordError(true);

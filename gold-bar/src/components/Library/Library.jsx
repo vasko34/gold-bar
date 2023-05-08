@@ -1,6 +1,7 @@
 import React from 'react';
-import { Firebase } from "../../global";
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { Firebase, LoginTimeoutInMinutes } from "../../global";
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { getFirestore } from "firebase/firestore";
 import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 import './library.css';
@@ -16,6 +17,7 @@ const removeArrayItem = (arr, condition) => {
 };
 
 const Library = () => {
+    const navigate = useNavigate();
     const [tobaccoForOverlayBrand, setTobaccoForOverlayBrand] = React.useState('');
     const [tobaccoForOverlayName, setTobaccoForOverlayName] = React.useState('');
     const [listOfTobaccos, setListOfTobaccos] = React.useState(null);
@@ -84,6 +86,23 @@ const Library = () => {
         setActiveFiltersBrand([]);
         setActiveFiltersType([]);
     };
+
+    const handleLogOut = () => {
+        signOut(auth);
+        localStorage.removeItem('loginTime');
+        navigate('/');
+    };
+
+    React.useEffect(() => {
+        const loginTime = localStorage.getItem('loginTime');
+        if (user && loginTime) {
+            const timeoutMilliseconds = LoginTimeoutInMinutes * 60 * 1000;
+            const elapsedTime = new Date().getTime() - parseInt(loginTime);
+            if (elapsedTime > timeoutMilliseconds) {
+                handleLogOut();
+            }
+        }
+    });
 
     React.useEffect(() => {  
         let arr = tobaccos;
