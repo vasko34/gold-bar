@@ -26,7 +26,16 @@ const AddTobaccoOverlay = ({ close }) => {
     const [uploadNotification, setUploadNotification] = React.useState(null); 
     const fileUploadRef = React.useRef(null);
     const db = getFirestore(Firebase);
-    const storage = getStorage(Firebase);
+    const storage = getStorage(Firebase);    
+
+    React.useEffect(() => {
+        const getEligibleTobaccoInfo = async () => {
+            const querySnapshot = await getDocs(collection(db, "eligibleTobaccoInfo"));
+            setTypes(JSON.parse(querySnapshot.docs[0].data().eligibleTypes));
+            setBrands(JSON.parse(querySnapshot.docs[0].data().eligibleBrands));
+        };
+        getEligibleTobaccoInfo();
+    }, []);
 
     const openEligibleTobaccoInfoOverlay = () => {
         setToggleEligibleTobaccoInfoOverlay(true);
@@ -62,6 +71,17 @@ const AddTobaccoOverlay = ({ close }) => {
         }
     };
 
+    const uploadImage = async (e) => {
+        const file = e.target.files[0];
+        const storageRef = ref(storage, `${file.name}`);       
+        uploadBytes(storageRef, file).then(() => {
+            getDownloadURL(storageRef).then(downloadUrl => {
+                setImageURL(downloadUrl);  
+                setUploadNotification(true);            
+            });
+        });        
+    };
+
     const add = async (type, brand, name, flavour, ice, fruity, sweet, inStock) => {        
         if ((ice !== null) && (fruity !== null) && (sweet !== null) && (inStock !== null)) {            
             const tobacco = {
@@ -83,31 +103,11 @@ const AddTobaccoOverlay = ({ close }) => {
         }        
     };
 
-    const uploadImage = async (e) => {
-        const file = e.target.files[0];
-        const storageRef = ref(storage, `${file.name}`);       
-        uploadBytes(storageRef, file).then(() => {
-            getDownloadURL(storageRef).then(downloadUrl => {
-                setImageURL(downloadUrl);  
-                setUploadNotification(true);            
-            });
-        });        
-    };
-
     React.useEffect(() => {
         if ((typeError === false) && (brandError === false) && (nameError === false) && (flavourError === false)) {            
             add(currentInputType, currentInputBrand, currentInputName, currentInputFlavour, currentInputIce, currentInputFruity, currentInputSweet, currentInputInStock);            
         }
-    }, [typeError, brandError, nameError, flavourError]);
-
-    React.useEffect(() => {
-        const getEligibleTobaccoInfo = async () => {
-            const querySnapshot = await getDocs(collection(db, "eligibleTobaccoInfo"));
-            setTypes(JSON.parse(querySnapshot.docs[0].data().eligibleTypes));
-            setBrands(JSON.parse(querySnapshot.docs[0].data().eligibleBrands));
-        };
-        getEligibleTobaccoInfo();
-    }, []);
+    }, [typeError, brandError, nameError, flavourError]);      
 
     return (
         <div className = 'addtobaccooverlay'>
@@ -151,6 +151,6 @@ const AddTobaccoOverlay = ({ close }) => {
             { toggleEligibleTobaccoInfoOverlay && (<EligibleTobaccoInfoOverlay typesInfo = { types } brandsInfo = { brands } close = { closeEligibleTobaccoInfoOverlay }></EligibleTobaccoInfoOverlay>) }       
         </div>
     );
-}
+};
 
 export default AddTobaccoOverlay;

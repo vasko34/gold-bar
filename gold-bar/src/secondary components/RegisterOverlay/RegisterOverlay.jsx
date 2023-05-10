@@ -24,29 +24,8 @@ const RegisterOverlay = ({ close }) => {
             setSecurityCode(querySnapshot.docs[0].data().securityCode);
         };
         getSecurityCode();
-    }, []);
-
-    React.useEffect(() => {
-        if (!passwordMatchError && !passwordSafetyError && !securityCodeError) {
-          register(currentInputUsername, currentInputPassword);
-        }
-    }, [passwordMatchError, passwordSafetyError, securityCodeError]);
-
-    const register = async (username, password) => {
-        try {
-            const email = username + '@example.com';
-            await createUserWithEmailAndPassword(auth, email, password);
-            const user = auth.currentUser;
-            await setDoc(doc(db, 'users', user.uid), {
-                username: username,
-                password: password,
-                adminStatus: isChecked
-            });
-        } catch (error) {
-            console.log(error.message);                
-        }
-    };
-
+    }, []); 
+    
     const handleRegister = (password, confirmPassword, code) => {
         if (password !== confirmPassword) {
             setPasswordMatchError(true);
@@ -67,6 +46,27 @@ const RegisterOverlay = ({ close }) => {
         }
     };
 
+    const register = async (username, password) => {
+        try {
+            const email = username + '@example.com';
+            await createUserWithEmailAndPassword(auth, email, password);
+            const user = auth.currentUser;
+            await setDoc(doc(db, 'users', user.uid), {
+                username: username,
+                password: password,
+                adminStatus: isChecked
+            });
+        } catch (error) {
+            console.log(error.message);                
+        }
+    };
+
+    React.useEffect(() => {
+        if (!passwordMatchError && !passwordSafetyError && !securityCodeError) {
+          register(currentInputUsername, currentInputPassword);
+        }
+    }, [passwordMatchError, passwordSafetyError, securityCodeError]);    
+
     return (
         <div className = 'registeroverlay'>
             <h2>Register</h2>
@@ -85,6 +85,6 @@ const RegisterOverlay = ({ close }) => {
             <FaTimes onClick = { close } className = 'close'></FaTimes>
         </div>
     );
-}
+};
 
 export default RegisterOverlay;

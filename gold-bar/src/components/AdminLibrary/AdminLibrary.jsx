@@ -1,9 +1,8 @@
 import React from 'react';
+import './adminlibrary.css';
 import { Firebase } from "../../global";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore } from "firebase/firestore";
-import { doc, getDoc, getDocs, collection, setDoc } from "firebase/firestore";
-import './adminlibrary.css';
+import { getFirestore, doc, getDoc, getDocs, collection, setDoc } from "firebase/firestore";
 import { TobaccoForAdminLibrary, ProfileOverlay } from '../../secondary components';
 import { FaUser } from 'react-icons/fa';
 
@@ -36,7 +35,6 @@ const AdminLibrary = () => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
         });
-
         return unsubscribe;
     }, [auth]);
   
@@ -58,20 +56,6 @@ const AdminLibrary = () => {
         getTobaccoData();
     }, [username, detector]);
 
-    const openProfileOverlay = () => {
-        setToggleProfileOverlay(true);
-    }
-
-    const closeProfileOverlay = () => {
-        setToggleProfileOverlay(false);
-    }
-
-    const resetFilters = () => {
-        setActiveFiltersBoolean([]);
-        setActiveFiltersBrand([]);
-        setActiveFiltersType([]);
-    };
-
     React.useEffect(() => {  
         let arr = tobaccos;
         activeFiltersBoolean.forEach(arrayItem => {
@@ -87,6 +71,20 @@ const AdminLibrary = () => {
         setListOfTobaccos(arr);
     }, [activeFiltersBoolean, activeFiltersBrand, activeFiltersType, tobaccos]);
 
+    const openProfileOverlay = () => {
+        setToggleProfileOverlay(true);
+    };
+
+    const closeProfileOverlay = () => {
+        setToggleProfileOverlay(false);
+    };
+
+    const resetFilters = () => {
+        setActiveFiltersBoolean([]);
+        setActiveFiltersBrand([]);
+        setActiveFiltersType([]);
+    };    
+
     const onCheckboxChangeInStock = () => {
         const filter = {
             id: 'instock',
@@ -94,9 +92,9 @@ const AdminLibrary = () => {
         };
 
         if (activeFiltersBoolean.some(arrayItem => arrayItem.id === 'instock')) {
-            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'instock'))
+            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'instock'));
         } else {
-            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter))
+            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter));
         }
     };
 
@@ -203,9 +201,9 @@ const AdminLibrary = () => {
         };
 
         if (activeFiltersBoolean.some(arrayItem => arrayItem.id === 'ice')) {
-            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'ice'))
+            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'ice'));
         } else {
-            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter))
+            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter));
         }
     };
 
@@ -216,9 +214,9 @@ const AdminLibrary = () => {
         };
 
         if (activeFiltersBoolean.some(arrayItem => arrayItem.id === 'fruity')) {
-            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'fruity'))
+            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'fruity'));
         } else {
-            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter))
+            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter));
         }
     };
 
@@ -229,9 +227,9 @@ const AdminLibrary = () => {
         };
 
         if (activeFiltersBoolean.some(arrayItem => arrayItem.id === 'sweet')) {
-            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'sweet'))
+            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'sweet'));
         } else {
-            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter))
+            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter));
         }
     };
 
@@ -353,6 +351,6 @@ const AdminLibrary = () => {
             { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } library = { true }></ProfileOverlay>) }
         </div>
     );
-}
+};
 
 export default AdminLibrary;

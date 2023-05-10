@@ -3,8 +3,7 @@ import './loginoverlay.css';
 import { FaTimes } from 'react-icons/fa';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { Firebase } from "../../global";
-import { getFirestore } from "firebase/firestore";
-import { doc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
  
 const LoginOverlay = ({ close }) => {
@@ -12,13 +11,15 @@ const LoginOverlay = ({ close }) => {
     const [currentInputUsername,setCurrentInputUsername] = React.useState('');
     const [currentInputPassword,setCurrentInputPassword] = React.useState('');
     const [passwordError, setPasswordError] = React.useState(null);
-    const db = getFirestore(Firebase);
+    const db = getFirestore(Firebase);    
 
-    React.useEffect(() => {        
-        if (passwordError === false) {
-            login(currentInputUsername, currentInputPassword);
+    const handleLogin = (username, password) => {
+        if ((password.length < 8) || (password.search(/\d+/) === -1) || (password.search(/[A-Z]/) === -1) || (password.search(/[a-z]/) === -1) || (username[0].search(/[A-Z]/) === -1)) {
+            setPasswordError(true);
+        } else {
+            setPasswordError(false);
         }
-    }, [passwordError]);
+    };
 
     const login = async (username, password) => {     
         try {
@@ -38,15 +39,13 @@ const LoginOverlay = ({ close }) => {
             console.log(error.message);
             setPasswordError(true);
         }
-    }
+    };    
 
-    const handleLogin = (username, password) => {
-        if ((password.length < 8) || (password.search(/\d+/) === -1) || (password.search(/[A-Z]/) === -1) || (password.search(/[a-z]/) === -1) || (username[0].search(/[A-Z]/) === -1)) {
-            setPasswordError(true);
-        } else {
-            setPasswordError(false);
+    React.useEffect(() => {        
+        if (passwordError === false) {
+            login(currentInputUsername, currentInputPassword);
         }
-    };
+    }, [passwordError]);
 
     return (
         <div className = 'loginoverlay'>
@@ -58,6 +57,6 @@ const LoginOverlay = ({ close }) => {
             <FaTimes onClick = { close } className = 'close'></FaTimes>
         </div>
     );
-}
+};
 
 export default LoginOverlay;

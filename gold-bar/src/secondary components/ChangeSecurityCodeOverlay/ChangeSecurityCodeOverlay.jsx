@@ -36,6 +36,6 @@ const ChangeSecurityCodeOverlay = ({ close }) => {
             <FaTimes onClick = { close } className = 'close'></FaTimes>
         </div>
     );
-}
+};
 
 export default ChangeSecurityCodeOverlay;

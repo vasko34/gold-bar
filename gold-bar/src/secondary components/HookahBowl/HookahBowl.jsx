@@ -1,7 +1,7 @@
 import React from 'react';
 import './hookahbowl.css';
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import { FaTimes } from 'react-icons/fa';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 const HookahBowl = ({ currentBowl, del, done, delBowl }) => {
@@ -59,6 +59,6 @@ const HookahBowl = ({ currentBowl, del, done, delBowl }) => {
             { del && (<FaTimes onClick = { () => delBowl(currentBowl) } className = 'close'></FaTimes>) }
         </div>
     );
-}
+};
 
 export default HookahBowl;

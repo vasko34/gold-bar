@@ -10,6 +10,14 @@ const SecurityOverlay = ({ close, closeProfileOverlay, logoutUser }) => {
     const [securityCodeError, setSecurityCodeError] = React.useState(null);
     const db = getFirestore(Firebase);
 
+    React.useEffect(() => {
+        const getSecurityCode = async () => {
+            const querySnapshot = await getDocs(collection(db, "securityCode"));
+            setSecurityCode(querySnapshot.docs[0].data().securityCode);
+        };
+        getSecurityCode();
+    }, []);
+
     const logout = (code) => {
         if (code !== securityCode) {
             setSecurityCodeError(true);
@@ -19,15 +27,7 @@ const SecurityOverlay = ({ close, closeProfileOverlay, logoutUser }) => {
             closeProfileOverlay();
             logoutUser();
         }
-    };
-
-    React.useEffect(() => {
-        const getSecurityCode = async () => {
-            const querySnapshot = await getDocs(collection(db, "securityCode"));
-            setSecurityCode(querySnapshot.docs[0].data().securityCode);
-        };
-        getSecurityCode();
-    }, []);
+    };    
 
     return (
         <div className = 'securityoverlay'>
@@ -38,6 +38,6 @@ const SecurityOverlay = ({ close, closeProfileOverlay, logoutUser }) => {
             <FaTimes onClick = { close } className = 'close'></FaTimes>
         </div>
     );
-}
+};
 
 export default SecurityOverlay;

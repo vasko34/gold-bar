@@ -1,8 +1,8 @@
 import React from 'react';
+import './orderoverlay.css';
 import { Firebase } from "../../global";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, collection, doc, getDoc, getDocs, addDoc, setDoc } from "firebase/firestore";
-import './orderoverlay.css'
 import { FaTimes } from 'react-icons/fa';
 import { TobaccoForOrderOverlay } from '../index.js';
 import { CurrentBowlContext } from '../../global';
@@ -29,6 +29,69 @@ const OrderOverlay = ({ close, brand, name }) => {
         };
         getTobaccoData();
     }, []);
+
+    React.useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setUser(user);
+        });
+        return unsubscribe;
+    }, [auth]);
+  
+    React.useEffect(() => {
+        const getUsername = async () => {
+            if (!user) return;
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            const username = userDoc.data().username;
+            setUsername(username);
+        };
+        getUsername();
+    }, [user]);
+
+    React.useEffect(() => {
+        if ((+currentBowl.percent1 + +currentBowl.percent2 + +currentBowl.percent3 + +currentBowl.percent4 + +currentBowl.percent5) < 100) {
+            setButtonDisablerAddToOrders(true);
+        }
+        if ((+currentBowl.percent1 + +currentBowl.percent2 + +currentBowl.percent3 + +currentBowl.percent4 + +currentBowl.percent5) === 100) {
+            setButtonDisablerAddToOrders(false);
+        }
+        if ((+currentBowl.percent1 + +currentBowl.percent2 + +currentBowl.percent3 + +currentBowl.percent4 + +currentBowl.percent5) === 0) {
+            setButtonDisablerUndo(true);
+        }
+        if ((+currentBowl.percent1 + +currentBowl.percent2 + +currentBowl.percent3 + +currentBowl.percent4 + +currentBowl.percent5) > 0) {
+            setButtonDisablerUndo(false);
+        }
+        if ((+currentBowl.percent1 + +currentBowl.percent2 + +currentBowl.percent3 + +currentBowl.percent4 + +currentBowl.percent5) === 100) {
+            setButtonDisablerAdd(true);
+        }
+        if ((+currentBowl.percent1 + +currentBowl.percent2 + +currentBowl.percent3 + +currentBowl.percent4 + +currentBowl.percent5) < 100) {
+            setButtonDisablerAdd(false);
+        }
+        if ((currentBowl.tobacco1 === `${ brand } - ${ name }`) || (currentBowl.tobacco2 === `${ brand } - ${ name }`) || (currentBowl.tobacco3 === `${ brand } - ${ name }`) || (currentBowl.tobacco4 === `${ brand } - ${ name }`) || (currentBowl.tobacco5 === `${ brand } - ${ name }`)) {
+            setButtonDisablerAdd(true);
+        }
+
+        const min = Math.min(20, 100 - currentBowl.percent1 - currentBowl.percent2 - currentBowl.percent3 - currentBowl.percent4 - currentBowl.percent5);
+        const max = 100 - currentBowl.percent1 - currentBowl.percent2 - currentBowl.percent3 - currentBowl.percent4 - currentBowl.percent5;
+        if (min === max) {
+            setSliderValue(min);
+        } else {
+            setSliderValue(20);
+        }
+
+        const bowlImage = currentBowlImageRef.current;
+        const bowlImageRotations = [
+          currentBowl.percent1,
+          currentBowl.percent2,
+          currentBowl.percent3,
+          currentBowl.percent4,
+          currentBowl.percent5,
+        ];      
+        let totalRotation = 0;
+        for (let i = 0; i < 5; i++) {
+            bowlImage.children[i + 1].style.transform = `rotate(${ totalRotation }deg)`;
+            totalRotation += bowlImageRotations[i] * 3.6;
+        }
+    }, [currentBowl]);
 
     const addTobaccoToBowl = () => {
         if (currentBowl.percent1 === 0) {
@@ -166,71 +229,7 @@ const OrderOverlay = ({ close, brand, name }) => {
             await addDoc(collection(db, "ordersSent"), { username: username, orders: JSON.stringify([currentBowl]) });
         }
         resetCurrentBowl();
-    };
-
-    React.useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setUser(user);
-        });
-
-        return unsubscribe;
-    }, [auth]);
-  
-    React.useEffect(() => {
-        const getUsername = async () => {
-            if (!user) return;
-            const userDoc = await getDoc(doc(db, "users", user.uid));
-            const username = userDoc.data().username;
-            setUsername(username);
-        };
-        getUsername();
-    }, [user]);
-
-    React.useEffect(() => {
-        if ((+currentBowl.percent1 + +currentBowl.percent2 + +currentBowl.percent3 + +currentBowl.percent4 + +currentBowl.percent5) < 100) {
-            setButtonDisablerAddToOrders(true);
-        }
-        if ((+currentBowl.percent1 + +currentBowl.percent2 + +currentBowl.percent3 + +currentBowl.percent4 + +currentBowl.percent5) === 100) {
-            setButtonDisablerAddToOrders(false);
-        }
-        if ((+currentBowl.percent1 + +currentBowl.percent2 + +currentBowl.percent3 + +currentBowl.percent4 + +currentBowl.percent5) === 0) {
-            setButtonDisablerUndo(true);
-        }
-        if ((+currentBowl.percent1 + +currentBowl.percent2 + +currentBowl.percent3 + +currentBowl.percent4 + +currentBowl.percent5) > 0) {
-            setButtonDisablerUndo(false);
-        }
-        if ((+currentBowl.percent1 + +currentBowl.percent2 + +currentBowl.percent3 + +currentBowl.percent4 + +currentBowl.percent5) === 100) {
-            setButtonDisablerAdd(true);
-        }
-        if ((+currentBowl.percent1 + +currentBowl.percent2 + +currentBowl.percent3 + +currentBowl.percent4 + +currentBowl.percent5) < 100) {
-            setButtonDisablerAdd(false);
-        }
-        if ((currentBowl.tobacco1 === `${ brand } - ${ name }`) || (currentBowl.tobacco2 === `${ brand } - ${ name }`) || (currentBowl.tobacco3 === `${ brand } - ${ name }`) || (currentBowl.tobacco4 === `${ brand } - ${ name }`) || (currentBowl.tobacco5 === `${ brand } - ${ name }`)) {
-            setButtonDisablerAdd(true);
-        }
-
-        const min = Math.min(20, 100 - currentBowl.percent1 - currentBowl.percent2 - currentBowl.percent3 - currentBowl.percent4 - currentBowl.percent5);
-        const max = 100 - currentBowl.percent1 - currentBowl.percent2 - currentBowl.percent3 - currentBowl.percent4 - currentBowl.percent5;
-        if (min === max) {
-            setSliderValue(min);
-        } else {
-            setSliderValue(20);
-        }
-
-        const bowlImage = currentBowlImageRef.current;
-        const bowlImageRotations = [
-          currentBowl.percent1,
-          currentBowl.percent2,
-          currentBowl.percent3,
-          currentBowl.percent4,
-          currentBowl.percent5,
-        ];      
-        let totalRotation = 0;
-        for (let i = 0; i < 5; i++) {
-            bowlImage.children[i + 1].style.transform = `rotate(${ totalRotation }deg)`;
-            totalRotation += bowlImageRotations[i] * 3.6;
-        }
-    }, [currentBowl]);
+    };    
 
     return (
         <div className = 'orderoverlay'>
@@ -295,6 +294,6 @@ const OrderOverlay = ({ close, brand, name }) => {
             <FaTimes onClick = { close } className = 'close'></FaTimes>
         </div>
     );
-}
+};
 
 export default OrderOverlay;

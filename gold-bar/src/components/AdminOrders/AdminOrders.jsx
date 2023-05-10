@@ -3,8 +3,7 @@ import './adminorders.css';
 import { Firebase } from "../../global";
 import { getFirestore, getDocs, collection, doc, getDoc, setDoc, addDoc } from "firebase/firestore";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { HookahBowl } from '../../secondary components';
-import { ProfileOverlay } from '../../secondary components';
+import { HookahBowl, ProfileOverlay } from '../../secondary components';
 import { FaUser } from 'react-icons/fa';
 
 const AdminOrders = () => {
@@ -17,42 +16,10 @@ const AdminOrders = () => {
     const auth = getAuth(Firebase);
     const db = getFirestore(Firebase);
 
-    const doneBowl = async (bowl, username) => {
-        const querySnapshot = await getDocs(collection(db, "ordersSent"));
-        if (!querySnapshot.empty) {
-            for (const doc of querySnapshot.docs) {
-                const docData = doc.data();
-                if (docData.username === username) {
-                    const orders = JSON.parse(docData.orders);
-                    const index = orders.findIndex(e => JSON.stringify(e) === JSON.stringify(bowl));
-                    if (index !== -1) {
-                        orders.splice(index, 1);
-                    }
-                    await setDoc(doc.ref, { orders: JSON.stringify(orders) }, { merge: true });
-                    const bowlPlusDate = {
-                        hookahBowl: bowl,
-                        date: new Date().toLocaleDateString()
-                    };
-                    const querySnapshot2 = await getDocs(collection(db, "hookahBowlsSold"));
-                    if (querySnapshot2.empty) {
-                        await addDoc(collection(db, "hookahBowlsSold"), { hookahBowls: JSON.stringify([bowlPlusDate]) });
-                    } else {
-                        const tempArray = JSON.parse(querySnapshot2.docs[0].data().hookahBowls);
-                        tempArray.push(bowlPlusDate);
-                        await setDoc(querySnapshot2.docs[0].ref, { hookahBowls: JSON.stringify(tempArray) });
-                    }                   
-                }
-            }
-            setEmptyOrders(true);          
-        }
-        setDetector(prevDetector => !prevDetector);
-    };
-
     React.useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
         });
-
         return unsubscribe;
     }, [auth]);
   
@@ -85,6 +52,37 @@ const AdminOrders = () => {
         };
         getOrders();
     }, [username, detector]);
+
+    const doneBowl = async (bowl, username) => {
+        const querySnapshot = await getDocs(collection(db, "ordersSent"));
+        if (!querySnapshot.empty) {
+            for (const doc of querySnapshot.docs) {
+                const docData = doc.data();
+                if (docData.username === username) {
+                    const orders = JSON.parse(docData.orders);
+                    const index = orders.findIndex(e => JSON.stringify(e) === JSON.stringify(bowl));
+                    if (index !== -1) {
+                        orders.splice(index, 1);
+                    }
+                    await setDoc(doc.ref, { orders: JSON.stringify(orders) }, { merge: true });
+                    const bowlPlusDate = {
+                        hookahBowl: bowl,
+                        date: new Date().toLocaleDateString()
+                    };
+                    const querySnapshot2 = await getDocs(collection(db, "hookahBowlsSold"));
+                    if (querySnapshot2.empty) {
+                        await addDoc(collection(db, "hookahBowlsSold"), { hookahBowls: JSON.stringify([bowlPlusDate]) });
+                    } else {
+                        const tempArray = JSON.parse(querySnapshot2.docs[0].data().hookahBowls);
+                        tempArray.push(bowlPlusDate);
+                        await setDoc(querySnapshot2.docs[0].ref, { hookahBowls: JSON.stringify(tempArray) });
+                    }                   
+                }
+            }
+            setEmptyOrders(true);          
+        }
+        setDetector(prevDetector => !prevDetector);
+    };    
 
     const openProfileOverlay = () => {
         setToggleProfileOverlay(true);
@@ -125,6 +123,6 @@ const AdminOrders = () => {
             { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } orders = { true }></ProfileOverlay>) }
         </div>
     );
-}
+};
 
 export default AdminOrders;

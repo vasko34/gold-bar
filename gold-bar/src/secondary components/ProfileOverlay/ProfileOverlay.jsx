@@ -1,10 +1,9 @@
 import React from 'react';
+import './profileoverlay.css';
 import { useNavigate } from 'react-router-dom';
 import { Firebase } from "../../global";
 import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore } from "firebase/firestore";
-import { doc, getDoc } from "firebase/firestore";
-import './profileoverlay.css';
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { FaTimes } from 'react-icons/fa';
 import { SecurityOverlay } from '../index.js';
 
@@ -20,7 +19,6 @@ const ProfileOverlay = ({ close, library, orders, home }) => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
         });
-
         return unsubscribe;
     }, [auth]);
   
@@ -61,6 +59,6 @@ const ProfileOverlay = ({ close, library, orders, home }) => {
             { toggleSecurityOverlay && (<SecurityOverlay close = { closeSecurityOverlay } closeProfileOverlay = { close } logoutUser = { handleLogOut }></SecurityOverlay>) }
         </div>
     );
-}
+};
 
 export default ProfileOverlay;

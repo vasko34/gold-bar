@@ -1,9 +1,9 @@
 import React from 'react';
+import './adminpage.css';
 import { useNavigate } from 'react-router-dom';
 import { Firebase } from "../../global";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from "firebase/firestore";
-import './adminpage.css';
 import { ProfileOverlay, AddTobaccoOverlay, StatsOverlay, ChangeSecurityCodeOverlay } from '../../secondary components';
 import { FaUser } from 'react-icons/fa';
 
@@ -22,7 +22,6 @@ const AdminPage = () => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
         });
-
         return unsubscribe;
     }, [auth]);
   
@@ -100,6 +99,6 @@ const AdminPage = () => {
             { toggleChangeSecurityCodeOverlay && (<ChangeSecurityCodeOverlay close = { closeChangeSecurityCodeOverlay }></ChangeSecurityCodeOverlay>) }
         </div>
     );
-}
+};
 
 export default AdminPage;

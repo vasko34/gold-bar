@@ -36,6 +36,6 @@ const TobaccoForAdminLibrary = ({ type, brand, name, flavour, image, ice, fruity
             </div>            
         </div>
     );
-}
+};
 
 export default TobaccoForAdminLibrary;

@@ -1,10 +1,9 @@
 import React from 'react';
+import './library.css';
 import { useNavigate } from 'react-router-dom';
 import { Firebase, LoginTimeoutInMinutes } from "../../global";
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
-import { getFirestore } from "firebase/firestore";
-import { doc, getDoc, getDocs, collection } from "firebase/firestore";
-import './library.css';
+import { getFirestore, doc, getDoc, getDocs, collection } from "firebase/firestore";
 import { TobaccoForLibrary, ProfileOverlay, OrderOverlay } from '../../secondary components';
 import { FaUser } from 'react-icons/fa';
 
@@ -61,13 +60,28 @@ const Library = () => {
         getUsername();
     }, [user]);
 
+    React.useEffect(() => {
+        let arr = tobaccos;
+        activeFiltersBoolean.forEach(arrayItem => {
+            arr = arr.filter(arrayItem.conditionFn);
+
+        });
+        if (activeFiltersBrand.length !== 0) {
+            arr = arr.filter(arrayItem => activeFiltersBrand.includes(arrayItem.brand.split(' ')[0]));
+        }
+        if (activeFiltersType.length !== 0) {
+            arr = arr.filter(arrayItem => activeFiltersType.includes(arrayItem.type));
+        }
+        setListOfTobaccos(arr);
+    }, [activeFiltersBoolean, activeFiltersBrand, activeFiltersType]);
+
     const openProfileOverlay = () => {
         setToggleProfileOverlay(true);
-    }
+    };
 
     const closeProfileOverlay = () => {
         setToggleProfileOverlay(false);
-    }
+    };
 
     const openOrderOverlay = (brand, name, inStock) => {
         if (inStock === true) {
@@ -75,11 +89,11 @@ const Library = () => {
             setTobaccoForOverlayBrand(brand);
             setTobaccoForOverlayName(name);
         }
-    }
+    };
 
     const closeOrderOverlay = () => {
         setToggleOrderOverlay(false);
-    }
+    };
 
     const resetFilters = () => {
         setActiveFiltersBoolean([]);
@@ -105,22 +119,7 @@ const Library = () => {
                 handleLogOut();
             }
         }
-    }, [user]);
-    
-    React.useEffect(() => {  
-        let arr = tobaccos;
-        activeFiltersBoolean.forEach(arrayItem => {
-            arr = arr.filter(arrayItem.conditionFn);
-
-        });
-        if (activeFiltersBrand.length !== 0) {
-            arr = arr.filter(arrayItem => activeFiltersBrand.includes(arrayItem.brand.split(' ')[0]));
-        }
-        if (activeFiltersType.length !== 0) {
-            arr = arr.filter(arrayItem => activeFiltersType.includes(arrayItem.type));
-        }
-        setListOfTobaccos(arr);
-    }, [activeFiltersBoolean, activeFiltersBrand, activeFiltersType]);
+    }, [user]);  
 
     const onCheckboxChangeInStock = () => {
         const filter = {
@@ -129,9 +128,9 @@ const Library = () => {
         };
 
         if (activeFiltersBoolean.some(arrayItem => arrayItem.id === 'instock')) {
-            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'instock'))
+            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'instock'));
         } else {
-            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter))
+            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter));
         }
     };
 
@@ -238,9 +237,9 @@ const Library = () => {
         };
 
         if (activeFiltersBoolean.some(arrayItem => arrayItem.id === 'ice')) {
-            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'ice'))
+            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'ice'));
         } else {
-            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter))
+            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter));
         }
     };
 
@@ -251,9 +250,9 @@ const Library = () => {
         };
 
         if (activeFiltersBoolean.some(arrayItem => arrayItem.id === 'fruity')) {
-            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'fruity'))
+            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'fruity'));
         } else {
-            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter))
+            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter));
         }
     };
 
@@ -264,9 +263,9 @@ const Library = () => {
         };
 
         if (activeFiltersBoolean.some(arrayItem => arrayItem.id === 'sweet')) {
-            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'sweet'))
+            setActiveFiltersBoolean(removeArrayItem(activeFiltersBoolean, 'sweet'));
         } else {
-            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter))
+            setActiveFiltersBoolean(activeFiltersBoolean.concat(filter));
         }
     };
 
@@ -367,6 +366,6 @@ const Library = () => {
             { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } library = { true }></ProfileOverlay>) }
         </div>
     );
-}
+};
 
 export default Library;

@@ -12,6 +12,6 @@ const TobaccoForOrderOverlay = ({ type, brand, name, flavour, image }) => {
             </div>
         </div>
     );
-}
+};
 
 export default TobaccoForOrderOverlay;

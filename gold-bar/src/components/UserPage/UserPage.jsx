@@ -1,10 +1,9 @@
 import React from 'react';
+import './userpage.css';
 import { useNavigate } from 'react-router-dom';
 import { Firebase, LoginTimeoutInMinutes } from "../../global";
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
-import { getFirestore } from "firebase/firestore";
-import { doc, getDoc } from "firebase/firestore";
-import './userpage.css';
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { ProfileOverlay } from '../../secondary components';
 import { FaUser } from 'react-icons/fa';
 
@@ -20,7 +19,6 @@ const UserPage = () => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
         });
-
         return unsubscribe;
     }, [auth]);
   
@@ -75,6 +73,6 @@ const UserPage = () => {
             { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } home = { true } library = { true }></ProfileOverlay>) }
         </div>
     );
-}
+};
 
 export default UserPage;

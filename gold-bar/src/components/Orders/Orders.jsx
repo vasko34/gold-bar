@@ -1,9 +1,9 @@
 import React from 'react';
+import './orders.css';
 import { useNavigate } from 'react-router-dom';
 import { Firebase, LoginTimeoutInMinutes } from "../../global";
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
-import { getFirestore, collection, doc, getDoc, getDocs, setDoc, deleteDoc, collectionGroup } from "firebase/firestore";
-import './orders.css';
+import { getFirestore, collection, doc, getDoc, getDocs, setDoc, deleteDoc } from "firebase/firestore";
 import { ProfileOverlay, HookahBowl } from '../../secondary components';
 import { FaUser } from 'react-icons/fa';
 
@@ -17,7 +17,57 @@ const Orders = () => {
     const [detector, setDetector] = React.useState(true);
     const auth = getAuth(Firebase);
     const db = getFirestore(Firebase);
+    
+    React.useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setUser(user);
+        });
+        return unsubscribe;
+    }, [auth]);
+  
+    React.useEffect(() => {
+        const getUsername = async () => {
+            if (!user) return;
+            const userDoc = await getDoc(doc(db, "users", user.uid));
+            const username = userDoc.data().username;
+            setUsername(username);
+        };
+        getUsername();
+    }, [user]);
 
+    React.useEffect(() => {
+        const getOrders = async () => {
+            let bowlsSet = false;
+            let bowlsSetSent = false;
+            const querySnapshot = await getDocs(collection(db, "ordersNotSent"));
+            const querySnapshotSent = await getDocs(collection(db, "ordersSent"));
+            if (!querySnapshot.empty) {                
+                for (const doc of querySnapshot.docs) {
+                    const docData = doc.data();
+                    if (docData.username === username) {                        
+                        setHookahBowls(JSON.parse(docData.orders));
+                        bowlsSet = true;                        
+                    }
+                }
+                if (bowlsSet === false) {
+                    setHookahBowls([]);
+                }
+            }
+            if (!querySnapshotSent.empty) {
+                for (const doc of querySnapshotSent.docs) {
+                    const docData = doc.data();
+                    if (docData.username === username) {
+                        setHookahBowlsSent(JSON.parse(docData.orders));
+                        bowlsSetSent = true;
+                    }
+                }
+                if (bowlsSetSent === false) {
+                    setHookahBowlsSent([]);
+                }
+            }
+        };
+        getOrders();
+    }, [username, detector]);
 
     const delBowl = async (bowl) => {
         const querySnapshot = await getDocs(collection(db, "ordersNotSent"));
@@ -75,59 +125,7 @@ const Orders = () => {
             await deleteDoc(docRefNotSent);
         }
         setDetector(prevDetector => !prevDetector);
-    };
-
-    React.useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setUser(user);
-        });
-
-        return unsubscribe;
-    }, [auth]);
-  
-    React.useEffect(() => {
-        const getUsername = async () => {
-            if (!user) return;
-            const userDoc = await getDoc(doc(db, "users", user.uid));
-            const username = userDoc.data().username;
-            setUsername(username);
-        };
-        getUsername();
-    }, [user]);
-
-    React.useEffect(() => {
-        const getOrders = async () => {
-            let bowlsSet = false;
-            let bowlsSetSent = false;
-            const querySnapshot = await getDocs(collection(db, "ordersNotSent"));
-            const querySnapshotSent = await getDocs(collection(db, "ordersSent"));
-            if (!querySnapshot.empty) {                
-                for (const doc of querySnapshot.docs) {
-                    const docData = doc.data();
-                    if (docData.username === username) {                        
-                        setHookahBowls(JSON.parse(docData.orders));
-                        bowlsSet = true;                        
-                    }
-                }
-                if (bowlsSet === false) {
-                    setHookahBowls([]);
-                }
-            }
-            if (!querySnapshotSent.empty) {
-                for (const doc of querySnapshotSent.docs) {
-                    const docData = doc.data();
-                    if (docData.username === username) {
-                        setHookahBowlsSent(JSON.parse(docData.orders));
-                        bowlsSetSent = true;
-                    }
-                }
-                if (bowlsSetSent === false) {
-                    setHookahBowlsSent([]);
-                }
-            }
-        };
-        getOrders();
-    }, [username, detector]);
+    };    
 
     const openProfileOverlay = () => {
         setToggleProfileOverlay(true);
@@ -191,6 +189,6 @@ const Orders = () => {
             { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } orders = { true }></ProfileOverlay>) }
         </div>
     );
-}
+};
 
 export default Orders;

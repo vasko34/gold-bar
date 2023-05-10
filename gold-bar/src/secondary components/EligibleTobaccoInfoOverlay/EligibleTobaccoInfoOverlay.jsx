@@ -24,6 +24,6 @@ const EligibleTobaccoInfoOverlay = ({ typesInfo, brandsInfo, close }) => {
             <FaTimes onClick = { close } className = 'close'></FaTimes>
         </div>
     );
-}
+};
 
 export default EligibleTobaccoInfoOverlay;

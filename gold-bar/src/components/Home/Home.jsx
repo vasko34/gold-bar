@@ -9,20 +9,20 @@ const Home = () => {
     const openLoginOverlay = () => {
         setToggleRegisterOverlay(false);
         setToggleLoginOverlay(true);
-    }
+    };
 
     const closeLoginOverlay = () => {
         setToggleLoginOverlay(false);
-    }
+    };
 
     const openRegisterOverlay = () => {
         setToggleLoginOverlay(false);
         setToggleRegisterOverlay(true);
-    }
+    };
 
     const closeRegisterOverlay = () => {
         setToggleRegisterOverlay(false);
-    }
+    };
 
     return (
         <div className = 'home'>
@@ -35,6 +35,6 @@ const Home = () => {
             { toggleRegisterOverlay && (<RegisterOverlay close = { closeRegisterOverlay }></RegisterOverlay>) }
         </div>
     );
-}
+};
 
 export default Home;

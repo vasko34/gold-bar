@@ -30,6 +30,6 @@ const TobaccoForLibrary = ({ type, brand, name, flavour, image, ice, fruity, swe
             </div>
         </div>
     );
-}
+};
 
 export default TobaccoForLibrary;

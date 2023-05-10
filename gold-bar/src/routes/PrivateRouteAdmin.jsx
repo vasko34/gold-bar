@@ -1,15 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Firebase } from "../global";
-import { getFirestore } from "firebase/firestore";
-import { doc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const PrivateRouteAdmin = ({ element: Element, ...rest }) => {
-    const [user, setUser] = React.useState(null);
-    const [adminStatus, setAdminStatus] = React.useState(null);
     const navigate = useNavigate();
+    const [user, setUser] = React.useState(null);
+    const [adminStatus, setAdminStatus] = React.useState(null);   
     const db = getFirestore(Firebase);
     const auth = getAuth(Firebase);
     const [isAuthenticated] = useAuthState(auth);
@@ -18,7 +17,6 @@ const PrivateRouteAdmin = ({ element: Element, ...rest }) => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
         });
-
         return unsubscribe;
     }, [auth]);
   
