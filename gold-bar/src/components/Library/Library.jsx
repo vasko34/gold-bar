@@ -25,6 +25,7 @@ const Library = () => {
     const [activeFiltersType, setActiveFiltersType] = React.useState([]);
     const [toggleProfileOverlay, setToggleProfileOverlay] = React.useState(null);
     const [toggleOrderOverlay, setToggleOrderOverlay] = React.useState(null);
+    const [isOpen, setIsOpen] = React.useState(false);
     const [user, setUser] = React.useState(null);
     const [username, setUsername] = React.useState(null);
     const [tobaccos, setTobaccos] = React.useState(null);
@@ -84,15 +85,19 @@ const Library = () => {
     };
 
     const openOrderOverlay = (brand, name, inStock) => {
-        if (inStock === true) {
-            setToggleOrderOverlay(true);
-            setTobaccoForOverlayBrand(brand);
-            setTobaccoForOverlayName(name);
-        }
+        if (!isOpen) {
+            if (inStock === true) {
+                setToggleOrderOverlay(true);
+                setTobaccoForOverlayBrand(brand);
+                setTobaccoForOverlayName(name);
+                setIsOpen(true);
+            }
+        }        
     };
 
     const closeOrderOverlay = () => {
         setToggleOrderOverlay(false);
+        setIsOpen(false);
     };
 
     const resetFilters = () => {
