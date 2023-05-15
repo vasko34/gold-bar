@@ -74,57 +74,7 @@ const Library = () => {
             arr = arr.filter(arrayItem => activeFiltersType.includes(arrayItem.type));
         }
         setListOfTobaccos(arr);
-    }, [activeFiltersBoolean, activeFiltersBrand, activeFiltersType]);
-
-    const openProfileOverlay = () => {
-        setToggleProfileOverlay(true);
-    };
-
-    const closeProfileOverlay = () => {
-        setToggleProfileOverlay(false);
-    };
-
-    const openOrderOverlay = (brand, name, inStock) => {
-        if (!isOpen) {
-            if (inStock === true) {
-                setToggleOrderOverlay(true);
-                setTobaccoForOverlayBrand(brand);
-                setTobaccoForOverlayName(name);
-                setIsOpen(true);
-            }
-        }        
-    };
-
-    const closeOrderOverlay = () => {
-        setToggleOrderOverlay(false);
-        setIsOpen(false);
-    };
-
-    const resetFilters = () => {
-        setActiveFiltersBoolean([]);
-        setActiveFiltersBrand([]);
-        setActiveFiltersType([]);
-    };
-
-    const handleLogOut = () => {
-        signOut(auth);
-        localStorage.removeItem('loginTime');
-        navigate('/');
-    };
-
-    React.useEffect(() => {
-        const loginTime = localStorage.getItem('loginTime');
-        if (user && loginTime) {
-            const timeoutMilliseconds = LoginTimeoutInMinutes * 60 * 1000;
-            const elapsedTime = new Date().getTime() - parseInt(loginTime);
-            if (elapsedTime < timeoutMilliseconds) {
-                const timeoutId = setTimeout(handleLogOut, timeoutMilliseconds - elapsedTime);
-                return () => clearTimeout(timeoutId);
-            } else {
-                handleLogOut();
-            }
-        }
-    }, [user]);  
+    }, [activeFiltersBoolean, activeFiltersBrand, activeFiltersType]);  
 
     const onCheckboxChangeInStock = () => {
         const filter = {
@@ -273,6 +223,56 @@ const Library = () => {
             setActiveFiltersBoolean(activeFiltersBoolean.concat(filter));
         }
     };
+
+    const resetFilters = () => {
+        setActiveFiltersBoolean([]);
+        setActiveFiltersBrand([]);
+        setActiveFiltersType([]);
+    };
+
+    const openProfileOverlay = () => {
+        setToggleProfileOverlay(true);
+    };
+
+    const closeProfileOverlay = () => {
+        setToggleProfileOverlay(false);
+    };
+
+    const openOrderOverlay = (brand, name, inStock) => {
+        if (!isOpen) {
+            if (inStock === true) {
+                setToggleOrderOverlay(true);
+                setTobaccoForOverlayBrand(brand);
+                setTobaccoForOverlayName(name);
+                setIsOpen(true);
+            }
+        }        
+    };
+
+    const closeOrderOverlay = () => {
+        setToggleOrderOverlay(false);
+        setIsOpen(false);
+    };    
+
+    const handleLogOut = () => {
+        signOut(auth);
+        localStorage.removeItem('loginTime');
+        navigate('/');
+    };
+
+    React.useEffect(() => {
+        const loginTime = localStorage.getItem('loginTime');
+        if (user && loginTime) {
+            const timeoutMilliseconds = LoginTimeoutInMinutes * 60 * 1000;
+            const elapsedTime = new Date().getTime() - parseInt(loginTime);
+            if (elapsedTime < timeoutMilliseconds) {
+                const timeoutId = setTimeout(handleLogOut, timeoutMilliseconds - elapsedTime);
+                return () => clearTimeout(timeoutId);
+            } else {
+                handleLogOut();
+            }
+        }
+    }, [user]);
 
     return (
         <div className = 'library'>

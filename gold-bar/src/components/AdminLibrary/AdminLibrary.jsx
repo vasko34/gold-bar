@@ -3,7 +3,7 @@ import './adminlibrary.css';
 import { Firebase } from "../../global";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, getDoc, getDocs, collection, setDoc } from "firebase/firestore";
-import { TobaccoForAdminLibrary, ProfileOverlay } from '../../secondary components';
+import { TobaccoForAdminLibrary, ProfileOverlay, DoubleCheckOverlay } from '../../secondary components';
 import { FaUser } from 'react-icons/fa';
 
 const removeArrayItem = (arr, condition) => {
@@ -20,6 +20,9 @@ const AdminLibrary = () => {
     const [activeFiltersBrand, setActiveFiltersBrand] = React.useState([]);
     const [activeFiltersType, setActiveFiltersType] = React.useState([]);
     const [toggleProfileOverlay, setToggleProfileOverlay] = React.useState(null);
+    const [toggleDoubleCheckOverlay, setToggleDoubleCheckOverlay] = React.useState(null);
+    const [delTobaccoBrand, setDelTobaccoBrand] = React.useState(null);
+    const [delTobaccoName, setDelTobaccoName] = React.useState(null);
     const [user, setUser] = React.useState(null);
     const [username, setUsername] = React.useState(null);
     const [tobaccos, setTobaccos] = React.useState(null);
@@ -69,21 +72,7 @@ const AdminLibrary = () => {
             arr = arr.filter(arrayItem => activeFiltersType.includes(arrayItem.type));
         }
         setListOfTobaccos(arr);
-    }, [activeFiltersBoolean, activeFiltersBrand, activeFiltersType, tobaccos]);
-
-    const openProfileOverlay = () => {
-        setToggleProfileOverlay(true);
-    };
-
-    const closeProfileOverlay = () => {
-        setToggleProfileOverlay(false);
-    };
-
-    const resetFilters = () => {
-        setActiveFiltersBoolean([]);
-        setActiveFiltersBrand([]);
-        setActiveFiltersType([]);
-    };    
+    }, [activeFiltersBoolean, activeFiltersBrand, activeFiltersType, tobaccos]);    
 
     const onCheckboxChangeInStock = () => {
         const filter = {
@@ -233,27 +222,56 @@ const AdminLibrary = () => {
         }
     };
 
+    const resetFilters = () => {
+        setActiveFiltersBoolean([]);
+        setActiveFiltersBrand([]);
+        setActiveFiltersType([]);
+    };    
+
+    const openProfileOverlay = () => {
+        setToggleProfileOverlay(true);
+    };
+
+    const closeProfileOverlay = () => {
+        setToggleProfileOverlay(false);
+    };
+
+    const openDoubleCheckOverlay = (brand, name) => {
+        setToggleDoubleCheckOverlay(true);
+        setDelTobaccoBrand(brand);
+        setDelTobaccoName(name);
+    };
+
+    const closeDoubleCheckOverlay = () => {
+        setToggleDoubleCheckOverlay(false);
+    };
+
     const updateStock = async (brand, name) => {
-        let tobaccosTemp;
-        const querySnapshot = await getDocs(collection(db, "tobaccoLibrary"));
-        tobaccosTemp = JSON.parse(querySnapshot.docs[0].data().tobaccos);
-        tobaccosTemp.forEach(e => {
-            if ((e.brand === brand) && (e.name === name)) {
-                e.inStock = !e.inStock;
-            }
-        });
-        await setDoc(querySnapshot.docs[0].ref, { tobaccos: JSON.stringify(tobaccosTemp) });
-        setDetector(prevDetector => !prevDetector);
+        if (brand && name) {
+            let tobaccosTemp;
+            const querySnapshot = await getDocs(collection(db, "tobaccoLibrary"));
+            tobaccosTemp = JSON.parse(querySnapshot.docs[0].data().tobaccos);
+            tobaccosTemp.forEach(e => {
+                if ((e.brand === brand) && (e.name === name)) {
+                    e.inStock = !e.inStock;
+                }
+            });
+            await setDoc(querySnapshot.docs[0].ref, { tobaccos: JSON.stringify(tobaccosTemp) });
+            setDetector(prevDetector => !prevDetector);
+        }        
     };
 
     const delTobacco = async (brand, name) => {
-        let tobaccosHolder;
-        const querySnapshot = await getDocs(collection(db, "tobaccoLibrary"));
-        tobaccosHolder = JSON.parse(querySnapshot.docs[0].data().tobaccos);
-        let tobaccosTemp = tobaccosHolder.filter(e => !(e.brand === brand && e.name === name));
-        await setDoc(querySnapshot.docs[0].ref, { tobaccos: JSON.stringify(tobaccosTemp) });
-        setDetector(prevDetector => !prevDetector);
-    };
+        if (brand && name) {
+            let tobaccosHolder;
+            const querySnapshot = await getDocs(collection(db, "tobaccoLibrary"));
+            tobaccosHolder = JSON.parse(querySnapshot.docs[0].data().tobaccos);
+            let tobaccosTemp = tobaccosHolder.filter(e => !(e.brand === brand && e.name === name));
+            await setDoc(querySnapshot.docs[0].ref, { tobaccos: JSON.stringify(tobaccosTemp) });
+            setDetector(prevDetector => !prevDetector);
+            closeDoubleCheckOverlay();
+        }        
+    };    
 
     return (
         <div className = 'adminlibrary'>
@@ -339,7 +357,7 @@ const AdminLibrary = () => {
                 {
                     (listOfTobaccos) ? ((listOfTobaccos.length > 0) ? (listOfTobaccos.map((e, i) => {
                         return (
-                            <TobaccoForAdminLibrary key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } ice = { e.ice } fruity = { e.fruity } sweet = { e.sweet } image = { e.image } inStock = { e.inStock } update = { () => updateStock(e.brand, e.name) } del = { () => delTobacco(e.brand, e.name) }></TobaccoForAdminLibrary>
+                            <TobaccoForAdminLibrary key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } ice = { e.ice } fruity = { e.fruity } sweet = { e.sweet } image = { e.image } inStock = { e.inStock } update = { () => updateStock(e.brand, e.name) } del = { () => openDoubleCheckOverlay(e.brand, e.name) }></TobaccoForAdminLibrary>
                         );
                     })) : (<h5>No results found</h5>)) : null
                 }
@@ -349,6 +367,7 @@ const AdminLibrary = () => {
                 <h3>{ username }</h3>
             </div>
             { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } library = { true }></ProfileOverlay>) }
+            { toggleDoubleCheckOverlay && (<DoubleCheckOverlay close = { closeDoubleCheckOverlay } del = { () => delTobacco(delTobaccoBrand, delTobaccoName) }></DoubleCheckOverlay>) }
         </div>
     );
 };
