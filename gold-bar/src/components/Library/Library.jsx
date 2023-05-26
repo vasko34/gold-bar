@@ -4,8 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { Firebase, LoginTimeoutInMinutes } from "../../global";
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { getFirestore, doc, getDoc, getDocs, collection } from "firebase/firestore";
-import { TobaccoForLibrary, ProfileOverlay, OrderOverlay } from '../../secondary components';
+import { TobaccoForLibrary, ProfileOverlay, OrderOverlay, LibraryFiltersOverlay } from '../../secondary components';
 import { FaUser } from 'react-icons/fa';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 const removeArrayItem = (arr, condition) => {
     if ((condition === 'instock') || (condition === 'ice') || (condition === 'fruity') || (condition === 'sweet')) {
@@ -24,6 +25,7 @@ const Library = () => {
     const [activeFiltersBrand, setActiveFiltersBrand] = React.useState([]);
     const [activeFiltersType, setActiveFiltersType] = React.useState([]);
     const [toggleProfileOverlay, setToggleProfileOverlay] = React.useState(null);
+    const [toggleLibraryFiltersOverlay, setToggleLibraryFiltersOverlay] = React.useState(null);
     const [toggleOrderOverlay, setToggleOrderOverlay] = React.useState(null);
     const [isOpen, setIsOpen] = React.useState(false);
     const [user, setUser] = React.useState(null);
@@ -231,6 +233,9 @@ const Library = () => {
     };
 
     const openProfileOverlay = () => {
+        setToggleLibraryFiltersOverlay(false);
+        setToggleOrderOverlay(false);
+        setIsOpen(false);
         setToggleProfileOverlay(true);
     };
 
@@ -238,9 +243,22 @@ const Library = () => {
         setToggleProfileOverlay(false);
     };
 
+    const openLibraryFiltersOverlay = () => {
+        setToggleProfileOverlay(false);
+        setToggleOrderOverlay(false);
+        setIsOpen(false);
+        setToggleLibraryFiltersOverlay(true);
+    };
+
+    const closeLibraryFiltersOverlay = () => {
+        setToggleLibraryFiltersOverlay(false);
+    };
+
     const openOrderOverlay = (brand, name, inStock) => {
         if (!isOpen) {
             if (inStock === true) {
+                setToggleProfileOverlay(false);
+                setToggleLibraryFiltersOverlay(false);
                 setToggleOrderOverlay(true);
                 setTobaccoForOverlayBrand(brand);
                 setTobaccoForOverlayName(name);
@@ -361,13 +379,15 @@ const Library = () => {
                             <TobaccoForLibrary key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } ice = { e.ice } fruity = { e.fruity } sweet = { e.sweet } image = { e.image } inStock = { e.inStock } open = { () => openOrderOverlay(e.brand, e.name, e.inStock) }></TobaccoForLibrary>
                         );
                     })) : (<h5>No results found</h5>)) : null
-                }
-            </div>
+                }                
+            </div>  
             <div className = 'profile' onClick = { openProfileOverlay }>
                 <FaUser className = 'profileicon'></FaUser>
                 <h3>{ username }</h3>
-            </div>
+            </div>   
+            <GiHamburgerMenu className = 'showfilters' onClick = { openLibraryFiltersOverlay }></GiHamburgerMenu>       
             { toggleOrderOverlay && (<OrderOverlay close = { closeOrderOverlay } brand = { tobaccoForOverlayBrand } name = { tobaccoForOverlayName }></OrderOverlay>) }
+            { toggleLibraryFiltersOverlay && (<LibraryFiltersOverlay close = { closeLibraryFiltersOverlay } resetFilters = { resetFilters } onCheckboxChangeInStock = { onCheckboxChangeInStock } onCheckboxChangeElement = { onCheckboxChangeElement } onCheckboxChangeDarkside = { onCheckboxChangeDarkside } onCheckboxChangeMusthave = { onCheckboxChangeMusthave } onCheckboxChangeBlackBurn = { onCheckboxChangeBlackBurn } onCheckboxChangeTangiers = { onCheckboxChangeTangiers } onCheckboxChangeZomo = { onCheckboxChangeZomo } onCheckboxChangeHolster = { onCheckboxChangeHolster } onCheckboxChangeBlonde = { onCheckboxChangeBlonde } onCheckboxChangeDarkWeak = { onCheckboxChangeDarkWeak } onCheckboxChangeDark = { onCheckboxChangeDark } onCheckboxChangeDarkStrong = { onCheckboxChangeDarkStrong } onCheckboxChangeDarkExtreme = { onCheckboxChangeDarkExtreme } onCheckboxChangeIce = { onCheckboxChangeIce } onCheckboxChangeFruity = { onCheckboxChangeFruity } onCheckboxChangeSweet = { onCheckboxChangeSweet } activeFiltersBoolean = { activeFiltersBoolean } activeFiltersBrand = { activeFiltersBrand } activeFiltersType = { activeFiltersType }></LibraryFiltersOverlay>) }
             { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } library = { true }></ProfileOverlay>) }
         </div>
     );

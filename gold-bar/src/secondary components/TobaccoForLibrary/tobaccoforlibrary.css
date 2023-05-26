@@ -1,4 +1,4 @@
-.tobacco {
+.tobaccoforlibrary {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -6,15 +6,15 @@
     cursor: pointer;
 }
 
-.tobacco:hover .tobacco__content {
+.tobaccoforlibrary:hover .tobaccoforlibrary__content {
     background: #262625;
 }
 
-.tobacco:hover .tobacco__footer {
+.tobaccoforlibrary:hover .tobaccoforlibrary__footer {
     background: #262625;
 }
 
-.tobacco img {
+.tobaccoforlibrary img {
     width: 12rem;
     height: 13rem;
     box-sizing: border-box;
@@ -24,7 +24,7 @@
     object-fit: cover;
 }
 
-.tobacco p {
+.tobaccoforlibrary p {
     font-family: 'Trebuchet MS';
     font-weight: 300;
     font-size: 14px;
@@ -34,7 +34,7 @@
     margin-right: 0.25rem;
 }
 
-.tobacco span {
+.tobaccoforlibrary span {
     font-family: 'Trebuchet MS';
     font-weight: 300;
     font-size: 12px;
@@ -45,7 +45,7 @@
     margin-left: 0.25rem;
 }
 
-.tobacco b {
+.tobaccoforlibrary b {
     font-family: 'Trebuchet MS';
     font-size: 12px;
     line-height: 135%;    
@@ -54,7 +54,7 @@
     margin-right: 0.25rem;
 }
 
-.tobacco__content {
+.tobaccoforlibrary__content {
     display: flex;
     flex-direction: column;
     background: #141413;
@@ -67,7 +67,7 @@
     position: relative;
 }
 
-.tobacco__content h2 {
+.tobaccoforlibrary__content h2 {
     font-family: 'Trebuchet MS';
     font-weight: 600;
     font-size: 18px;
@@ -77,7 +77,7 @@
     color: #FEDF33;
 }
 
-.tobacco__content h3 {
+.tobaccoforlibrary__content h3 {
     font-family: 'Trebuchet MS';
     font-weight: 500;
     font-size: 16px;
@@ -88,7 +88,7 @@
     margin: 0.2rem 0;
 }
 
-.tobacco__content h4 {
+.tobaccoforlibrary__content h4 {
     font-family: 'Trebuchet MS';
     font-weight: 400;
     font-size: 13px;
@@ -97,14 +97,14 @@
     color: #FEDF33;
 }
 
-.tobacco__content-instock {
+.tobaccoforlibrary__content-instock {
     display: flex;
     flex-direction: row;
     position: absolute;
     bottom: 5px;
 }
 
-.tobacco__footer {
+.tobaccoforlibrary__footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -117,19 +117,19 @@
     max-width: 12rem;
 }
 
-.tobacco__footer-ice {
+.tobaccoforlibrary__footer-ice {
     display: flex;
     flex-direction: row;
     margin-right: 0.5rem;
 }
 
-.tobacco__footer-fruity {
+.tobaccoforlibrary__footer-fruity {
     display: flex;
     flex-direction: row;
     margin-right: 0.5rem;
 }
 
-.tobacco__footer-sweet {
+.tobaccoforlibrary__footer-sweet {
     display: flex;
     flex-direction: row;
 }

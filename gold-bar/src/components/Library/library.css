@@ -114,7 +114,7 @@
     text-align: start; 
 }
 
-.library__content {
+.library__content {    
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 5rem;
@@ -139,35 +139,72 @@
   display: none;
 }
 
-.profile {
-    position: fixed;
+.showfilters {
+    display: none;
+    position: absolute;
+    left: 1rem;
     top: 1rem;
-    right: 2rem;
-    display: flex;
-    flex-direction: row;
-    cursor: pointer;
-}
-
-.profile h3 {
-    font-family: 'Trebuchet MS';
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 175%;    
-    letter-spacing: 0.04em;
-    color: #FEDF33;  
-}
-
-.profile:hover h3 {
-    color: #FFEF99;
-    text-decoration: underline;
-}
-
-.profileicon {
-    margin-right: 0.3rem;
-    margin-top: 0.2rem;
     color: #FEDF33;
+    font-size: 23px;
 }
 
-.profile:hover .profileicon {
-    color: #FFEF99;
+@media screen and (max-width: 1760px) {  
+    .library__content {        
+        grid-template-columns: repeat(4, 1fr);  
+        grid-gap: 6rem; 
+        padding: 4rem 3rem;             
+    }
+}
+
+@media screen and (max-width: 1500px) {    
+    .library__content {        
+        grid-template-columns: repeat(3, 1fr);                      
+    }
+}
+
+@media screen and (max-width: 1200px) {  
+    .library__content {        
+        grid-template-columns: repeat(2, 1fr);                              
+    }
+}
+
+@media screen and (max-width: 910px) {    
+    .profile {        
+        right: 1rem;        
+    }
+
+    .profile h3 {
+        display: none; 
+    }
+
+    .library__filter {
+        display: none;
+    }
+
+    .showfilters {
+        display: flex;
+    }
+
+    .library {
+        justify-content: center;
+    }
+
+    .library__content {        
+        grid-template-columns: repeat(3, 1fr); 
+        grid-gap: 5rem;                              
+    }
+}
+
+@media screen and (max-width: 830px) {   
+    .library__content {        
+        grid-template-columns: repeat(2, 1fr); 
+        grid-gap: 6rem;                              
+    }
+}
+
+@media screen and (max-width: 570px) {    
+    .library__content {        
+        grid-template-columns: repeat(1, 1fr); 
+        grid-gap: 5rem;                                   
+    }    
 }

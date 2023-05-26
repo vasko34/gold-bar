@@ -3,8 +3,9 @@ import './adminlibrary.css';
 import { Firebase } from "../../global";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, getDoc, getDocs, collection, setDoc } from "firebase/firestore";
-import { TobaccoForAdminLibrary, ProfileOverlay, DoubleCheckOverlay } from '../../secondary components';
+import { TobaccoForAdminLibrary, ProfileOverlay, DoubleCheckOverlay, LibraryFiltersOverlay } from '../../secondary components';
 import { FaUser } from 'react-icons/fa';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 const removeArrayItem = (arr, condition) => {
     if ((condition === 'instock') || (condition === 'ice') || (condition === 'fruity') || (condition === 'sweet')) {
@@ -20,6 +21,7 @@ const AdminLibrary = () => {
     const [activeFiltersBrand, setActiveFiltersBrand] = React.useState([]);
     const [activeFiltersType, setActiveFiltersType] = React.useState([]);
     const [toggleProfileOverlay, setToggleProfileOverlay] = React.useState(null);
+    const [toggleLibraryFiltersOverlay, setToggleLibraryFiltersOverlay] = React.useState(null);
     const [toggleDoubleCheckOverlay, setToggleDoubleCheckOverlay] = React.useState(null);
     const [delTobaccoBrand, setDelTobaccoBrand] = React.useState(null);
     const [delTobaccoName, setDelTobaccoName] = React.useState(null);
@@ -229,6 +231,8 @@ const AdminLibrary = () => {
     };    
 
     const openProfileOverlay = () => {
+        setToggleLibraryFiltersOverlay(false);
+        setToggleDoubleCheckOverlay(false);
         setToggleProfileOverlay(true);
     };
 
@@ -236,7 +240,19 @@ const AdminLibrary = () => {
         setToggleProfileOverlay(false);
     };
 
+    const openLibraryFiltersOverlay = () => {
+        setToggleProfileOverlay(false);
+        setToggleDoubleCheckOverlay(false);
+        setToggleLibraryFiltersOverlay(true);
+    };
+
+    const closeLibraryFiltersOverlay = () => {
+        setToggleLibraryFiltersOverlay(false);
+    };
+
     const openDoubleCheckOverlay = (brand, name) => {
+        setToggleProfileOverlay(false);
+        setToggleLibraryFiltersOverlay(false);
         setToggleDoubleCheckOverlay(true);
         setDelTobaccoBrand(brand);
         setDelTobaccoName(name);
@@ -353,20 +369,22 @@ const AdminLibrary = () => {
                     </div>
                 </div>
             </div>
-            <div className = 'adminlibrary__content'>
+            <div className = 'adminlibrary__content'>                
                 {
                     (listOfTobaccos) ? ((listOfTobaccos.length > 0) ? (listOfTobaccos.map((e, i) => {
                         return (
                             <TobaccoForAdminLibrary key = { i } type = { e.type } brand = { e.brand } name = { e.name } flavour = { e.flavour } ice = { e.ice } fruity = { e.fruity } sweet = { e.sweet } image = { e.image } inStock = { e.inStock } update = { () => updateStock(e.brand, e.name) } del = { () => openDoubleCheckOverlay(e.brand, e.name) }></TobaccoForAdminLibrary>
                         );
                     })) : (<h5>No results found</h5>)) : null
-                }
-            </div>
+                }                
+            </div>  
             <div className = 'profile' onClick = { openProfileOverlay }>
                 <FaUser className = 'profileicon'></FaUser>
                 <h3>{ username }</h3>
-            </div>
+            </div>     
+            <GiHamburgerMenu className = 'showfilters' onClick = { openLibraryFiltersOverlay }></GiHamburgerMenu>     
             { toggleProfileOverlay && (<ProfileOverlay close = { closeProfileOverlay } library = { true }></ProfileOverlay>) }
+            { toggleLibraryFiltersOverlay && (<LibraryFiltersOverlay close = { closeLibraryFiltersOverlay } resetFilters = { resetFilters } onCheckboxChangeInStock = { onCheckboxChangeInStock } onCheckboxChangeElement = { onCheckboxChangeElement } onCheckboxChangeDarkside = { onCheckboxChangeDarkside } onCheckboxChangeMusthave = { onCheckboxChangeMusthave } onCheckboxChangeBlackBurn = { onCheckboxChangeBlackBurn } onCheckboxChangeTangiers = { onCheckboxChangeTangiers } onCheckboxChangeZomo = { onCheckboxChangeZomo } onCheckboxChangeHolster = { onCheckboxChangeHolster } onCheckboxChangeBlonde = { onCheckboxChangeBlonde } onCheckboxChangeDarkWeak = { onCheckboxChangeDarkWeak } onCheckboxChangeDark = { onCheckboxChangeDark } onCheckboxChangeDarkStrong = { onCheckboxChangeDarkStrong } onCheckboxChangeDarkExtreme = { onCheckboxChangeDarkExtreme } onCheckboxChangeIce = { onCheckboxChangeIce } onCheckboxChangeFruity = { onCheckboxChangeFruity } onCheckboxChangeSweet = { onCheckboxChangeSweet } activeFiltersBoolean = { activeFiltersBoolean } activeFiltersBrand = { activeFiltersBrand } activeFiltersType = { activeFiltersType }></LibraryFiltersOverlay>) }
             { toggleDoubleCheckOverlay && (<DoubleCheckOverlay close = { closeDoubleCheckOverlay } del = { () => delTobacco(delTobaccoBrand, delTobaccoName) }></DoubleCheckOverlay>) }
         </div>
     );

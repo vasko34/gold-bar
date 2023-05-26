@@ -13,3 +13,50 @@ a {
     color: unset;
     text-decoration: none;
 }
+
+.profile {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.profile h3 {
+    font-family: 'Trebuchet MS';
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 175%;    
+    letter-spacing: 0.04em;
+    color: #FEDF33;  
+}
+
+.profile:hover h3 {
+    color: #FFEF99;
+    text-decoration: underline;
+}
+
+.profileicon {
+    margin-right: 0.3rem;
+    margin-top: 0.2rem;
+    color: #FEDF33;
+}
+
+.profile:hover .profileicon {
+    color: #FFEF99;
+}
+
+.close {
+    display: flex;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #FEDF33;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #FFEF99;
+}

@@ -48,35 +48,35 @@
     background: #262625;
 }
 
-.profile {
-    position: fixed;
-    top: 1rem;
-    right: 2rem;
-    display: flex;
-    flex-direction: row;
-    cursor: pointer;
+@media screen and (max-width: 900px) {
+    .adminpage__content button {
+        font-size: 27px;
+        min-width: 25rem;
+    }
+
+    .adminpage__content h1 {        
+        font-size: 90px;        
+    }
 }
 
-.profile h3 {
-    font-family: 'Trebuchet MS';
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 175%;    
-    letter-spacing: 0.04em;
-    color: #FEDF33;  
+@media screen and (max-width: 600px) {
+    .adminpage__content button {
+        font-size: 20px;
+        min-width: 20rem;        
+    }
+
+    .adminpage__content h1 {        
+        font-size: 80px;        
+    }
 }
 
-.profile:hover h3 {
-    color: #FFEF99;
-    text-decoration: underline;
-}
+@media screen and (max-width: 500px) {
+    .adminpage__content button {
+        font-size: 16px;
+        min-width: 17.5rem; 
+    }
 
-.profileicon {
-    margin-right: 0.3rem;
-    margin-top: 0.2rem;
-    color: #FEDF33;
-}
-
-.profile:hover .profileicon {
-    color: #FFEF99;
+    .adminpage__content h1 {        
+        font-size: 65px;        
+    }
 }

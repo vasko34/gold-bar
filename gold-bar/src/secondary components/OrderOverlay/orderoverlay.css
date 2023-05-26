@@ -15,16 +15,6 @@
     padding: 4rem 6rem; 
 }
 
-.orderoverlay h1 {
-    font-family: 'Trebuchet MS';
-    font-weight: 700;
-    font-size: 23px;
-    line-height: 130%;
-    letter-spacing: 0.04em;    
-    color: #FEDF33;
-    margin-bottom: 2rem;
-}
-
 .orderoverlay label {
     font-family: 'Trebuchet MS';
     font-weight: 400;
@@ -196,8 +186,7 @@
     cursor: pointer;   
     border: 2px solid #0D0D0C;
     border-radius: 1.5rem;
-    min-width: 8rem;
-    
+    min-width: 8rem;    
 }
 
 .orderoverlay__currentbowl-content button:disabled:hover {
@@ -273,16 +262,179 @@
     margin-right: 0.5rem;
 }
 
-.close {
-    display: flex;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    color: #FEDF33;
-    font-size: 20px;
-    cursor: pointer;
+@media screen and (max-width: 1300px) {  
+    .orderoverlay {               
+        padding: 3rem 4.5rem; 
+    }
+
+    .slider {        
+        min-width: 20rem;                    
+    }  
+
+    .orderoverlay__ordertobacco-slider p {        
+        font-size: 22px;                
+    }
+
+    .orderoverlay__currentbowl p {        
+        font-size: 20px;        
+    }
+
+    .orderoverlay__currentbowl-image img {
+        width: 12rem;
+    }
+    
+    .orderoverlay__currentbowl-image_progress {        
+        top: 11px;
+        right: 0.96rem;        
+    }
+
+    .orderoverlay__ordertobacco-slider button {                
+        min-width: 6.5rem;        
+    }
+
+    .orderoverlay__currentbowl-content button {       
+        min-width: 6.5rem;        
+    }    
 }
 
-.close:hover {
-    color: #FFEF99;
+@media screen and (max-width: 1150px) {     
+    .slider {        
+        min-width: 16rem;
+        height: 15px;            
+    }
+
+    .slider::-webkit-slider-thumb {        
+        width: 25px;
+        height: 25px;        
+    }    
+
+    .orderoverlay__ordertobacco-slider p {        
+        font-size: 20px;                
+    }      
+    
+    .orderoverlay__currentbowl-content span {        
+        font-size: 12px;        
+    }
+}
+
+@media screen and (max-width: 1000px) {  
+    .orderoverlay {     
+        padding: 2rem 3rem; 
+    }
+
+    .slider {        
+        min-width: 15rem;                    
+    }   
+
+    .orderoverlay__ordertobacco-slider p {        
+        font-size: 19px;                
+    }
+
+    .orderoverlay__currentbowl p {        
+        font-size: 18px;        
+    }
+
+    .orderoverlay__currentbowl-image img {
+        width: 10rem;
+    }
+    
+    .orderoverlay__currentbowl-image_progress {        
+        top: 9px;
+        right: 0.85rem;        
+    }
+
+    .orderoverlay__ordertobacco-slider button {        
+        font-size: 18px;        
+        min-width: 6rem;        
+    }
+
+    .orderoverlay__currentbowl-content button {        
+        font-size: 13px;        
+        min-width: 6rem;        
+    } 
+    
+    .orderoverlay__currentbowl-content span {        
+        font-size: 11px;        
+    }
+}
+
+@media screen and (max-width: 900px) {  
+    .orderoverlay {         
+        padding: 2rem 2.5rem; 
+    }
+
+    .slider {        
+        min-width: 13rem;                  
+    }  
+
+    .orderoverlay__ordertobacco-slider p {        
+        font-size: 17px;                
+    }
+
+    .orderoverlay__currentbowl p {        
+        font-size: 16px;        
+    }    
+
+    .orderoverlay__ordertobacco-slider button {        
+        font-size: 16px;        
+        min-width: 5rem;        
+    }
+
+    .orderoverlay__currentbowl-content button {        
+        font-size: 12px;        
+        min-width: 5rem;        
+    } 
+    
+    .orderoverlay__currentbowl-content span {        
+        font-size: 10px;        
+    }
+}
+
+@media screen and (max-width: 800px) {  
+    .orderoverlay {        
+        height: 75vh;
+        width: 75vw;        
+        padding: 2rem 2.5rem; 
+    }
+
+    .slider {        
+        min-width: 13rem;
+        height: 15px;            
+    }
+
+    .slider::-webkit-slider-thumb {        
+        width: 25px;
+        height: 25px;        
+    }    
+
+    .orderoverlay__ordertobacco-slider p {        
+        font-size: 17px;                
+    }
+
+    .orderoverlay__currentbowl p {        
+        font-size: 16px;        
+    }
+
+    .orderoverlay__currentbowl-image img {
+        width: 10rem;
+    }
+    
+    .orderoverlay__currentbowl-image_progress {        
+        top: 9px;
+        right: 0.85rem;        
+    }
+
+    .orderoverlay__ordertobacco-slider button {        
+        font-size: 16px;        
+        min-width: 5rem;        
+    }
+
+    .orderoverlay__currentbowl-content button {        
+        font-size: 12px;        
+        min-width: 5rem;        
+    } 
+    
+    .orderoverlay__currentbowl-content span {        
+        font-size: 10px;        
+    }
 }

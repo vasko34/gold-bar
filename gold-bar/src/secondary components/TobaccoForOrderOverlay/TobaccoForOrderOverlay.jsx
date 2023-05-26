@@ -3,9 +3,9 @@ import './tobaccofororderoverlay.css';
 
 const TobaccoForOrderOverlay = ({ type, brand, name, flavour, image }) => {
     return (
-        <div className = 'tobacco2'>
+        <div className = 'tobaccofororderoverlay'>
             <img src = { image } alt = 'tobacco_img'></img>
-            <div className = 'tobacco2__content'>
+            <div className = 'tobaccofororderoverlay__content'>
                 <h2>{ brand } - { name }</h2>
                 <h3>Type: { type }</h3>
                 <h4>Flavour: { flavour }</h4>

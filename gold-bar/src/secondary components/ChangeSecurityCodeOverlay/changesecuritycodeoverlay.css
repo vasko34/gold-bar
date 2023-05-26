@@ -85,17 +85,3 @@
 .changesecuritycodeoverlay button:hover {
     background: #262625;
 }
-
-.close {
-    display: flex;
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    color: #FEDF33;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.close:hover {
-    color: #FFEF99;
-}
