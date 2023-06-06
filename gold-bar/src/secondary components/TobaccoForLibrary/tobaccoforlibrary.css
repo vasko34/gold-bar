@@ -1,0 +1,135 @@
+.tobaccoforlibrary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-height: 25rem;
+    cursor: pointer;
+}
+
+.tobaccoforlibrary:hover .tobaccoforlibrary__content {
+    background: #262625;
+}
+
+.tobaccoforlibrary:hover .tobaccoforlibrary__footer {
+    background: #262625;
+}
+
+.tobaccoforlibrary img {
+    width: 12rem;
+    height: 13rem;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+    object-fit: cover;
+}
+
+.tobaccoforlibrary p {
+    font-family: 'Trebuchet MS';
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 135%;    
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    margin-right: 0.25rem;
+}
+
+.tobaccoforlibrary span {
+    font-family: 'Trebuchet MS';
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 135%;    
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    margin-right: 0.25rem;
+    margin-left: 0.25rem;
+}
+
+.tobaccoforlibrary b {
+    font-family: 'Trebuchet MS';
+    font-size: 12px;
+    line-height: 135%;    
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    margin-right: 0.25rem;
+}
+
+.tobaccoforlibrary__content {
+    display: flex;
+    flex-direction: column;
+    background: #141413;
+    box-sizing: border-box;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding: 0.3rem 0.3rem;
+    max-width: 12rem;
+    min-height: 10rem;
+    position: relative;
+}
+
+.tobaccoforlibrary__content h2 {
+    font-family: 'Trebuchet MS';
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 120%;
+    text-align: start;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+}
+
+.tobaccoforlibrary__content h3 {
+    font-family: 'Trebuchet MS';
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 130%;
+    text-align: start;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    margin: 0.2rem 0;
+}
+
+.tobaccoforlibrary__content h4 {
+    font-family: 'Trebuchet MS';
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 120%;    
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+}
+
+.tobaccoforlibrary__content-instock {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 5px;
+}
+
+.tobaccoforlibrary__footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: #141413;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-bottom-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    padding: 0.3rem 0.3rem;
+    max-width: 12rem;
+}
+
+.tobaccoforlibrary__footer-ice {
+    display: flex;
+    flex-direction: row;
+    margin-right: 0.5rem;
+}
+
+.tobaccoforlibrary__footer-fruity {
+    display: flex;
+    flex-direction: row;
+    margin-right: 0.5rem;
+}
+
+.tobaccoforlibrary__footer-sweet {
+    display: flex;
+    flex-direction: row;
+}

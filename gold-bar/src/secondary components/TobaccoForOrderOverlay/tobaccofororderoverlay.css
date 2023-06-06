@@ -1,0 +1,170 @@
+.tobaccofororderoverlay {
+    display: flex;
+    flex-direction: row;
+}
+
+.tobaccofororderoverlay img {
+    width: 12rem;  
+    height: 16rem;  
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;  
+    object-fit: cover;  
+}
+
+.tobaccofororderoverlay__content {
+    display: flex;
+    flex-direction: column;
+    background: #141413;
+    box-sizing: border-box;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: 1rem 1rem;
+    width: 14rem;
+}
+
+.tobaccofororderoverlay__content h2 {
+    font-family: 'Trebuchet MS';
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 120%;
+    text-align: start;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    margin-bottom: 1rem;
+}
+
+.tobaccofororderoverlay__content h3 {
+    font-family: 'Trebuchet MS';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 130%;
+    text-align: start;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    margin-bottom: 1rem;
+}
+
+.tobaccofororderoverlay__content h4 {
+    font-family: 'Trebuchet MS';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 120%;    
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+}
+
+@media screen and (max-width: 1300px) {  
+    .tobaccofororderoverlay img {
+        width: 9rem;  
+        height: 13rem;            
+    }    
+
+    .tobaccofororderoverlay__content h2 {        
+        font-size: 22px;        
+    }
+    
+    .tobaccofororderoverlay__content h3 {        
+        font-size: 18px;        
+    }
+    
+    .tobaccofororderoverlay__content h4 {      
+        font-size: 16px;       
+    }
+}
+
+@media screen and (max-width: 1150px) {  
+    .tobaccofororderoverlay img {
+        width: 8rem;  
+        height: 12rem;            
+    }
+    
+    .tobaccofororderoverlay__content {        
+        width: 10rem;
+    }
+
+    .tobaccofororderoverlay__content h2 {        
+        font-size: 18px;        
+    }
+    
+    .tobaccofororderoverlay__content h3 {        
+        font-size: 16px;        
+    }
+    
+    .tobaccofororderoverlay__content h4 {      
+        font-size: 14px;       
+    }
+}
+
+@media screen and (max-width: 1000px) {  
+    .tobaccofororderoverlay img {
+        width: 7rem;  
+        height: 10rem;            
+    }
+    
+    .tobaccofororderoverlay__content {        
+        width: 9rem;
+    }
+
+    .tobaccofororderoverlay__content h2 {        
+        font-size: 16px;        
+    }
+    
+    .tobaccofororderoverlay__content h3 {        
+        font-size: 14px;        
+    }
+    
+    .tobaccofororderoverlay__content h4 {      
+        font-size: 12px;       
+    }
+}
+
+@media screen and (max-width: 900px) {  
+    .tobaccofororderoverlay img {
+        width: 7rem;  
+        height: 10.5rem;            
+    }
+    
+    .tobaccofororderoverlay__content {        
+        width: 8rem;
+    }
+
+    .tobaccofororderoverlay__content h2 {        
+        font-size: 15px;        
+    }
+    
+    .tobaccofororderoverlay__content h3 {        
+        font-size: 13px;        
+    }
+    
+    .tobaccofororderoverlay__content h4 {      
+        font-size: 11px;       
+    }
+}
+
+@media screen and (max-width: 800px) {  
+    .tobaccofororderoverlay img {
+        width: 7rem;  
+        height: 10.5rem;            
+    }
+    
+    .tobaccofororderoverlay__content {        
+        width: 8rem;
+    }
+
+    .tobaccofororderoverlay__content h2 {        
+        font-size: 15px;        
+    }
+    
+    .tobaccofororderoverlay__content h3 {        
+        font-size: 13px;        
+    }
+    
+    .tobaccofororderoverlay__content h4 {      
+        font-size: 11px;       
+    }
+}

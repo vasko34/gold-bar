@@ -1,0 +1,210 @@
+.adminlibrary {    
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background: #1A1918;
+}
+
+.adminlibrary__filter {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-right: 2px solid #0D0D0C;
+    padding: 1.5rem 3rem;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.adminlibrary__filter h2 {
+    font-family: 'Trebuchet MS';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 155%;    
+    letter-spacing: 0.04em;
+    color: #FEDF33;  
+    margin-bottom: 0.8rem;  
+}
+
+.adminlibrary__filter button {
+    font-family: 'Trebuchet MS';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 175%;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    background: #141413;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    margin-bottom: 1.5rem;
+    border: 2px solid #0D0D0C;
+    border-radius: 1.5rem;
+}
+
+.adminlibrary__filter button:hover {
+    background: #262625;
+}
+
+.adminlibrary__filter-instock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+    border: 2px solid #0D0D0C;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    background: #141413;
+}
+
+.adminlibrary__filter-brand {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+    border: 2px solid #0D0D0C;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    background: #141413;
+}
+
+.adminlibrary__filter-type {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+    border: 2px solid #0D0D0C;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    background: #141413;
+}
+
+.adminlibrary__filter-boolean {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+    border: 2px solid #0D0D0C;
+    padding: 1rem 1.5rem;
+    background: #141413;
+}
+
+.adminlibrary__filter-checkbox {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0.4rem;
+}
+
+.adminlibrary__filter-checkbox_instock {
+    display: flex;
+    flex-direction: row;
+}
+
+.adminlibrary__filter-checkbox label,
+.adminlibrary__filter-checkbox_instock label {
+    font-family: 'Trebuchet MS';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 155%;    
+    letter-spacing: 0.04em;
+    color: #FEDF33; 
+    margin-left: 0.5rem;
+    text-align: start; 
+}
+
+.adminlibrary__content {    
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 5rem;
+    min-height: 100vh;
+    padding: 4rem 6rem;
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
+}
+
+.adminlibrary__content h5 {
+    font-family: 'Trebuchet MS';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 155%;    
+    letter-spacing: 0.04em;
+    color: #FEDF33;  
+    margin-bottom: 0.8rem;  
+}
+
+.adminlibrary__filter::-webkit-scrollbar,
+.adminlibrary__content::-webkit-scrollbar {
+  display: none;
+}
+
+.showfilters {
+    display: none;
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    color: #FEDF33;
+    font-size: 23px;
+}
+
+@media screen and (max-width: 1760px) {  
+    .adminlibrary__content {        
+        grid-template-columns: repeat(4, 1fr);  
+        grid-gap: 6rem; 
+        padding: 4rem 3rem;             
+    }
+}
+
+@media screen and (max-width: 1500px) {    
+    .adminlibrary__content {        
+        grid-template-columns: repeat(3, 1fr);                      
+    }
+}
+
+@media screen and (max-width: 1200px) {  
+    .adminlibrary__content {        
+        grid-template-columns: repeat(2, 1fr);                              
+    }
+}
+
+@media screen and (max-width: 910px) {   
+    .profile {        
+        right: 1rem;        
+    }
+      
+    .profile h3 {
+        display: none; 
+    }
+
+    .adminlibrary__filter {
+        display: none;
+    }
+
+    .showfilters {
+        display: flex;
+    }
+
+    .adminlibrary {
+        justify-content: center;
+    }
+
+    .adminlibrary__content {        
+        grid-template-columns: repeat(3, 1fr); 
+        grid-gap: 5rem;                              
+    }
+}
+
+@media screen and (max-width: 830px) {   
+    .adminlibrary__content {        
+        grid-template-columns: repeat(2, 1fr); 
+        grid-gap: 6rem;                              
+    }
+}
+
+@media screen and (max-width: 570px) {    
+    .adminlibrary__content {        
+        grid-template-columns: repeat(1, 1fr); 
+        grid-gap: 5rem;                                   
+    }    
+}

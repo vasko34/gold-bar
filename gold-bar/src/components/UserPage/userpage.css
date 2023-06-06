@@ -1,0 +1,42 @@
+.userpage {
+    position: fixed;
+    display: flex;
+    z-index: 1;
+    background: #1A1918;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.userpage h1 {
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 150px;
+    line-height: 130%;
+    text-align: center;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    margin-bottom: 5rem;
+}
+
+
+.userpage__content button {
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 80px;
+    line-height: 175%;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    background: #141413;
+    padding: 3rem 9rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+    border: 2px solid #0D0D0C;
+    border-radius: 3rem;
+}
+
+.userpage__content button:hover {
+    background: #262625;
+}

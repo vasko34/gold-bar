@@ -1,0 +1,68 @@
+.profileoverlay {
+    display: flex;
+    box-sizing: border-box;
+    border: 1.5px solid #0D0D0C;
+    background: #1A1918;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 20vw;
+    min-height: 35vh;
+    z-index: 3;
+    padding: 4rem 6rem; 
+}
+
+.profileoverlay__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profileoverlay__content h2 {
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 130%;
+    letter-spacing: 0.04em;    
+    color: #FEDF33;
+    margin-bottom: 2rem;
+}
+
+.profileoverlay__content p {
+    font-family: 'Trebuchet MS';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 130%;
+    letter-spacing: 0.04em;    
+    color: #FEDF33;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.profileoverlay__content p:hover {
+    color: #FFEF99;
+}
+
+.profileoverlay__content button {
+    font-family: 'Trebuchet MS';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 175%;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    background: #141413;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    margin-top: 2rem;
+    border: 2px solid #0D0D0C;
+    border-radius: 1.5rem;
+}
+
+.profileoverlay__content button:hover {
+    background: #262625;
+}

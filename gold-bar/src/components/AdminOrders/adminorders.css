@@ -1,0 +1,178 @@
+.adminorders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #1A1918;
+    padding: 2rem 4rem;
+    min-height: 100vh;
+}
+
+.adminorders h1 {
+    font-family: 'Trebuchet MS';
+    font-weight: 700;
+    font-size: 100px;
+    line-height: 130%;
+    text-align: center;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    margin-bottom: 3rem;
+}
+
+.adminorders__content {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.adminorders__content p {
+    font-family: 'Trebuchet MS';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 155%;  
+    text-align: center;
+    letter-spacing: 0.04em;
+    color: #FEDF33; 
+}
+
+.adminorders__content-table {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: 2px solid black;
+    padding: 1rem 1.5rem;
+    height: 21rem;
+    min-width: 45rem;
+    margin-bottom: 3rem;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+    overflow-y: auto;
+}
+
+.adminorders__content-table::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+    .adminorders h1 {        
+        font-size: 90px;  
+        margin-bottom: 2rem;      
+    }
+
+    .adminorders__content-table {
+        min-width: 35rem;     
+        max-width: 35rem;
+        height: 18rem;      
+    }
+
+    .hookahbowl {
+        min-height: 12rem;  
+    }
+
+    .hookahbowl__content {      
+        padding: 0.5rem 0 0 0;        
+    }
+    
+    .hookahbowl__content span {        
+        font-size: 12px;        
+    }
+
+    .hookahbowl__image img {
+        width: 10rem;  
+    }
+
+    .hookahbowl__image-progress {
+        top: 23px;
+        right: 0.8rem;          
+    }
+
+    .hookahbowl__contentrow {        
+        margin-bottom: 0.5rem;
+    }
+
+    .hookahbowl button {        
+        font-size: 15px;        
+        padding: 0.5rem 1rem;        
+        border-radius: 1.5rem;               
+        bottom: 0.5rem;
+        right: 0.5rem;
+    } 
+}
+
+@media screen and (max-width: 750px) {  
+    .adminorders h1 {        
+        font-size: 85px;        
+    }
+
+    .adminorders__content-table {
+        min-width: 30rem;     
+        max-width: 30rem;              
+    } 
+}
+
+@media screen and (max-width: 600px) { 
+    .adminorders h1 {        
+        font-size: 75px; 
+    }
+
+    .adminorders__content-table {
+        min-width: 25rem;     
+        max-width: 25rem;  
+        height: 17rem;    
+    }
+
+    .hookahbowl {
+        min-height: 11.5rem;  
+    }
+
+    .hookahbowl__content span {        
+        font-size: 10px;        
+    }
+
+    .hookahbowl__image img {
+        width: 7rem;  
+    }
+
+    .hookahbowl__image-progress {
+        top: 40.8px;
+        right: 9px;          
+    }
+
+    .hookahbowl button {        
+        font-size: 11px;     
+    }    
+}
+
+@media screen and (max-width: 500px) {  
+    .adminorders h1 {        
+        font-size: 65px;                
+    }
+
+    .adminorders__content-table {
+        min-width: 20rem;     
+        max-width: 20rem;  
+    }
+
+    .hookahbowl__content {     
+        margin-left: 0.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .hookahbowl__content span {    
+        line-height: 110%;       
+    }
+
+    .hookahbowl__image img {
+        width: 6rem;  
+    }
+
+    .hookahbowl__image-progress {
+        top: 49px;
+        right: 7.8px;          
+    }
+
+    .hookahbowl button {        
+        font-size: 10px;            
+    }    
+}

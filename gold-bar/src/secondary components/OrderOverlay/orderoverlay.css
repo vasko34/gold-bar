@@ -1,0 +1,440 @@
+.orderoverlay {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    box-sizing: border-box;
+    border: 1.5px solid #0D0D0C;
+    background: #1A1918;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 75vh;
+    width: 75vw;
+    z-index: 2;
+    padding: 4rem 6rem; 
+}
+
+.orderoverlay label {
+    font-family: 'Trebuchet MS';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 130%;
+    letter-spacing: 0.04em;    
+    color: #FEDF33;
+    margin-bottom: 0.5rem;
+}
+
+.orderoverlay button:hover {
+    background: #262625;
+}
+
+.orderoverlay button:disabled {
+    cursor: default;
+    opacity: 0.7;
+}
+
+.orderoverlay__ordertobacco {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.orderoverlay__ordertobacco-slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.orderoverlay__ordertobacco-slider p {
+    font-family: 'Trebuchet MS';
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 130%;
+    letter-spacing: 0.04em;    
+    color: #FEDF33;
+    margin-top: 1rem;
+}
+
+.orderoverlay__ordertobacco-slider button {
+    font-family: 'Trebuchet MS';
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 175%;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    background: #141413;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    margin-top: 2rem;
+    border: 2px solid #0D0D0C;
+    border-radius: 1.5rem;
+    min-width: 8rem;
+    margin-right: 1.5rem;
+}
+
+.orderoverlay__ordertobacco-slider button:disabled:hover {
+    background: #141413;
+}
+
+.orderoverlay__ordertobacco-sliderrow {
+    display: flex;
+    flex-direction: row;
+}
+
+.slider {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 1rem;
+    min-width: 23rem;
+    height: 20px;
+    background: #141413;
+    border: 0.1px solid black;
+    outline: none;
+    opacity: 0.8;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background: #FEDF33;
+    cursor: pointer;
+}
+  
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: #FEDF33;
+    cursor: pointer;
+}
+
+.orderoverlay__currentbowl {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    border: 1px solid black;
+    background: #141413;
+    padding: 0.3rem 2rem;
+    position: relative;
+}
+
+.orderoverlay__currentbowl p {
+    font-family: 'Trebuchet MS';
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 130%;
+    letter-spacing: 0.04em;    
+    color: #FEDF33;
+    margin-top: 1rem;
+}
+
+.orderoverlay__currentbowl-image {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.orderoverlay__currentbowl-image img {
+    width: 15rem;
+}
+
+.orderoverlay__currentbowl-image_progress {
+    position: absolute;
+    top: 14px;
+    right: 1.22rem;
+    width: 87.8%;
+}
+
+.orderoverlay__currentbowl-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+}
+
+.orderoverlay__currentbowl-content span {
+    font-family: 'Trebuchet MS';
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0.04em; 
+    margin-top: 0.1rem;
+    color: #FEDF33;
+}
+
+.orderoverlay__currentbowl-content button {
+    font-family: 'Trebuchet MS';
+    font-weight: 550;
+    font-size: 14px;
+    line-height: 125%;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    background: #0f0f0e;
+    padding: 0.5rem 0.4rem;
+    cursor: pointer;   
+    border: 2px solid #0D0D0C;
+    border-radius: 1.5rem;
+    min-width: 8rem;    
+}
+
+.orderoverlay__currentbowl-content button:disabled:hover {
+    background: #0f0f0e;
+}
+
+.orderoverlay__currentbowl-content button:last-child {
+    margin-left: 1rem;
+}
+
+.orderoverlay__currentbowl-contentrow {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+}
+
+.orderoverlay__currentbowl-contentrow_button {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.orderoverlay__currentbowl-contentrow_color1 {
+    display: flex;
+    box-sizing: border-box;
+    border: 1px solid rgb(120, 0, 255);
+    background: rgba(120, 0, 255, 0.5);
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+}
+
+.orderoverlay__currentbowl-contentrow_color2 {
+    display: flex;
+    box-sizing: border-box;
+    border: 1px solid rgb(120, 120, 255);
+    background: rgba(120, 120, 255, 0.5);
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+}
+
+.orderoverlay__currentbowl-contentrow_color3 {
+    display: flex;
+    box-sizing: border-box;
+    border: 1px solid rgb(120, 255, 255);
+    background: rgba(120, 255, 255, 0.5);
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+}
+
+.orderoverlay__currentbowl-contentrow_color4 {
+    display: flex;
+    box-sizing: border-box;
+    border: 1px solid rgb(0, 0, 255);
+    background: rgba(0, 0, 255, 0.5);
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+}
+
+.orderoverlay__currentbowl-contentrow_color5 {
+    display: flex;
+    box-sizing: border-box;
+    border: 1px solid rgb(120, 0, 25);
+    background: rgba(120, 0, 25, 0.5);
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 1300px) {  
+    .orderoverlay {               
+        padding: 3rem 4.5rem; 
+    }
+
+    .slider {        
+        min-width: 20rem;                    
+    }  
+
+    .orderoverlay__ordertobacco-slider p {        
+        font-size: 22px;                
+    }
+
+    .orderoverlay__currentbowl p {        
+        font-size: 20px;        
+    }
+
+    .orderoverlay__currentbowl-image img {
+        width: 12rem;
+    }
+    
+    .orderoverlay__currentbowl-image_progress {        
+        top: 11px;
+        right: 0.96rem;        
+    }
+
+    .orderoverlay__ordertobacco-slider button {                
+        min-width: 6.5rem;        
+    }
+
+    .orderoverlay__currentbowl-content button {       
+        min-width: 6.5rem;        
+    }    
+}
+
+@media screen and (max-width: 1150px) {     
+    .slider {        
+        min-width: 16rem;
+        height: 15px;            
+    }
+
+    .slider::-webkit-slider-thumb {        
+        width: 25px;
+        height: 25px;        
+    }    
+
+    .orderoverlay__ordertobacco-slider p {        
+        font-size: 20px;                
+    }      
+    
+    .orderoverlay__currentbowl-content span {        
+        font-size: 12px;        
+    }
+}
+
+@media screen and (max-width: 1000px) {  
+    .orderoverlay {     
+        padding: 2rem 3rem; 
+    }
+
+    .slider {        
+        min-width: 15rem;                    
+    }   
+
+    .orderoverlay__ordertobacco-slider p {        
+        font-size: 19px;                
+    }
+
+    .orderoverlay__currentbowl p {        
+        font-size: 18px;        
+    }
+
+    .orderoverlay__currentbowl-image img {
+        width: 10rem;
+    }
+    
+    .orderoverlay__currentbowl-image_progress {        
+        top: 9px;
+        right: 0.85rem;        
+    }
+
+    .orderoverlay__ordertobacco-slider button {        
+        font-size: 18px;        
+        min-width: 6rem;        
+    }
+
+    .orderoverlay__currentbowl-content button {        
+        font-size: 13px;        
+        min-width: 6rem;        
+    } 
+    
+    .orderoverlay__currentbowl-content span {        
+        font-size: 11px;        
+    }
+}
+
+@media screen and (max-width: 900px) {  
+    .orderoverlay {         
+        padding: 2rem 2.5rem; 
+    }
+
+    .slider {        
+        min-width: 13rem;                  
+    }  
+
+    .orderoverlay__ordertobacco-slider p {        
+        font-size: 17px;                
+    }
+
+    .orderoverlay__currentbowl p {        
+        font-size: 16px;        
+    }    
+
+    .orderoverlay__ordertobacco-slider button {        
+        font-size: 16px;        
+        min-width: 5rem;        
+    }
+
+    .orderoverlay__currentbowl-content button {        
+        font-size: 12px;        
+        min-width: 5rem;        
+    } 
+    
+    .orderoverlay__currentbowl-content span {        
+        font-size: 10px;        
+    }
+}
+
+@media screen and (max-width: 800px) {  
+    .orderoverlay {        
+        height: 75vh;
+        width: 75vw;        
+        padding: 2rem 2.5rem; 
+    }
+
+    .slider {        
+        min-width: 13rem;
+        height: 15px;            
+    }
+
+    .slider::-webkit-slider-thumb {        
+        width: 25px;
+        height: 25px;        
+    }    
+
+    .orderoverlay__ordertobacco-slider p {        
+        font-size: 17px;                
+    }
+
+    .orderoverlay__currentbowl p {        
+        font-size: 16px;        
+    }
+
+    .orderoverlay__currentbowl-image img {
+        width: 10rem;
+    }
+    
+    .orderoverlay__currentbowl-image_progress {        
+        top: 9px;
+        right: 0.85rem;        
+    }
+
+    .orderoverlay__ordertobacco-slider button {        
+        font-size: 16px;        
+        min-width: 5rem;        
+    }
+
+    .orderoverlay__currentbowl-content button {        
+        font-size: 12px;        
+        min-width: 5rem;        
+    } 
+    
+    .orderoverlay__currentbowl-content span {        
+        font-size: 10px;        
+    }
+}

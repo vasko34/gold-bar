@@ -1,0 +1,75 @@
+.securityoverlay {
+    display: flex;
+    box-sizing: border-box;
+    border: 1px solid #0D0D0C;
+    background: #1A1918;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 16vw;
+    max-height: 20vh;
+    z-index: 4;
+    padding: 4rem 6rem; 
+}
+
+.securityoverlay h2 {
+    font-family: 'Trebuchet MS';
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0.04em;    
+    color: #FEDF33;
+    margin-bottom: 1rem;
+    min-width: 9rem;
+}
+
+.securityoverlay p {
+    font-family: 'Trebuchet MS';
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 175%;    
+    letter-spacing: 0.04em;
+    color: red;   
+    text-align: center; 
+    min-width: 10rem;
+}
+
+.securityoverlay input {
+    font-family: 'Cormorant Upright';
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 175%;
+    letter-spacing: 0.04em;
+    text-transform: capitalize;
+    font-feature-settings: 'tnum' on, 'lnum' on;
+    color: #FFEB80;
+    background: #262625;
+    box-sizing: border-box;
+    border: 2px solid #0D0D0C;    
+    padding: 0.5rem 0.5rem;    
+    text-align: start;
+    margin-bottom: 0.5rem;
+}
+
+.securityoverlay button {
+    font-family: 'Trebuchet MS';
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 175%;
+    letter-spacing: 0.04em;
+    color: #FEDF33;
+    background: #141413;
+    padding: 0.3rem 0.9rem;
+    cursor: pointer;
+    border: 2px solid #0D0D0C;
+    border-radius: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.securityoverlay button:hover {
+    background: #262625;
+}
