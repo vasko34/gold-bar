@@ -50,7 +50,7 @@ a {
 .close {
     display: flex;
     position: absolute;
-    top: 1rem;
+    top: 0.8rem;
     right: 1rem;
     color: #FEDF33;
     font-size: 20px;

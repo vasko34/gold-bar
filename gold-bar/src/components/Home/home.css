@@ -94,3 +94,16 @@
         min-width: 14rem;                      
     }
 }
+
+@media screen and (max-width: 400px) {
+    .home h1 {        
+        font-size: 57px;               
+    }
+
+    .home__content button {        
+        font-size: 18px; 
+        padding: 1rem 1rem;
+        min-width: 10rem;  
+        max-width: 10rem;                    
+    }
+}

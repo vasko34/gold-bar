@@ -21,6 +21,12 @@
     margin-bottom: 5rem;
 }
 
+.userpage__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .userpage__content button {
     font-family: 'Trebuchet MS';
@@ -31,12 +37,87 @@
     color: #FEDF33;
     background: #141413;
     padding: 3rem 9rem;
-    cursor: pointer;
-    margin-bottom: 2rem;
+    cursor: pointer;    
     border: 2px solid #0D0D0C;
     border-radius: 3rem;
 }
 
 .userpage__content button:hover {
     background: #262625;
+}
+
+@media screen and (max-width: 1000px) {
+    .userpage h1 {
+        font-size: 140px;        
+    }    
+    
+    .userpage__content button {
+        font-size: 50px;
+        padding: 3rem 6rem;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .userpage h1 {
+        font-size: 120px;        
+    }    
+    
+    .userpage__content button {
+        font-size: 40px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .userpage h1 {
+        font-size: 100px;        
+    }    
+    
+    .userpage__content button {
+        font-size: 30px;
+        padding: 3rem 4rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .userpage h1 {
+        font-size: 90px;        
+    }    
+    
+    .userpage__content button {
+        padding: 2rem 3rem;
+    }
+
+    .userpage h1 {
+        margin-bottom: 3rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .userpage h1 {
+        font-size: 75px;        
+    }    
+    
+    .userpage__content button {
+        font-size: 25px;
+        padding: 1.5rem 2.5rem;
+    }
+
+    .userpage h1 {
+        margin-bottom: 2.5rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .userpage h1 {
+        font-size: 60px;        
+    }    
+    
+    .userpage__content button {
+        font-size: 20px;
+        padding: 1rem 2rem;
+    }
+
+    .userpage h1 {
+        margin-bottom: 2rem;
+    }
 }

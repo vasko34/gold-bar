@@ -10,7 +10,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 40vw;
+    width: 40vw;
     min-height: 35vh;
     z-index: 3;
     padding: 2rem 3rem;
@@ -84,4 +84,54 @@
 
 .changesecuritycodeoverlay button:hover {
     background: #262625;
+}
+
+@media screen and (max-width: 800px) {  
+    .changesecuritycodeoverlay {
+        width: 45vw;
+    }
+
+    .changesecuritycodeoverlay button {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 700px) {  
+    .changesecuritycodeoverlay {
+        width: 50vw;
+    }
+
+    .changesecuritycodeoverlay h1 {
+        font-size: 27px;
+    }
+
+    .changesecuritycodeoverlay button {
+        font-size: 17px;
+    }
+}
+
+@media screen and (max-width: 600px) {  
+    .changesecuritycodeoverlay {
+        width: 60vw;
+    }
+}
+
+@media screen and (max-width: 500px) {  
+    .changesecuritycodeoverlay {
+        width: 72vw;
+    }
+}
+
+@media screen and (max-width: 400px) {  
+    .changesecuritycodeoverlay {
+        width: 85vw;
+    }
+
+    .changesecuritycodeoverlay h1 {
+        font-size: 24px;
+    }
+
+    .changesecuritycodeoverlay input {
+        min-width: 14rem;
+    }
 }

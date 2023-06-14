@@ -69,8 +69,11 @@
     margin-top: 2rem;
     border: 2px solid #0D0D0C;
     border-radius: 1.5rem;
-    min-width: 8rem;
-    margin-right: 1.5rem;
+    min-width: 8rem;    
+}
+
+.orderoverlay__ordertobacco-slider button:last-child {    
+    margin-left: 1.5rem;
 }
 
 .orderoverlay__ordertobacco-slider button:disabled:hover {
@@ -320,6 +323,7 @@
 @media screen and (max-width: 1000px) {  
     .orderoverlay {     
         padding: 2rem 3rem; 
+        height: 65vh;
     }
 
     .slider {        
@@ -392,49 +396,71 @@
 
 @media screen and (max-width: 800px) {  
     .orderoverlay {        
-        height: 75vh;
-        width: 75vw;        
-        padding: 2rem 2.5rem; 
+        height: 86vh;
+        width: 55vw;        
+        padding: 1rem 2.5rem;
+        flex-direction: column;
+        align-items: center;        
     }
 
-    .slider {        
-        min-width: 13rem;
-        height: 15px;            
+    .orderoverlay label {        
+        margin-bottom: 0;
     }
 
-    .slider::-webkit-slider-thumb {        
-        width: 25px;
-        height: 25px;        
-    }    
+    .slider {
+        margin-top: 1rem;           
+    }   
 
     .orderoverlay__ordertobacco-slider p {        
-        font-size: 17px;                
+        font-size: 17px;
+        margin-top: 0.4rem;                
     }
 
     .orderoverlay__currentbowl p {        
-        font-size: 16px;        
+        font-size: 16px;
+        margin-top: 0.2rem;        
     }
 
-    .orderoverlay__currentbowl-image img {
-        width: 10rem;
-    }
-    
-    .orderoverlay__currentbowl-image_progress {        
-        top: 9px;
-        right: 0.85rem;        
+    .orderoverlay__currentbowl-content {
+        margin-top: 0.5rem;
     }
 
     .orderoverlay__ordertobacco-slider button {        
         font-size: 16px;        
-        min-width: 5rem;        
+        min-width: 5rem; 
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem; 
     }
 
-    .orderoverlay__currentbowl-content button {        
-        font-size: 12px;        
-        min-width: 5rem;        
-    } 
-    
-    .orderoverlay__currentbowl-content span {        
-        font-size: 10px;        
+    .orderoverlay__currentbowl-contentrow_button {
+        position: unset;
+        left: 0;
+        transform: translateX(0);
+    }
+}
+
+@media screen and (max-width: 700px) {  
+    .orderoverlay {
+        width: 60vw;
+    }
+}
+
+@media screen and (max-width: 600px) {  
+    .orderoverlay {
+        width: 70vw;
+    }
+}
+
+@media screen and (max-width: 500px) {  
+    .orderoverlay {        
+        height: 90vh;
+        width: 75vw;        
+        padding: 2.5rem 2.5rem 1rem 2.5rem;       
+    }
+}
+
+@media screen and (max-width: 400px) {  
+    .orderoverlay {
+        width: 85vw;       
     }
 }

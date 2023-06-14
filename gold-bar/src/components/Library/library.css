@@ -169,11 +169,11 @@
 }
 
 @media screen and (max-width: 910px) {    
-    .profile {        
+    .library .profile {        
         right: 1rem;        
     }
 
-    .profile h3 {
+    .library .profile h3 {
         display: none; 
     }
 

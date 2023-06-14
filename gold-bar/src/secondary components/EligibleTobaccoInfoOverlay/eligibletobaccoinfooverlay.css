@@ -10,7 +10,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 20vw;
+    width: 20vw;
     min-height: 35vh;
     z-index: 3;
     padding: 2rem 3rem;
@@ -48,4 +48,58 @@
 .eligibletobaccoinfooverlay__brands {
     display: flex;
     flex-direction: column;
+}
+
+@media screen and (max-width: 1200px) {  
+    .eligibletobaccoinfooverlay {
+        width: 23vw;
+    }
+}
+
+@media screen and (max-width: 950px) {  
+    .eligibletobaccoinfooverlay {
+        width: 26vw;
+    }
+}
+
+@media screen and (max-width: 850px) {  
+    .eligibletobaccoinfooverlay {
+        width: 30vw;
+    }
+}
+
+@media screen and (max-width: 750px) {  
+    .eligibletobaccoinfooverlay {
+        width: 35vw;
+    }
+}
+
+@media screen and (max-width: 650px) {  
+    .eligibletobaccoinfooverlay {
+        width: 41vw;
+    }
+}
+
+@media screen and (max-width: 550px) {  
+    .eligibletobaccoinfooverlay {
+        width: 48vw;
+    }
+}
+
+@media screen and (max-width: 450px) {  
+    .eligibletobaccoinfooverlay {
+        width: 53vw;
+    }
+}
+
+@media screen and (max-width: 400px) {  
+    .eligibletobaccoinfooverlay {
+        width: 60vw;
+    }
+}
+
+@media screen and (max-width: 350px) {  
+    .eligibletobaccoinfooverlay {
+        width: 65vw;
+    }
 }

@@ -141,7 +141,15 @@
 
     .hookahbowl button {        
         font-size: 11px;     
-    }    
+    } 
+
+    .adminorders .profile {
+        right: 1rem;
+    }
+    
+    .adminorders .profile h3 {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 500px) {  
@@ -152,6 +160,7 @@
     .adminorders__content-table {
         min-width: 20rem;     
         max-width: 20rem;  
+        padding: 1rem 0.6rem;
     }
 
     .hookahbowl__content {     
@@ -168,11 +177,70 @@
     }
 
     .hookahbowl__image-progress {
-        top: 49px;
-        right: 7.8px;          
+        top: 48.1px;
+        right: 8.2px;          
     }
 
     .hookahbowl button {        
         font-size: 10px;            
     }    
+}
+
+@media screen and (max-width: 400px) {  
+    .adminorders h1 {        
+        font-size: 62px;                
+    }
+
+    .adminorders__content-table {
+        min-width: 16.8rem;     
+        max-width: 16.8rem;  
+        height: 18rem;        
+    }
+
+    .hookahbowl {
+        min-height: 13rem;
+        max-height: 13rem;
+    }
+
+    .hookahbowl__content span {    
+        font-size: 8.5px;       
+    }
+
+    .hookahbowl__image img {
+        width: 5.7rem;  
+    }
+
+    .hookahbowl__image-progress {
+        top: 62px;
+        right: 7.9px;          
+    }
+
+    .hookahbowl button {        
+        font-size: 9px;            
+    }    
+
+    .hookahbowl__contentrow-color1 {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+    
+    .hookahbowl__contentrow-color2 {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+    
+    .hookahbowl__contentrow-color3 {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+    
+    .hookahbowl__contentrow-color4 {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+    
+    .hookahbowl__contentrow-color5 {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
 }

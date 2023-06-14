@@ -10,7 +10,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 25vw;
+    width: 25vw;
     max-height: 25vh;
     z-index: 4;
     padding: 3rem 3rem; 
@@ -23,7 +23,7 @@
     line-height: 120%;
     letter-spacing: 0.04em;    
     color: #FEDF33;
-    margin-bottom: 1rem;  
+    margin-bottom: 1.3rem;  
     text-align: center;  
 }
 
@@ -52,4 +52,51 @@
 .doublecheckoverlay__buttons {
     display: flex;
     flex-direction: row;
+}
+
+@media screen and (max-width: 1300px) {  
+    .doublecheckoverlay {
+        width: 30vw;
+    }
+}
+
+@media screen and (max-width: 1100px) {  
+    .doublecheckoverlay {
+        width: 36vw;
+    }
+}
+
+@media screen and (max-width: 900px) {  
+    .doublecheckoverlay {
+        width: 46vw;
+    }
+}
+
+@media screen and (max-width: 700px) {  
+    .doublecheckoverlay {
+        width: 55vw;
+    }
+}
+
+@media screen and (max-width: 600px) {  
+    .doublecheckoverlay {
+        width: 64vw;
+    }
+}
+
+@media screen and (max-width: 500px) {  
+    .doublecheckoverlay {
+        width: 80vw;
+    }
+}
+
+@media screen and (max-width: 400px) {  
+    .doublecheckoverlay {
+        width: 86vw;
+        padding: 3rem 2rem;
+    }
+
+    .doublecheckoverlay p {
+        font-size: 17px;
+    }
 }

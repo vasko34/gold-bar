@@ -79,4 +79,24 @@
     .adminpage__content h1 {        
         font-size: 65px;        
     }
+
+    .adminpage__content button {
+        margin-bottom: 1.3rem;
+    }
+
+    .adminpage .profile h3 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .adminpage__content button {
+        font-size: 12px;
+        min-width: 14.5rem;
+        max-width: 14.5rem; 
+    }
+
+    .adminpage__content h1 {        
+        font-size: 60px;        
+    }
 }

@@ -9,8 +9,7 @@
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 20vw;
+    transform: translate(-50%, -50%);    
     min-height: 50vh;
     z-index: 3;
     padding: 4rem 6rem; 
@@ -64,11 +63,37 @@
     background: #141413;
     padding: 0.5rem 1.5rem;
     cursor: pointer;
-    margin-bottom: 2rem;
     border: 2px solid #0D0D0C;
     border-radius: 1.5rem;
 }
 
 .loginoverlay button:hover {
     background: #262625;
+}
+
+@media screen and (max-width: 800px) {
+    .loginoverlay {
+        width: 50vw;
+        min-height: 40vh;
+        max-height: 40vh;
+        padding: 4rem 4rem; 
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .loginoverlay {
+        width: 60vw;        
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .loginoverlay {
+        width: 70vw;        
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .loginoverlay {
+        width: 80vw;        
+    }
 }

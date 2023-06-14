@@ -10,10 +10,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 16vw;
+    width: 16vw;
     max-height: 20vh;
     z-index: 4;
-    padding: 4rem 6rem; 
+    padding: 2rem 2rem; 
 }
 
 .securityoverlay h2 {
@@ -72,4 +72,75 @@
 
 .securityoverlay button:hover {
     background: #262625;
+}
+
+@media screen and (max-width: 1500px) {  
+    .securityoverlay {
+        width: 18vw;
+    }
+}
+
+@media screen and (max-width: 1300px) {  
+    .securityoverlay {
+        width: 19vw;
+    }
+}
+
+@media screen and (max-width: 1200px) {  
+    .securityoverlay {
+        width: 22vw;
+    }
+}
+
+@media screen and (max-width: 1100px) {  
+    .securityoverlay {
+        width: 23vw;
+    }
+}
+
+@media screen and (max-width: 1000px) {  
+    .securityoverlay {
+        width: 25vw;
+    }
+}
+
+@media screen and (max-width: 900px) {  
+    .securityoverlay {
+        width: 28vw;
+    }
+}
+
+@media screen and (max-width: 800px) {  
+    .securityoverlay {
+        width: 33vw;
+    }
+}
+
+@media screen and (max-width: 700px) {  
+    .securityoverlay {
+        width: 39vw;
+    }
+}
+
+@media screen and (max-width: 600px) {  
+    .securityoverlay {
+        width: 46vw;
+    }
+}
+
+@media screen and (max-width: 500px) {  
+    .securityoverlay {
+        width: 55vw;
+    }
+}
+
+@media screen and (max-width: 400px) {  
+    .securityoverlay {
+        width: 65vw;
+    }
+
+    .securityoverlay input {
+        width: 11rem;
+        margin-bottom: 0.1rem;
+    }
 }
