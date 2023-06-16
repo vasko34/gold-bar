@@ -5,6 +5,10 @@
     height: 100vh;
 }
 
+.orders .hookahbowl__content {
+    padding-top: 1.5rem;  
+}
+
 .orders h1 {
     font-family: 'Trebuchet MS';
     font-weight: 600;
@@ -16,7 +20,8 @@
     top: 3.5rem;
 }
 
-.orders p {
+.orders__pending p,
+.orders__sent p {
     font-family: 'Trebuchet MS';
     font-weight: 400;
     font-size: 20px;
@@ -36,7 +41,7 @@
 
 .orders__container::-webkit-scrollbar {
     display: none;
-  }
+}
 
 .orders__pending button {
     font-family: 'Trebuchet MS';
@@ -77,4 +82,232 @@
     min-height: 100vh;
     width: 50vw;
     padding: 4rem 6rem;
+    position: relative;
+}
+
+@media screen and (max-width: 1700px) {  
+    .orders__pending {
+        padding: 2rem 3rem;
+    }
+    
+    .orders__sent {
+        padding: 2rem 3rem;
+    }
+
+    .orders .hookahbowl__image img {
+        width: 12rem;  
+    }
+
+    .orders .hookahbowl__image-progress {
+        top: 12px;
+        right: 1rem;          
+    }
+
+    .orders .hookahbowl__content span {        
+        font-size: 16px;        
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .orders__pending {
+        padding: 2rem 1.5rem;
+    }
+    
+    .orders__sent {
+        padding: 2rem 1.5rem;
+    }
+
+    .orders .hookahbowl__content span {        
+        font-size: 13px;        
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .orders {
+        flex-direction: column;
+    }
+
+    .orders h1 {
+        top: 1.5rem;
+    }
+
+    .orders__sent {
+        min-height: 50vh;
+        width: 100vw;
+        padding: 1.5rem 1.5rem;
+    }
+
+    .orders__pending {
+        min-height: 50vh;
+        width: 100vw;
+        padding: 1.5rem 1.5rem;
+        border-right: none;
+        border-bottom: 2px solid #0D0D0C;
+    } 
+
+    .orders__pending button {
+        top: 0.7rem;
+        right: unset;
+        left: 21.5rem;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .orders .profile h3 {
+        display: none;
+    }
+
+    .orders .profile {
+        right: 0.8rem;
+    }
+
+    .orders .hookahbowl__image img {
+        width: 10rem;  
+    }
+
+    .orders .hookahbowl__image-progress {
+        top: 9px;
+        right: 0.8rem;          
+    }  
+    
+    .orders .hookahbowl__content {
+        margin: 0;
+    }
+
+    .orders .hookahbowl__content span {        
+        font-size: 12px;        
+    }    
+
+    .orders .hookahbowl__contentrow {
+        margin-bottom: 0.6rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .orders .hookahbowl .close {
+        top: 0.5rem;
+        right: 0.7rem;
+        font-size: 15px;
+    }
+
+    .orders h1 {
+        font-size: 20px;
+    }
+
+    .orders__pending button {
+        left: 15.7rem;
+        font-size: 17px;
+    }
+
+    .orders .hookahbowl__content {
+        height: 8rem;  
+    }
+
+    .orders .hookahbowl__content span {        
+        font-size: 9px;        
+    } 
+
+    .orders .hookahbowl__contentrow {
+        margin-bottom: 0.4rem;
+    }
+
+    .orders .hookahbowl__image img {
+        width: 7rem;  
+    }
+
+    .orders .hookahbowl__image-progress {
+        top: 13.5px;
+        right: 0.55rem;      
+    }
+
+    .orders .hookahbowl__contentrow-color1 {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+    
+    .orders .hookahbowl__contentrow-color2 {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+    
+    .orders .hookahbowl__contentrow-color3 {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+    
+    .orders .hookahbowl__contentrow-color4 {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+    
+    .orders .hookahbowl__contentrow-color5 {
+        width: 0.8rem;
+        height: 0.8rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .orders .profile {
+        right: 0.7rem;
+    }
+
+    .orders h1 {
+        font-size: 16px;
+    }
+
+    .orders__container {
+        margin-top: 2.5rem;
+    }
+
+    .orders__sent {
+        padding: 1.5rem 1.5rem 1.5rem 1rem;
+    }
+
+    .orders__pending {
+        padding: 1.5rem 1.5rem 1.5rem 1rem;
+    } 
+
+    .orders__pending button {
+        left: 12.4rem;
+        font-size: 17px;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .orders .hookahbowl__content span {        
+        font-size: 8.5px;        
+    }
+
+    .orders .hookahbowl__image img {
+        width: 5rem;  
+    }
+
+    .orders .hookahbowl__image-progress {
+        top: 27.5px;
+        right: 0.42rem;      
+    }
+
+    .orders .hookahbowl__contentrow-color1 {
+        width: 0.6rem;
+        height: 0.6rem;
+    }
+    
+    .orders .hookahbowl__contentrow-color2 {
+        width: 0.6rem;
+        height: 0.6rem;
+    }
+    
+    .orders .hookahbowl__contentrow-color3 {
+        width: 0.6rem;
+        height: 0.6rem;
+    }
+    
+    .orders .hookahbowl__contentrow-color4 {
+        width: 0.6rem;
+        height: 0.6rem;
+    }
+    
+    .orders .hookahbowl__contentrow-color5 {
+        width: 0.6rem;
+        height: 0.6rem;
+    }
 }

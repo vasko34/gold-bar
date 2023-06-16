@@ -122,6 +122,12 @@
 }
 
 @media screen and (max-width: 500px) {  
+    .profileoverlay .close {
+        top: 0.7rem;
+        right: 0.7rem;
+        font-size: 18px;
+    }
+
     .profileoverlay {
         width: 45vw;
     }

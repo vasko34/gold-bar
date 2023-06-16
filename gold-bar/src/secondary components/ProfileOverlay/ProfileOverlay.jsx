@@ -55,7 +55,7 @@ const ProfileOverlay = ({ close, library, orders, home }) => {
                 { !home && (adminStatus ? (<p onClick = { () => navigate('/admin') }>Home</p>) : (<p onClick = { () => navigate('/user') }>Home</p>)) }
                 { (adminStatus ? (<button type = 'button' onClick = { handleLogOut }>Log out</button>) : (<button type = 'button' onClick = { openSecurityOverlay }>Log out</button>)) }              
                 <FaTimes onClick = { close } className = 'close'></FaTimes>
-            </div>
+            </div>            
             { toggleSecurityOverlay && (<SecurityOverlay close = { closeSecurityOverlay } closeProfileOverlay = { close } logoutUser = { handleLogOut }></SecurityOverlay>) }
         </div>
     );
