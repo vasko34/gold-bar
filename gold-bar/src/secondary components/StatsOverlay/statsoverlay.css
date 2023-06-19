@@ -9,8 +9,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-width: 30vw;
-    min-height: 35vh;
+    width: 24rem;
+    height: 19rem;
     z-index: 3;
     padding: 2rem 3rem;
 }
@@ -35,64 +35,30 @@
     margin-bottom: 1.5rem;
 }
 
-@media screen and (max-width: 1300px) {
-    .statsoverlay p {
-        font-size: 17px; 
-        line-height: 150%;
-    }
-}
-
-@media screen and (max-width: 1050px) {  
+@media screen and (max-width: 600px) {  
     .statsoverlay {
-        max-width: 36.5vw;
-        min-width: 36.5vw;
-    }
-}
-
-@media screen and (max-width: 850px) {  
-    .statsoverlay {
-        max-width: 42vw;
-        min-width: 42vw;
-    }
-}
-
-@media screen and (max-width: 750px) {  
-    .statsoverlay {
-        max-width: 48vw;
-        min-width: 48vw;
-    }
-}
-
-@media screen and (max-width: 650px) {  
-    .statsoverlay {
-        max-width: 57.5vw;
-        min-width: 57.5vw;
-    }
-}
-
-@media screen and (max-width: 550px) {  
-    .statsoverlay {
-        max-width: 67vw;
-        min-width: 67vw;
+        width: 21.5rem;
     }
 
     .statsoverlay p {
-        font-size: 16px;
+        font-size: 15.5px;
     }
 }
 
-@media screen and (max-width: 450px) {  
+@media screen and (max-width: 500px) {  
     .statsoverlay {
-        max-width: 75vw;
-        min-width: 75vw;
+        width: 18.5rem;
+        height: 18rem;
         padding: 2rem 1.5rem;
+    }  
+}
+
+@media screen and (max-width: 400px) {  
+    .statsoverlay {
+        width: 17rem;
     }
 
     .statsoverlay p {
-        font-size: 15px;
+        font-size: 14px;
     }
-    
-    .statsoverlay h1 {
-        font-size: 38px;
-    }    
 }

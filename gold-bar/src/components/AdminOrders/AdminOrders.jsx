@@ -17,6 +17,16 @@ const AdminOrders = () => {
     const db = getFirestore(Firebase);
 
     React.useEffect(() => {
+        const minutes = 1;
+        const intervalId = setInterval(() => {
+            setDetector(prevDetector => !prevDetector);
+        }, minutes * 60 * 1000);
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, []);
+
+    React.useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
         });

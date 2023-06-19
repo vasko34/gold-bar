@@ -10,10 +10,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 20vw;
-    min-height: 35vh;
+    width: 14rem;
+    height: 33rem;
     z-index: 3;
-    padding: 2rem 3rem;
+    padding: 1rem 2rem;
 }
 
 .eligibletobaccoinfooverlay h4 {
@@ -39,6 +39,11 @@
     text-align: center;
 }
 
+.eligibletobaccoinfooverlay .close {
+    top: 0.3rem;
+    right: 0.5rem;
+}
+
 .eligibletobaccoinfooverlay__types {
     display: flex;
     flex-direction: column;
@@ -50,56 +55,8 @@
     flex-direction: column;
 }
 
-@media screen and (max-width: 1200px) {  
-    .eligibletobaccoinfooverlay {
-        width: 23vw;
-    }
-}
-
-@media screen and (max-width: 950px) {  
-    .eligibletobaccoinfooverlay {
-        width: 26vw;
-    }
-}
-
-@media screen and (max-width: 850px) {  
-    .eligibletobaccoinfooverlay {
-        width: 30vw;
-    }
-}
-
-@media screen and (max-width: 750px) {  
-    .eligibletobaccoinfooverlay {
-        width: 35vw;
-    }
-}
-
-@media screen and (max-width: 650px) {  
-    .eligibletobaccoinfooverlay {
-        width: 41vw;
-    }
-}
-
-@media screen and (max-width: 550px) {  
-    .eligibletobaccoinfooverlay {
-        width: 48vw;
-    }
-}
-
-@media screen and (max-width: 450px) {  
-    .eligibletobaccoinfooverlay {
-        width: 53vw;
-    }
-}
-
 @media screen and (max-width: 400px) {  
     .eligibletobaccoinfooverlay {
-        width: 60vw;
-    }
-}
-
-@media screen and (max-width: 350px) {  
-    .eligibletobaccoinfooverlay {
-        width: 65vw;
+        width: 13rem;
     }
 }

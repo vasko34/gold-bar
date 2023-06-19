@@ -10,7 +10,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40vw;
+    width: 23rem;
     min-height: 35vh;
     z-index: 3;
     padding: 2rem 3rem;
@@ -84,6 +84,12 @@
 
 .changesecuritycodeoverlay button:hover {
     background: #262625;
+}
+
+@media screen and (max-width: 950px) {  
+    .changesecuritycodeoverlay {
+        width: 40vw;
+    }
 }
 
 @media screen and (max-width: 800px) {  

@@ -11,7 +11,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 25vw;
-    min-height: 35vh;
+    height: 34.8rem;
     z-index: 3;
     padding: 4rem 6rem;
 }
@@ -27,7 +27,7 @@
     text-align: center;
     cursor: pointer;
     position: absolute;
-    top: 1rem;
+    top: 0.8rem;
     left: 1rem;
 }
 
@@ -68,7 +68,7 @@
     background: #141413;
     padding: 0.5rem 1.5rem;
     cursor: pointer;
-    margin-top: 1rem;
+    margin-top: 0.2rem;
     border: 2px solid #0D0D0C;
     border-radius: 1.5rem;
 }
@@ -94,7 +94,7 @@
     line-height: 130%;
     letter-spacing: 0.04em;    
     color: #FEDF33;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
     text-align: center;
 }
 
