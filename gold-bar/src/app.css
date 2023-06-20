@@ -60,3 +60,18 @@ a {
 .close:hover {
     color: #FFEF99;
 }
+
+.rotate_notification {
+    display: none;
+}
+
+@media screen and (max-height: 600px) and (orientation: landscape) {
+    .rotate_notification {
+        display: flex;
+        position: fixed;
+        height: 100vh;
+        width: 100vw;
+        object-fit: cover;
+        z-index: 9999;
+    }
+}

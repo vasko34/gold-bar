@@ -81,6 +81,7 @@ const AdminPage = () => {
     
     return (
         <div className = 'adminpage'>
+            <img src = { 'https://firebasestorage.googleapis.com/v0/b/gold-bar-4abbb.appspot.com/o/RotateNotification.png?alt=media&token=cbbbadf2-aa33-427f-8ed4-cf68a14ba9f6' } className = 'rotate_notification'></img>
             <div className = 'adminpage__content'>
                 <h1>Gold Bar</h1>
                 <button type = 'button' onClick = { () => navigate('/adminorders') }>View Orders</button>

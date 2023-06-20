@@ -4,7 +4,7 @@ import './app.css';
 const App = ({ children }) => {
     return (
         <div className = 'app'>
-            { children }
+            { children }            
         </div>
     );
 };

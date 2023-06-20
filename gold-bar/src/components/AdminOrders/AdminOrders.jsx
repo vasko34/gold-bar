@@ -119,6 +119,7 @@ const AdminOrders = () => {
 
     return (
         <div className = 'adminorders'>
+            <img src = { 'https://firebasestorage.googleapis.com/v0/b/gold-bar-4abbb.appspot.com/o/RotateNotification.png?alt=media&token=cbbbadf2-aa33-427f-8ed4-cf68a14ba9f6' } className = 'rotate_notification'></img>
             <h1>Orders</h1>
             <div className = 'adminorders__content'>
                 { (users !== null) ? ((users.length > 0) ? (users.map(user => {

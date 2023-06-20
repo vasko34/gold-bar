@@ -294,6 +294,7 @@ const Library = () => {
 
     return (
         <div className = 'library'>
+            <img src = { 'https://firebasestorage.googleapis.com/v0/b/gold-bar-4abbb.appspot.com/o/RotateNotification.png?alt=media&token=cbbbadf2-aa33-427f-8ed4-cf68a14ba9f6' } className = 'rotate_notification'></img>
             <div className = 'library__filter'>
                 <button type = 'button' onClick = { resetFilters }>Reset Filters</button>
                 <div className = 'library__filter-instock'>

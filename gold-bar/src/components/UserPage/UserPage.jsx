@@ -62,6 +62,7 @@ const UserPage = () => {
 
     return (
         <div className = 'userpage'>
+            <img src = { 'https://firebasestorage.googleapis.com/v0/b/gold-bar-4abbb.appspot.com/o/RotateNotification.png?alt=media&token=cbbbadf2-aa33-427f-8ed4-cf68a14ba9f6' } className = 'rotate_notification'></img>
             <div className = 'userpage__content'>
                 <h1>Gold Bar</h1>
                 <button type = 'button' onClick = { () => navigate('/library') }>Order Hookah</button>
