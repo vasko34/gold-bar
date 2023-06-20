@@ -3,7 +3,7 @@ import './orders.css';
 import { useNavigate } from 'react-router-dom';
 import { Firebase, LoginTimeoutInMinutes } from "../../global";
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
-import { getFirestore, collection, doc, getDoc, getDocs, setDoc, deleteDoc } from "firebase/firestore";
+import { getFirestore, collection, doc, getDoc, getDocs, setDoc, addDoc, deleteDoc } from "firebase/firestore";
 import { ProfileOverlay, HookahBowl } from '../../secondary components';
 import { FaUser } from 'react-icons/fa';
 
@@ -41,7 +41,7 @@ const Orders = () => {
             let bowlsSetSent = false;
             const querySnapshot = await getDocs(collection(db, "ordersNotSent"));
             const querySnapshotSent = await getDocs(collection(db, "ordersSent"));
-            if (!querySnapshot.empty) {                
+            if (!querySnapshot.empty) {   
                 for (const doc of querySnapshot.docs) {
                     const docData = doc.data();
                     if (docData.username === username) {                        
@@ -52,6 +52,8 @@ const Orders = () => {
                 if (bowlsSet === false) {
                     setHookahBowls([]);
                 }
+            } else {
+                setHookahBowls([]);
             }
             if (!querySnapshotSent.empty) {
                 for (const doc of querySnapshotSent.docs) {
@@ -92,14 +94,16 @@ const Orders = () => {
         let sentDocs;
         let docRefNotSent;
         let docRefSent;
+        let isEmpty = true;
         const querySnapshot = await getDocs(collection(db, "ordersNotSent"));
         const querySnapshotSent = await getDocs(collection(db, "ordersSent"));
+        console.log(querySnapshotSent);
         if (!querySnapshot.empty) {
             for (const doc of querySnapshot.docs) {
                 const docData = doc.data();
                 if (docData.username === username) {
-                    docRefNotSent = doc.ref
-                    notSentDocs = docData.orders
+                    docRefNotSent = doc.ref;
+                    notSentDocs = docData.orders;
                 }
             }
         }
@@ -107,14 +111,14 @@ const Orders = () => {
             for (const doc of querySnapshotSent.docs) {
                 const docData = doc.data();
                 if (docData.username === username) {
-                    docRefSent = doc.ref
-                    sentDocs = docData.orders
+                    docRefSent = doc.ref;
+                    sentDocs = docData.orders;
                 }
-            }
+            }            
         }
         if (notSentDocs) {
             if (!sentDocs) {
-                await setDoc(docRefSent, { orders: notSentDocs }, { merge: true });
+                await addDoc(collection(db, "ordersSent"), { orders: notSentDocs, username: username });
             } else {
                 const hookahBowlsTemp = JSON.parse(notSentDocs);
                 const hookahBowlsSentTemp = JSON.parse(sentDocs);

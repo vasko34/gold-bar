@@ -28,7 +28,8 @@
     line-height: 155%;    
     letter-spacing: 0.04em;
     color: #FEDF33;  
-    margin-bottom: 0.8rem;  
+    margin-bottom: 0.8rem; 
+    margin-top: 2rem; 
 }
 
 .orders__container {

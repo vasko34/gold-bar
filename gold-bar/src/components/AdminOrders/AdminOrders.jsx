@@ -11,7 +11,7 @@ const AdminOrders = () => {
     const [users, setUsers] = React.useState(null);
     const [user, setUser] = React.useState(null);
     const [username, setUsername] = React.useState(null);
-    const [emptyOrders, setEmptyOrders] = React.useState(true);
+    const [emptyOrders, setEmptyOrders] = React.useState(null);
     const [detector, setDetector] = React.useState(true);
     const auth = getAuth(Firebase);
     const db = getFirestore(Firebase);
@@ -61,6 +61,22 @@ const AdminOrders = () => {
             setUsers(sortedUsers);
         };
         getOrders();
+        
+        let isEmpty = true;
+        if (users) {
+            users.forEach(user => {
+                if (JSON.parse(user.orders).length > 0) {
+                    isEmpty = false;
+                }
+            });            
+        } else {
+            isEmpty = false;
+        }
+        if (isEmpty === true) {
+            setEmptyOrders(true);
+        } else {
+            setEmptyOrders(false);
+        }  
     }, [username, detector]);
 
     const doneBowl = async (bowl, username) => {
@@ -88,12 +104,11 @@ const AdminOrders = () => {
                         await setDoc(querySnapshot2.docs[0].ref, { hookahBowls: JSON.stringify(tempArray) });
                     }                   
                 }
-            }
-            setEmptyOrders(true);          
+            }         
         }
         setDetector(prevDetector => !prevDetector);
-    };    
-
+    };   
+    
     const openProfileOverlay = () => {
         setToggleProfileOverlay(true);
     };
@@ -108,16 +123,13 @@ const AdminOrders = () => {
             <div className = 'adminorders__content'>
                 { (users !== null) ? ((users.length > 0) ? (users.map(user => {
                     if (JSON.parse(user.orders).length > 0) {
-                        if (emptyOrders) {
-                            setEmptyOrders(false);
-                        }
                         return ( 
-                            <div className = 'adminorders__content-table'>
+                            <div className = 'adminorders__content-table'>                                
                                 <p>{ user.username }</p>
-                                { JSON.parse(user.orders).map((e, i) => {
+                                { JSON.parse(user.orders).map((e, i) => {                                    
                                     return (
                                         <HookahBowl key = { i } currentBowl = { e } done = { true } delBowl = { (bowl) => doneBowl(bowl, user.username) }></HookahBowl>
-                                    );
+                                    );                                    
                                 })}
                             </div>                  
                         );
