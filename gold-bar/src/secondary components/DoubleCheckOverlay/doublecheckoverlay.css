@@ -38,7 +38,8 @@
     padding: 0.4rem 1.2rem;
     cursor: pointer;
     border: 2px solid #0D0D0C;
-    border-radius: 1.5rem;    
+    border-radius: 1.5rem; 
+    width: 5rem;   
 }
 
 .doublecheckoverlay button:last-child {

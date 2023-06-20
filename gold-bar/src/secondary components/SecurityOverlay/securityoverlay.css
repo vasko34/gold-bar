@@ -10,7 +10,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 16vw;
+    width: 18rem;
     height: 11rem;
     z-index: 4;
     padding: 2rem 2rem; 
@@ -52,7 +52,8 @@
     border: 2px solid #0D0D0C;    
     padding: 0.5rem 0.5rem;    
     text-align: start;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.1rem;
+    width: 11rem;
 }
 
 .securityoverlay button {
@@ -72,75 +73,4 @@
 
 .securityoverlay button:hover {
     background: #262625;
-}
-
-@media screen and (max-width: 1500px) {  
-    .securityoverlay {
-        width: 18vw;
-    }
-}
-
-@media screen and (max-width: 1300px) {  
-    .securityoverlay {
-        width: 19vw;
-    }
-}
-
-@media screen and (max-width: 1200px) {  
-    .securityoverlay {
-        width: 22vw;
-    }
-}
-
-@media screen and (max-width: 1100px) {  
-    .securityoverlay {
-        width: 23vw;
-    }
-}
-
-@media screen and (max-width: 1000px) {  
-    .securityoverlay {
-        width: 25vw;
-    }
-}
-
-@media screen and (max-width: 900px) {  
-    .securityoverlay {
-        width: 28vw;
-    }
-}
-
-@media screen and (max-width: 800px) {  
-    .securityoverlay {
-        width: 33vw;
-    }
-}
-
-@media screen and (max-width: 700px) {  
-    .securityoverlay {
-        width: 39vw;
-    }
-}
-
-@media screen and (max-width: 600px) {  
-    .securityoverlay {
-        width: 46vw;
-    }
-}
-
-@media screen and (max-width: 500px) {  
-    .securityoverlay {
-        width: 55vw;
-    }
-}
-
-@media screen and (max-width: 400px) {  
-    .securityoverlay {
-        width: 65vw;
-    }
-
-    .securityoverlay input {
-        width: 11rem;
-        margin-bottom: 0.1rem;
-    }
 }

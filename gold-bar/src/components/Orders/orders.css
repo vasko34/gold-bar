@@ -148,7 +148,7 @@
     .orders__pending button {
         top: 0.7rem;
         right: unset;
-        left: 21.5rem;
+        left: 22rem;
     }
 }
 
@@ -195,7 +195,7 @@
     }
 
     .orders__pending button {
-        left: 15.7rem;
+        left: 16rem;
         font-size: 17px;
     }
 
@@ -268,7 +268,7 @@
     } 
 
     .orders__pending button {
-        left: 12.4rem;
+        left: 13rem;
         font-size: 17px;
         padding: 0.4rem 0.8rem;
     }

@@ -10,7 +10,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 12vw;
+    width: 13rem;
     min-height: 30vh;
     z-index: 3;
     padding: 2rem 2rem; 
@@ -67,69 +67,11 @@
     background: #262625;
 }
 
-@media screen and (max-width: 1700px) {  
-    .profileoverlay {
-        width: 13.5vw;
-    }
-}
-
-@media screen and (max-width: 1500px) {  
-    .profileoverlay {
-        width: 15vw;
-    }
-}
-
-@media screen and (max-width: 1300px) {  
-    .profileoverlay {
-        width: 17vw;
-    }
-}
-
-@media screen and (max-width: 1100px) {  
-    .profileoverlay {
-        width: 19vw;
-    }
-}
-
-@media screen and (max-width: 1000px) {  
-    .profileoverlay {
-        width: 21vw;
-    }
-}
-
-@media screen and (max-width: 900px) {  
-    .profileoverlay {
-        width: 23vw;
-    }
-}
-
-@media screen and (max-width: 800px) {  
-    .profileoverlay {
-        width: 27vw;
-    }
-}
-
-@media screen and (max-width: 700px) {  
-    .profileoverlay {
-        width: 31vw;
-    }
-}
-
-@media screen and (max-width: 600px) {  
-    .profileoverlay {
-        width: 37vw;
-    }
-}
-
 @media screen and (max-width: 500px) {  
     .profileoverlay .close {
         top: 0.7rem;
         right: 0.7rem;
         font-size: 18px;
-    }
-
-    .profileoverlay {
-        width: 45vw;
     }
 
     .profileoverlay__content button {
@@ -139,7 +81,6 @@
 
 @media screen and (max-width: 400px) {  
     .profileoverlay {
-        width: 50vw;
         padding: 2rem 1rem;
     }
 }

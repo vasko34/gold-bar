@@ -23,7 +23,7 @@
     line-height: 130%;
     letter-spacing: 0.04em;   
     color: #FEDF33;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     text-align: center;
     min-width: 10rem;
 }
@@ -40,14 +40,14 @@
 }
 
 .eligibletobaccoinfooverlay .close {
-    top: 0.3rem;
+    top: 0.5rem;
     right: 0.5rem;
 }
 
 .eligibletobaccoinfooverlay__types {
     display: flex;
     flex-direction: column;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .eligibletobaccoinfooverlay__brands {

@@ -12,7 +12,7 @@
     transform: translate(-50%, -50%);    
     height: 33rem;
     z-index: 3;
-    padding: 4rem 6rem; 
+    padding: 4rem 5rem; 
 }
 
 .registeroverlay h2 {
@@ -22,7 +22,7 @@
     line-height: 130%;
     letter-spacing: 0.04em;    
     color: #FEDF33;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .registeroverlay p {
@@ -49,7 +49,8 @@
     border: 2px solid #0D0D0C;    
     padding: 1rem 1rem;    
     text-align: start;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
+    max-width: 12rem;
 }
 
 .registeroverlay button {
@@ -62,7 +63,6 @@
     background: #141413;
     padding: 0.5rem 1.5rem;
     cursor: pointer;
-    margin-top: 1rem;
     border: 2px solid #0D0D0C;
     border-radius: 1.5rem;
 }
@@ -93,7 +93,7 @@
 @media screen and (max-width: 800px) {
     .registeroverlay {
         width: 50vw;
-        padding: 4rem 4rem; 
+        padding: 4rem 3rem; 
     }
 }
 

@@ -10,10 +10,10 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 25vw;
+    width: 25rem;
     height: 34.8rem;
     z-index: 3;
-    padding: 4rem 6rem;
+    padding: 4rem 5rem;
 }
 
 .addtobaccooverlay h3 {
@@ -68,7 +68,6 @@
     background: #141413;
     padding: 0.5rem 1.5rem;
     cursor: pointer;
-    margin-top: 0.2rem;
     border: 2px solid #0D0D0C;
     border-radius: 1.5rem;
 }
@@ -94,7 +93,7 @@
     line-height: 130%;
     letter-spacing: 0.04em;    
     color: #FEDF33;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.1rem;
     text-align: center;
 }
 
@@ -111,13 +110,13 @@
     border: 2px solid #0D0D0C;    
     padding: 1rem 1rem;    
     text-align: start;
-    margin-bottom: 1rem;
+    margin-bottom: 0.7rem;
 }
 
 .addtobaccooverlay__checkboxes {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1rem;
+    grid-gap: 0.5rem;
     margin-bottom: 0.5rem;
 }
 
@@ -143,83 +142,22 @@
     flex-direction: row;
 }
 
-@media screen and (max-width: 1600px) {  
+@media screen and (max-width: 600px) {  
     .addtobaccooverlay {
-        width: 30vw;
-    }
-}
-
-@media screen and (max-width: 1350px) {  
-    .addtobaccooverlay {
-        width: 35vw;
-    }
-}
-
-@media screen and (max-width: 1150px) {  
-    .addtobaccooverlay {
-        width: 40vw;
-    }
-}
-
-@media screen and (max-width: 1000px) {  
-    .addtobaccooverlay {
-        width: 47vw;
-    }
-}
-
-@media screen and (max-width: 850px) {  
-    .addtobaccooverlay {
-        width: 52.5vw;
-    }
-}
-
-@media screen and (max-width: 750px) {  
-    .addtobaccooverlay {
-        width: 60vw;
-    }
-
-    .addtobaccooverlay__checkboxes-checkbox label {
-        font-size: 15px;
-    }
-}
-
-@media screen and (max-width: 650px) {  
-    .addtobaccooverlay {
-        width: 70vw;
-    }
-}
-
-@media screen and (max-width: 550px) {  
-    .addtobaccooverlay {
-        width: 76vw;
-    }
-
-    .addtobaccooverlay__checkboxes-checkbox label {
-        font-size: 14px;
-    }
-}
-
-@media screen and (max-width: 500px) {  
-    .addtobaccooverlay {
-        width: 80vw;
-        padding: 4rem 5rem;
+        width: 22rem;
+        padding: 4rem 3rem;
     }
 }
 
 @media screen and (max-width: 450px) {  
     .addtobaccooverlay {
-        width: 85vw;
-        padding: 4rem 4rem;
+        width: 20rem;
     }
 }
 
 @media screen and (max-width: 400px) {  
     .addtobaccooverlay {
-        width: 90vw;
-        padding: 4rem 3rem;
-    }
-
-    .addtobaccooverlay__checkboxes-checkbox label {
-        font-size: 13px;
+        width: 18rem;
+        padding: 4rem 2rem;
     }
 }
