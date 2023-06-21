@@ -38,6 +38,8 @@
     margin-top: 3rem;
     overflow-y: auto;
     max-height: 100vh;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .orders__container::-webkit-scrollbar {

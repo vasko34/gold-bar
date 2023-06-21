@@ -116,8 +116,11 @@
 }
   
 .slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
     background: #FEDF33;
     cursor: pointer;
 }
@@ -330,6 +333,8 @@
         align-items: center;
         overflow-y: auto;
         overflow-x: hidden;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
 
     .orderoverlay::-webkit-scrollbar {
