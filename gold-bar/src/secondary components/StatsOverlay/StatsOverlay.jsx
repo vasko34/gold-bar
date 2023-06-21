@@ -24,8 +24,7 @@ const StatsOverlay = ({ close }) => {
     }, []);
 
     React.useEffect(() => {
-        const currentDateAsString = new Date().toLocaleDateString();
-        const currentDate = new Date(currentDateAsString);
+        const currentDate = new Date();
         let counterThisMonth = 0;
         let counterLastMonth = 0;
         let counterThisYear = 0;
@@ -33,7 +32,11 @@ const StatsOverlay = ({ close }) => {
         if (hookahBowls) {
             setHookahBowlsAllTime(hookahBowls.length);
             hookahBowls.forEach(e => {
-                const otherDate = new Date(e.date);
+                const dateParts = e.date.split('/');
+                const day = parseInt(dateParts[0], 10);
+                const month = parseInt(dateParts[1], 10);
+                const year = parseInt(dateParts[2], 10);
+                const otherDate = new Date(year, month - 1, day);
                 if ((currentDate.getMonth() === otherDate.getMonth()) && (currentDate.getFullYear() === otherDate.getFullYear())) {
                     counterThisMonth++;
                 }
@@ -50,7 +53,7 @@ const StatsOverlay = ({ close }) => {
             setHookahBowlsThisMonth(counterThisMonth);
             setHookahBowlsLastMonth(counterLastMonth);
             setHookahBowlsThisYear(counterThisYear);
-            setHookahBowlsLastYear(counterLastYear);
+            setHookahBowlsLastYear(counterLastYear);            
         }
     }, [hookahBowls]);
 
