@@ -44,6 +44,12 @@
     background: #262625;
 }
 
+.libraryfiltersoverlay .close {
+    position: fixed;
+    right: unset;
+    left: 16rem;
+}
+
 .libraryfiltersoverlay__instock {
     display: flex;
     flex-direction: column;
