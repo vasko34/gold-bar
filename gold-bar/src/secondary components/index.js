@@ -5,7 +5,6 @@ export { default as SecurityOverlay } from './SecurityOverlay/SecurityOverlay';
 export { default as OrderOverlay } from './OrderOverlay/OrderOverlay';
 export { default as AddTobaccoOverlay } from './AddTobaccoOverlay/AddTobaccoOverlay';
 export { default as StatsOverlay } from './StatsOverlay/StatsOverlay';
-export { default as EligibleTobaccoInfoOverlay } from './EligibleTobaccoInfoOverlay/EligibleTobaccoInfoOverlay';
 export { default as ChangeSecurityCodeOverlay } from './ChangeSecurityCodeOverlay/ChangeSecurityCodeOverlay';
 export { default as DoubleCheckOverlay } from './DoubleCheckOverlay/DoubleCheckOverlay';
 export { default as LibraryFiltersOverlay } from './LibraryFiltersOverlay/LibraryFiltersOverlay';

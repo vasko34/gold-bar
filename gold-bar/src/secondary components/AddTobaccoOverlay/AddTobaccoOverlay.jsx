@@ -3,13 +3,11 @@ import './addtobaccooverlay.css';
 import { Firebase } from "../../global";
 import { getFirestore, getDocs, collection, setDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { EligibleTobaccoInfoOverlay } from '../index.js';
 import { FaTimes } from 'react-icons/fa';
 
 const AddTobaccoOverlay = ({ close }) => {
-    const [toggleEligibleTobaccoInfoOverlay, setToggleEligibleTobaccoInfoOverlay] = React.useState(null);
-    const [currentInputType, setCurrentInputType] = React.useState('');
-    const [currentInputBrand, setCurrentInputBrand] = React.useState('');
+    const [currentInputType, setCurrentInputType] = React.useState('Blonde');
+    const [currentInputBrand, setCurrentInputBrand] = React.useState('Element Air');
     const [currentInputName, setCurrentInputName] = React.useState('');
     const [currentInputFlavour, setCurrentInputFlavour] = React.useState('');
     const [currentInputIce, setCurrentInputIce] = React.useState(false);
@@ -19,8 +17,6 @@ const AddTobaccoOverlay = ({ close }) => {
     const [imageURL, setImageURL] = React.useState(null);
     const [types, setTypes] = React.useState(null);
     const [brands, setBrands] = React.useState(null);
-    const [typeError, setTypeError] = React.useState(null);
-    const [brandError, setBrandError] = React.useState(null);
     const [nameError, setNameError] = React.useState(null);
     const [flavourError, setFlavourError] = React.useState(null);   
     const [uploadNotification, setUploadNotification] = React.useState(null); 
@@ -37,27 +33,7 @@ const AddTobaccoOverlay = ({ close }) => {
         getEligibleTobaccoInfo();
     }, []);
 
-    const openEligibleTobaccoInfoOverlay = () => {
-        setToggleEligibleTobaccoInfoOverlay(true);
-    };
-
-    const closeEligibleTobaccoInfoOverlay = () => {
-        setToggleEligibleTobaccoInfoOverlay(false);
-    };
-
-    const handleAdd = (type, brand, name, flavour) => {     
-        if (!types.includes(type)) {
-            setTypeError(true);
-        } else {
-            setTypeError(false);
-        }
-
-        if (!brands.includes(brand)) {
-            setBrandError(true);
-        } else {
-            setBrandError(false);
-        }
-
+    const handleAdd = (name, flavour) => {
         if (!name) {
             setNameError(true);
         } else {
@@ -69,6 +45,14 @@ const AddTobaccoOverlay = ({ close }) => {
         } else {
             setFlavourError(false);
         }
+    };
+
+    const HandleTypeChange = (e) => {
+        setCurrentInputType(e.target.value);
+    };
+
+    const HandleBrandChange = (e) => {
+        setCurrentInputBrand(e.target.value);
     };
 
     const uploadImage = async (e) => {
@@ -101,20 +85,32 @@ const AddTobaccoOverlay = ({ close }) => {
             await setDoc(querySnapshot.docs[0].ref, { tobaccos: JSON.stringify(tobaccosTemp) });    
             window.location.reload();                 
         }        
-    };
+    };    
 
     React.useEffect(() => {
-        if ((typeError === false) && (brandError === false) && (nameError === false) && (flavourError === false)) {            
+        if ((nameError === false) && (flavourError === false)) {            
             add(currentInputType, currentInputBrand, currentInputName, currentInputFlavour, currentInputIce, currentInputFruity, currentInputSweet, currentInputInStock);            
         }
-    }, [typeError, brandError, nameError, flavourError]);      
+    }, [nameError, flavourError]);      
 
     return (
         <div className = 'addtobaccooverlay'>
             <div className = 'addtobaccooverlay__normalinput'>
                 <h1>Add New Tobacco</h1>
-                <input placeholder = 'Enter Tobacco Type' value = { currentInputType } onChange = { (e) => setCurrentInputType(e.target.value) }></input>
-                <input placeholder = 'Enter Tobacco Brand' value = { currentInputBrand } onChange = { (e) => setCurrentInputBrand(e.target.value) }></input>
+                <select className = 'addtobaccooverlay__normalinput-select' value = { currentInputType } onChange = { e => HandleTypeChange(e) }>
+                    { (types) ? (types.map(e => (
+                        <option value = { e }>
+                            { e }
+                        </option>
+                    ))) : (null)}
+                </select>
+                <select className = 'addtobaccooverlay__normalinput-select' value = { currentInputBrand } onChange = { e => HandleBrandChange(e) }>
+                    { (brands) ? (brands.map(e => (
+                        <option value = { e }>
+                            { e }
+                        </option>
+                    ))) : (null)}
+                </select>
                 <input placeholder = 'Enter Tobacco Name' value = { currentInputName } onChange = { (e) => setCurrentInputName(e.target.value) }></input>
                 <input placeholder = 'Enter Tobacco Flavour' value = { currentInputFlavour } onChange = { (e) => setCurrentInputFlavour(e.target.value) }></input>
             </div>
@@ -136,19 +132,15 @@ const AddTobaccoOverlay = ({ close }) => {
                     <input type = 'checkbox' checked = { currentInputInStock } onChange = { () => setCurrentInputInStock(previsChecked => !previsChecked) }></input>
                 </div>
             </div>
-            { typeError && (<p>Ineligible type!</p>) }
-            { brandError && (<p>Ineligible brand!</p>) }
             { nameError && (<p>The name can't be empty!</p>) }
             { flavourError && (<p>The flavour can't be empty!</p>) }
             { uploadNotification && (<span>Image uploaded successfully!</span>) }
             <input type = 'file' ref = { fileUploadRef } onChange = { e => uploadImage(e) } style = {{ display: 'none' }}></input>
             <div className = 'addtobaccooverlay__buttonrow'>
                 <button type = 'button' onClick = { () => fileUploadRef.current.click() }>Upload Image</button>
-                <button type = 'button' onClick = { () => handleAdd(currentInputType, currentInputBrand, currentInputName, currentInputFlavour) }>Add</button>
+                <button type = 'button' onClick = { () => handleAdd(currentInputName, currentInputFlavour) }>Add</button>
             </div>
-            <FaTimes onClick = { close } className = 'close'></FaTimes>  
-            <h3 onClick = { openEligibleTobaccoInfoOverlay }>Info</h3>   
-            { toggleEligibleTobaccoInfoOverlay && (<EligibleTobaccoInfoOverlay typesInfo = { types } brandsInfo = { brands } close = { closeEligibleTobaccoInfoOverlay }></EligibleTobaccoInfoOverlay>) }       
+            <FaTimes onClick = { close } className = 'close'></FaTimes>       
         </div>
     );
 };
