@@ -1,5 +1,7 @@
 Gold Bar
+
 The website: https://gold-bar-4abbb.web.app
+
 
 Gold Bar is a website designed for local use in a hookah bar. The idea is to provide each table in the bar with its own dedicated account. When you enter and choose a table, you will find either a QR code to scan, which will open Gold Bar and log you into the table's account, or a tablet on the table that is already logged into the table's account. To log out of the table's account or to create a new one, you will need a security code managed by the admin account.
 
@@ -9,19 +11,25 @@ The regular account allows you to browse the library with filters for the brand,
 
 In the case of using QR codes instead of tablets, an implemented auto log out is in place after 20 minutes, which would be removed if the tablet option is preferred.
 
+
 Regular account
+
 Username: Table01
 
 Password: Asdf1234
 
+
 Admin account
+
 Username: Admin
 
 Password: Qwer9876
 
 
 Голд Бар
+
 Уебсайтът: https://gold-bar-4abbb.web.app
+
 
 Голд Бар е уебсайт, предназначен за местна употреба в наргиле бар. Идеята е да се осигури на всяка маса в кафенето собствен акаунт. Когато влезете и изберете маса, ще намерите или QR код за сканиране, който ще отвори Gold Bar и ще ви логне в акаунта на масата, или таблет, вече логнат в акаунта на масата. За да се излезе от акаунта на масата или да се създаде нов акаунт, ще се изисква код за сигурност, управляван от акаунта на админа.
 
@@ -31,10 +39,16 @@ Password: Qwer9876
 
 В случай на използване на QR кодове вместо таблети, е имплементирано автоматично излизане от акаунта след 20 минути, което би било премахнато, ако се предпочете опцията с таблетите.
 
+
 Нормален акаунт
+
 Юзърнейм: Table01
+
 Парола: Asdf1234
 
+
 Админ акаунт
+
 Юзърнейм: Admin
+
 Парола: Qwer9876
